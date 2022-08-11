@@ -1,0 +1,103 @@
+set main-view-date = custom
+set main-view-date-format = "%Y-%m-%d %H:%M"
+
+# disable importing colors from git config
+set git-colors = no
+
+color header                 0         13        bold
+color section                0         12        bold
+color search-result          0         16        bold
+
+# diff view
+color diff-header            4         18        bold
+color diff-index             7         18        bold
+color diff-oldmode           7         0         bold
+color diff-newmode           7         0         bold
+color "rename from "         7         0         bold
+color "rename to "           7         0         bold
+color "similarity "          7         0         bold
+color "dissimilarity "       7         0         bold
+color diff-stat              3         0         bold
+color diff-chunk             16        0         bold
+color diff-add               10        0
+color diff-add-highlight     10        0         bold
+color diff-del               9         0
+color diff-del-highlight     9         0         bold
+color " +"            yellow red
+color " -"            yellow red
+color "--- "                 4         18        bold
+color "+++ "                 4         18        bold
+color "Merge: "              3         0         bold
+color "Refs: "               3         0         bold
+color "commit "       yellow red
+color "Commit: "             14        0         bold
+color "CommitDate: "         14        0
+color "Author: "             16        0         bold
+color "AuthorDate: "         16        0
+color "Tagger: "             12        0         bold
+color "TaggerDate: "         12        0
+color "---"                  16        0         bold
+
+# log view, mostly
+color "Date: "               4         0         bold
+color "    Signed-off-by"    3         0         bold
+color "    Acked-by"         3         0         bold
+color "    Tested-by"        3         0         bold
+color "    Reviewed-by"      3         0         bold
+
+# main view
+color author                 16        0
+color date                   20        0
+color graph-commit           10        0         bold
+color id            yellow red bold
+color main-remote            9         0         bold
+color main-tracked           9         0         bold
+color main-tag               11        0         bold
+color main-local-tag         11        0         bold
+color main-head              16        0         bold
+color main-ref               16        0         bold
+color overflow               3         0         bold
+color delimiter              3         0         bold
+
+# window dressing
+color title-blur             0         10        bold
+color title-focus            11        0         reverse bold
+color cursor                 0         12        bold
+color status                 1         0
+
+# tree view
+color mode                   10        0
+color directory              16        0         bold
+color file                   5         0
+
+# status view
+color stat-none              16        0
+color stat-staged            2         0         bold
+color stat-unstaged          3         0         bold
+color stat-untracked         1         0         bold
+
+# lines in digraph
+color palette-0              10        0         bold
+color palette-1              12        0         bold
+color palette-2              14        0         bold
+color palette-3              13        0         bold
+color palette-4              17        0         bold
+color palette-5              11        0         bold
+color palette-6              9         0         bold
+color palette-7              16        0         bold
+# repeat
+color palette-8              10        0
+color palette-9              12        0
+color palette-10             14        0
+color palette-11             13        0
+color palette-12             17        0
+color palette-13             11        0
+
+# grep view
+color grep.file              4         0         bold
+color grep.line-number       16        0         bold
+color grep.delimiter        82    235    bold # no effect?
+
+# help view
+color help-group        16   default   bold
+color help-action       13   default   bold

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+IF="eth0"
+for x in $(ls -d /sys/class/net/*/device | cut -f 5 -d /)
+do
+  if [[ ! -d /sys/class/net/${x}/wireless ]]
+  then
+    IF="${x}"
+  fi
+done
+
+echo " "
+echo " "
+if [[ "$(cat /sys/class/net/$IF/operstate)" = 'up' ]]
+then
+  echo "#859900"   # color
+else
+  echo "#dc322f" # color
+fi

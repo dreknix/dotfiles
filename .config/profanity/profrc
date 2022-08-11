@@ -1,0 +1,7 @@
+[ui]
+theme=gruvbox
+history=true
+
+[connection]
+autoping=60
+reconnect=5

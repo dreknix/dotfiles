@@ -1,0 +1,16 @@
+max-items        100
+
+# theme
+color background         color7   color18
+color listnormal         color7   color18
+color listnormal_unread  color11  color18  bold
+color listfocus          color18  color12
+color listfocus_unread   color11  color12  bold
+color info               color18  color14  bold
+color article            color7   color18
+
+# highlights
+highlight article "^(Title):.*$" color3 color18 bold
+highlight article "https?://[^ ]+" color5 color18
+highlight article "\\[image\\ [0-9]+\\]" color10 color18
+highlight article "#[^ #]+" color17 color18

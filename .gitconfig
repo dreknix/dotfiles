@@ -1,0 +1,78 @@
+# This is Git's per-user configuration file.
+#
+# Ideas from:
+# https://github.com/dikiaap/dotfiles/blob/master/.gitconfig
+#
+
+[alias]
+  a = add
+  aa = add -A
+  c = commit -m
+  ca = commit -am
+  fc = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --grep=$1; }; f"
+  fs = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' -S$1; }; f"
+  last = log -1 HEAD
+  lg = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
+  pm = pull --no-rebase
+  remotes = remote -v
+  s = status -sb
+  undo = reset HEAD~1
+  unstage = reset HEAD --
+
+[core]
+  editor = vim
+  autocrlf = false
+  excludesfile = ~/.gitignore_global
+
+[init]
+	defaultBranch = main
+
+[push]
+  default = simple
+
+# rebase by default when doing pull
+# user pm to old default pull with merge
+[pull]
+  rebase = true
+
+[color]
+  ui = always
+  diff = always
+
+[color "diff"]
+    meta = yellow bold
+    commit = cyan bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = red
+
+# [user] and local changes in seperate files (not in git)
+[include]
+  path = ~/.gitconfig-user
+  path = ~/.gitconfig-local
+
+### additional stuff (i.e. delta config)
+[delta]
+  syntax-theme = Solarized (dark)
+  dark = true
+  line-numbers = true
+  side-by-side = true
+  navigate = true
+  hyperlinks = true

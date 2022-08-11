@@ -1,0 +1,5 @@
+# astyle is used only for java
+style=java
+indent=tab
+max-code-length=78
+

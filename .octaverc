@@ -1,0 +1,8 @@
+# set out format
+format long g
+
+# set history size
+history_size(100)
+
+# set the prompt
+PS1("\\n\\[\\033[01;34m\\]octave:\\#> \\[\\033[0m\\]")

@@ -1,0 +1,40 @@
+[delta]
+source  = github
+name    = dandavison/delta
+version = 0.13.0
+
+[gopass]
+source  = github
+name    = gopasspw/gopass
+version = 1.14.3
+
+[gopass-jsonapi]
+source  = github
+name    = gopasspw/gopass-jsonapi
+version = 1.11.1
+
+[hadolint]
+source  = github
+name    = hadolint/hadolint
+version = 2.10.0
+
+[micro]
+source  = github
+name    = zyedidia/micro
+version = 2.0.10
+
+[restic]
+source  = github
+name    = restic/restic
+version = 0.13.1
+
+[task]
+source  = github
+name    = go-task/task
+version = 3.13.0
+
+[taskwarrior]
+source  = github
+name    = GothenburgBitFactory/taskwarrior
+version = 2.6.2
+

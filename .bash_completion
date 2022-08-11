@@ -1,0 +1,4 @@
+for bcfile in "${XDG_DATA_HOME:-$HOME/.local/share}"/bash-completion/*
+do
+  [ -f "${bcfile}" ] && . "${bcfile}"
+done

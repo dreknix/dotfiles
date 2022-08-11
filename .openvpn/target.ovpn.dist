@@ -1,0 +1,43 @@
+#
+# OpenVPN config for 'target'
+#
+client
+dev tun
+
+<connection>
+  remote 1.1.1.1 1194 tcp
+  float
+  nobind
+</connection>
+<connection>
+  remote 1.1.1.1 1194 udp
+  float
+  nobind
+</connection>
+
+resolv-retry infinite
+
+cipher AES-256-CBC
+auth SHA256
+
+ca target/cacert.pem
+cert target/xxxx.pem
+key target/xxxx.key
+
+tls-auth target/ta.key 1
+
+auth-nocache
+
+verb 3
+
+# downgrade priviliges after initialization
+#user nobody
+#group nogroup
+persist-key
+persist-tun
+
+# update resolv conf
+script-security 2
+up /etc/openvpn/update-resolv-conf
+down /etc/openvpn/update-resolv-conf
+

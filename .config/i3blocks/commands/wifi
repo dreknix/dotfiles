@@ -1,0 +1,17 @@
+#!/bin/bash
+
+IF="$(echo /sys/class/net/*/wireless | tr ' ' '\n' | head -n 1 | cut -f 5 -d /)"
+
+[[ ! -d /sys/class/net/${IF}/wireless ]] && exit
+
+if [[ "$(cat /sys/class/net/$IF/operstate)" = 'up' ]]
+then
+  QUALITY=$(grep $IF /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+  echo "直 ${QUALITY}% $(iwgetid -r)"
+  echo "直 ${QUALITY}% $(iwgetid -r)"
+  echo "#859900"   # color
+else
+  echo "睊 "     # long text
+  echo "睊 "     # short text
+  echo "#dc322f" # color
+fi

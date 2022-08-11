@@ -1,0 +1,14 @@
+# reload inputrc in current shell: crtl-x & ctrl-r
+
+# disable double tab for linked directories
+# http://superuser.com/questions/155167/tab-completion-with-directories-links
+set mark-symlinked-directories on
+
+# Complete things that have been typed in the wrong case
+set completion-ignore-case on
+
+# Magic Space - history expansion
+# http://www.ukuug.org/events/linux2003/papers/bash_tips/
+$if Bash
+  Space: magic-space
+$endif

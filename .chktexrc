@@ -1,0 +1,25 @@
+Silent
+{
+  \ifx \ifpdf
+  \undefined
+  \bgroup \egroup
+  \hbox \vbox \hrule \vrule \hfil \vfil \wd \ht
+  \summerterm \winterterm
+  \dh \Dh \zB \ZB \bzw
+}[
+  \\if.*@.*
+  \\tu.*@.*
+  \\@.*false
+  \\@.*true
+]
+
+WipeArg
+{
+  \typeout:{}
+  \textcolor:{} # ignore the color name
+
+  # ignore parameter of \code command
+  \code:{}
+  # ignore parameter of \answerbox command
+  \answerbox:[]{}
+}

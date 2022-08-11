@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#STEP="5%"
+#
+## Based on /usr/share/i3blocks/volume
+#
+#MIXER="default"
+#[ -n "$(lsmod | grep pulse)" ] && MIXER="pulse"
+#[ -n "$(lsmod | grep jack)" ] && MIXER="jackplug"
+#
+#SCONTROL="${BLOCK_INSTANCE:-$(amixer -D $MIXER scontrols |
+#                  sed -n "s/Simple mixer control '\([A-Za-z ]*\)',0/\1/p" |
+#                  head -n1
+#                )}"
+#
+#
+#capability() { # Return "Capture" if the device is a capture device
+#  amixer -D $MIXER get $SCONTROL |
+#    sed -n "s/  Capabilities:.*cvolume.*/Capture/p"
+#}
+
+
+
+case $1 in
+  toggle)
+    #amixer -q -D $MIXER sset $SCONTROL $(capability) toggle
+    pactl set-sink-mute 0 toggle
+    ;;
+  up)
+    #amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}+ unmute
+    pactl set-sink-volume 0 "+10%"
+    ;;
+  down)
+    #amixer -q -D $MIXER sset $SCONTROL $(capability) ${STEP}- unmute
+    pactl set-sink-volume 0 "-10%"
+    ;;
+esac
+
+pkill -SIGRTMIN+10 i3blocks
