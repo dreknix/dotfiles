@@ -17,11 +17,21 @@ config config --local user.name "dreknix"
 config config --local user.email "dreknix@proton.me"
 ```
 
+### Adjust local files
+
+* `.gitconfig-user.dist` - General user name and e-mail
+* `.gitconfig-local.dist` - Additional Git configurations
+* `.shell_common_local.sh.dist` - Additional shell configs
+
+## Additional Configuration
+
+TODO: see wiki for these things
+
 ### Add SSH Config and Keys
 
 TODO
 
-### Start Ansible
+### Configure host with Ansible
 
 TODO
 _
@@ -50,7 +60,7 @@ TODO: copy background image
 
 ### Configure `gopass`
 
-TODO - see wiki
+TODO - see wiki (remove here and at to wiki)
 
 ## License
 
