@@ -1,25 +1,31 @@
 #!/usr/bin/env bash
 
+# use local config definition
+config()
+{
+  /usr/bin/env git --git-dir="${HOME}/.cfg/" --work-tree="${HOME}" "$@"
+}
+
 if [ ! -d "${HOME}/dreknix" ]
 then
   echo "Directory ~/dreknix does not exist"
   exit 1
 fi
 
-# check for ~/bin-dreknix and updating first
-if [ ! -d "${HOME}/bin-dreknix" ]
+# check for ~/bin and updating first
+if [ ! -d "${HOME}/bin" ]
 then
-  echo "Directory ~/bin-dreknix does not exist"
+  echo "Directory ~/bin does not exist"
   exit 1
 else
-  pushd "${HOME}/bin-dreknix" > /dev/null || exit $?
+  pushd "${HOME}/bin" > /dev/null || exit $?
 
-  echo -e "\nChecking ~/bin-dreknix for updates"
+  echo -e "\nChecking ~/bin for updates"
   changed=0
-  git remote update && git status -uno | grep -q 'Your branch is behind' && changed=1
+  config remote update && config status -uno | grep -q 'Your branch is behind' && changed=1
   if [ "$changed" = "1" ]
   then
-    echo "Directory ~/bin-dreknix is not up-to-date: 'git pull' needed first"
+    echo "Directory ~/bin is not up-to-date: 'config pull' needed first"
     exit 1
   fi
 
@@ -87,6 +93,6 @@ do
       echo "wrong entry in CSV file: $rec_type"
       ;;
   esac
-done < <(grep -v '^#' "${HOME}/bin-dreknix/.dreknixTree.csv" | tail +2)
+done < <(grep -v '^#' "${HOME}/bin/.dreknixTree.csv" | tail +2)
 
 popd > /dev/null || exit $?
