@@ -2,6 +2,9 @@
 # Shell common - read by .bashrc and .zshrc
 #
 
+# set umask (go-w)
+umask 0022
+
 # base16 shell
 # see: https://github.com/chriskempson/base16-shell
 BASE16_SHELL="$HOME/.config/base16-shell/"
