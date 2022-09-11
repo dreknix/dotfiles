@@ -6,11 +6,11 @@ set -e
 case "$#" in
   1)
     # usage: get-gopass.sh <pattern>
-    gopass ls --flat | grep -iq "${1}" || (
+    gopass ls --flat | fzf -i --no-sort --filter "${1}" > /dev/null 2>&1 || (
       echo "$0: Path '$1' not found" >&2
       exit 10
     )
-    path=$(gopass ls --flat | grep -i "${1}")
+    path=$(gopass ls --flat | fzf -i --no-sort --filter "${1}")
     ;;
   2)
     # usage: get-gopass.sh <store> <pattern>
