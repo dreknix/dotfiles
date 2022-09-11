@@ -14,22 +14,14 @@ case "$#" in
     ;;
   2)
     # usage: get-gopass.sh <store> <pattern>
-    gopass ls --flat "$1" | grep -iq "${2}" || (
+    gopass ls --flat "$1" | fzf -i --no-sort --filter "${2}" > /dev/null 2>&1 || (
       echo "$0: Pattern '$2' not found in store '$1'" >&2
       exit 20
     )
-    path=$(gopass ls --flat "$1" | grep -i "${2}")
-    ;;
-  3)
-    # usage: get-gopass.sh <store> <pattern> <pattern>
-    gopass ls --flat "$1" | grep -i "${2}" | grep -iq "${3}" || (
-      echo "$0: Patterns '$2' and '${3}' not found in store '$1'" >&2
-      exit 20
-    )
-    path=$(gopass ls --flat "$1" | grep -i "${2}" | grep -i "${3}")
+    path=$(gopass ls --flat "$1" | fzf -i --no-sort --filter "${2}")
     ;;
   *)
-    echo "usage: $0 [<pattern> | <store> <pattern> | <store> <pattern> <pattern>]" >&2
+    echo "usage: $0 [ <pattern> | <store> <pattern> ]" >&2
     exit 90
 esac
 if [ "$(echo "${path}" | wc -l)" -ne 1 ]
