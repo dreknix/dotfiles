@@ -3,6 +3,11 @@
 set -e
 # set -v -x
 
+if [ "$#" -eq 0 ]
+then
+  set -- "${ANSIBLE_VAULT_IDENTITY}"
+fi
+
 case "$#" in
   1)
     # usage: get-gopass.sh <pattern>
