@@ -154,7 +154,6 @@ then
   . "${HOME}/.shell_common.sh"
 fi
 
-
 # define common aliases, wrapper and enviroment variables
 if [ -f "${HOME}/.shell_aliases.sh" ]
 then
