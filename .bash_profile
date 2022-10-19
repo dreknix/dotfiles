@@ -11,6 +11,10 @@ then
   # so we need to check if a ssh-agent ist running
   # in a different fashion
   case "${UNAMEOUT}" in
+    CYGWIN*)
+      # use aliases ssh -> ssh.exe in order to use Windows ssh-agent
+      echo "using existing Windows SSH agent"
+      ;;
     *)
       . .ssh-agent.conf > /dev/null 2>&1
       if ps -p "${SSH_AGENT_PID}" > /dev/null 2>&1
@@ -99,18 +103,27 @@ case "${UNAMEOUT}" in
       export PATH="${miktex}:${PATH}"
     fi
 
-    # check if under cygwin Java is available
-    if [ -x /cygdrive/c/tools/*jdk-*/bin/javac ]
+    # use ssh from Windows OpenSSH
+    if [ -x /cygdrive/c/Windows/System32/OpenSSH/ssh.exe ]
     then
-      java=$(dirname /cygdrive/c/tools/*jdk-*/bin/javac)
-      export PATH="${java}:${PATH}"
+      export PATH="/cygdrive/c/Windows/System32/OpenSSH:${PATH}"
     fi
+    alias ssh="ssh.exe"
+    alias ssh-agent="ssh-agent.exe"
+    alias ssh-add="ssh-add.exe"
 
-    # add non cgwin cli tools to PATH
-    if [ -d "/cygdrive/c/tools/bin" ]
-    then
-      export PATH="/cygdrive/c/tools/bin:${PATH}"
-    fi
+    # # check if under cygwin Java is available
+    # if [ -x /cygdrive/c/tools/*jdk-*/bin/javac ]
+    # then
+    #   java=$(dirname /cygdrive/c/tools/*jdk-*/bin/javac)
+    #   export PATH="${java}:${PATH}"
+    # fi
+
+    # # add non cgwin cli tools to PATH
+    # if [ -d "/cygdrive/c/tools/bin" ]
+    # then
+    #   export PATH="/cygdrive/c/tools/bin:${PATH}"
+    # fi
 
     # remove GIT_SSH environment variable (used by Git for Windows)
     if [ -n "${GIT_SSH}" ]
