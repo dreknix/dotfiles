@@ -102,6 +102,7 @@ nnoremap <silent> <Esc>[1;2C :vertical resize -1<cr>
 """
 if !has('gui_running')
   set t_Co=256
+  set termguicolors
 endif
 
 syntax enable
