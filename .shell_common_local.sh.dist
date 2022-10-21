@@ -4,10 +4,10 @@
 
 # copy this file to .shell_common_local.sh
 
-# add ~/bin-local to path
-if [ -d ~/bin-local ]
+# add ${HOME}/bin-local to path
+if [ -d "${HOME}/bin-local" ]
 then
-  export PATH="${PATH}:~/bin-local"
+  export PATH="${PATH}:${HOME}/bin-local"
 fi
 
 # overwrite START_DIR_DIRS used in ~/bin/start-dir.sh
