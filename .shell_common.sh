@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #
 # Shell common - read by .bashrc and .zshrc
 #
@@ -7,10 +8,15 @@ umask 0022
 
 # base16 shell
 # see: https://github.com/chriskempson/base16-shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-  [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-    . "$BASE16_SHELL/profile_helper.sh"
+BASE16_SHELL="${HOME}/.config/base16-shell/"
+if [ -n "${PS1}" ]
+then
+  if [ -s "${BASE16_SHELL}/profile_helper.sh" ]
+  then
+    # shellcheck disable=SC1091
+    source "${BASE16_SHELL}/profile_helper.sh"
+  fi
+fi
 
 # activate same graphical theme in Qt applications
 export QT_STYLE_OVERRIDE=kvantum
@@ -50,7 +56,8 @@ case $TERM in
 esac
 
 # load local shell config
-if [ -f "$HOME/.shell_common_local.sh" ]
+if [ -s "${HOME}/.shell_common_local.sh" ]
 then
-  . "$HOME/.shell_common_local.sh"
+  # shellcheck disable=SC1091
+  source "${HOME}/.shell_common_local.sh"
 fi
