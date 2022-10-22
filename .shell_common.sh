@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 #
 # Shell common - read by .bashrc and .zshrc
 #
