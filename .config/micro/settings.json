@@ -1,6 +1,6 @@
 {
     "autosu": true,
-    "colorscheme": "geany",
+    "colorscheme": "solarized",
     "eofnewline": false,
     "fastdirty": true,
     "ignorecase": false,
