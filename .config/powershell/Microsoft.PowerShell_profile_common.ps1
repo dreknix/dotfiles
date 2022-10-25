@@ -20,6 +20,8 @@ if ($host.Name -eq "VSCode")
 Import-Module posh-git
 
 # use changed oh-my-posh theme paradox
+# cp .config/powershell/paradox.omp.json.dist .config/powershell/paradox.omp.json
+# Adjust path for Git, Subversion, Cloud, etc.
 oh-my-posh init pwsh --config "~/.config/powershell/paradox.omp.json" | Invoke-Expression
 
 $env:POSH_GIT_ENABLED = $true
