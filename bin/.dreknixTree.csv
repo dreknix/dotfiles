@@ -6,6 +6,14 @@ git;github/dreknix;git@github.com:dreknix/dreknix.git
 git;github/dotfiles;git@github.com:dreknix/dotfiles.git
 git;github/config/ssh;git@github.com:dreknix/config-ssh.git
 git;github/wiki;git@github.com:dreknix/wiki.git
+#
+# Ansible
+#
+git;github/ansible/;git@github.com:dreknix/ansible-base.git
+git;github/ansible/collections/user;git@github.com:dreknix/ansible-collection-user.git
 git;github/ansible/roles/docker;git@github.com:dreknix/ansible-role-docker.git
 git;github/ansible/roles/systemd;git@github.com:dreknix/ansible-role-systemd.git
+#
+# Docker
+#
 git;github/docker/compose/pxe;git@github.com:dreknix/docker-compose-pxe.git
