@@ -45,11 +45,6 @@ while IFS=";" read -r rec_type rec_dir rec_repo
 do
   case "${rec_type}" in
     git)
-      if [ ! -d "${rec_type}" ]
-      then
-        mkdir -p "${rec_type}"
-      fi
-      pushd "$rec_type" > /dev/null || exit $?
       echo -e "\nGit-Repository $rec_dir - $rec_repo"
 
       if [ -d "$rec_dir" ]
@@ -72,7 +67,6 @@ do
           popd > /dev/null || exit $?
         fi
       fi
-      popd > /dev/null || exit $?
       ;;
     link)
       rec_source="${rec_dir}"

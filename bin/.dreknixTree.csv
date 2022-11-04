@@ -2,18 +2,24 @@ Typ;Directory/Source;Repository/Target
 #
 # GitHub Repositories
 #
-git;github/dreknix;git@github.com:dreknix/dreknix.git
-git;github/dotfiles;git@github.com:dreknix/dotfiles.git
-git;github/config/ssh;git@github.com:dreknix/config-ssh.git
-git;github/wiki;git@github.com:dreknix/wiki.git
+git;github;git@github.com:dreknix/dreknix.git
+git;dotfiles;git@github.com:dreknix/dotfiles.git
+git;config/ssh;git@github.com:dreknix/config-ssh.git
+git;wiki;git@github.com:dreknix/wiki.git
 #
 # Ansible
 #
-git;github/ansible/;git@github.com:dreknix/ansible-base.git
-git;github/ansible/collections/user;git@github.com:dreknix/ansible-collection-user.git
-git;github/ansible/roles/docker;git@github.com:dreknix/ansible-role-docker.git
-git;github/ansible/roles/systemd;git@github.com:dreknix/ansible-role-systemd.git
+# Ansible base
+git;ansible/;git@github.com:dreknix/ansible-base.git
+# Ansible collections
+git;ansible/collections/ansible_collections/dreknix/test;git@github.com:dreknix/ansible-collection-test.git
+git;ansible/collections/ansible_collections/dreknix/user;git@github.com:dreknix/ansible-collection-user.git
+# Ansible roles
+git;ansible/roles/docker;git@github.com:dreknix/ansible-role-docker.git
+git;ansible/roles/systemd;git@github.com:dreknix/ansible-role-systemd.git
+# Ansible workspaces
+git;ansible/work/test;git@github.com:dreknix/ansible-test.git
 #
 # Docker
 #
-git;github/docker/compose/pxe;git@github.com:dreknix/docker-compose-pxe.git
+git;docker/compose/pxe;git@github.com:dreknix/docker-compose-pxe.git
