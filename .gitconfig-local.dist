@@ -11,3 +11,12 @@
 #[credential]
 #	helper = manager-core
 
+#[includeIf "gitdir:~/work/"]
+#  path = ~/.gitconfig-user-work
+
+#[includeIf "gitdir:~/project/"]
+#  path = ~/.gitconfig-user-project
+
+#[includeIf "gitdir:~/dreknix/"]
+#  path = ~/.gitconfig-user-dreknix
+
