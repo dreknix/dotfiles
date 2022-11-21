@@ -4,25 +4,23 @@
 [ -z "$PS1" ] && return
 
 # don't put duplicate lines in the history. See bash(1) for more options
-# don't overwrite GNU Midnight Commander's setting of `ignorespace'.
-HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
-# ... or force ignoredups and ignorespace
-HISTCONTROL=ignoreboth
+HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # Whenever displaying the prompt, write the previous line to disk:
-# http://www.ukuug.org/events/linux2003/papers/bash_tips/
-PROMPT_COMMAND='history -a'
+PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND}"
 
 # Ignore some commands from my history. No need to remember the exit command
-export HISTIGNORE="&:[ ]*:ls:[bf]g:history:exit"
+export HISTIGNORE="&:[ ]*:[bf]g:history:clear:exit"
 
 # Save multi-line commands to the history as one command
-# shopt -s cmdhist
+shopt -s cmdhist
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=5000
+HISTFILESIZE=5000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -30,7 +28,7 @@ shopt -s checkwinsize
 
 #
 # Set and configure the prompt PS1
-PROMPT_COMMAND=__prompt_command # func to generate PS1 after CMDs
+PROMPT_COMMAND="__prompt_command; ${PROMPT_COMMAND}" # func to generate PS1 after CMDs
 
 # show only the last three directories in prompt
 export PROMPT_DIRTRIM=3
