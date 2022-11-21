@@ -1,0 +1,76 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](fg:#c5c8c6)\
+$sudo\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$docker_context\
+$python\
+\n\
+$character
+"""
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+[sudo]
+symbol = "\uE780 "
+style = "bg:#c5c8c6 fg:#cc6666"
+format = '[$symbol]($style)'
+disabled = false
+
+[username]
+show_always = true
+style_user = "bg:#c5c8c6 fg:#1d1f21"
+style_root = "bg:#c5c8c6 fg:#cc6666"
+format = '[$user]($style)'
+
+[hostname]
+ssh_only = true
+style = "bg:#c5c8c6 fg:#1d1f21"
+format = '[@$hostname$ssh_symbol]($style)'
+
+[directory]
+style = "bg:#81a2be fg:#1d1f21"
+truncation_length = 3
+truncate_to_repo = false
+truncation_symbol = "…/"
+home_symbol = "\uF015 "
+use_os_path_sep = false
+format = "[ ](bg:#c5c8c6)[](fg:#c5c8c6 bg:#1d1f21)[](fg:#1d1f21 bg:#81a2be)[ $path ]($style)[](fg:#81a2be bg:#1d1f21)"
+
+#[directory.substitutions]
+#"git" = "\uF296 "
+#"svn" = "\uF126 "
+#"cloud" = "\uF0C2 "
+
+[git_branch]
+#symbol = ""
+symbol = ""
+truncation_length = 6
+truncation_symbol = "…"
+#ignore_branches = ["master", "main"]
+style = "fg:#1d1f21 bg:#b5bd68"
+format = '[](fg:#1d1f21 bg:#b5bd68)[ $symbol\($branch\) ]($style)'
+
+[git_status]
+style = "fg:#1d1f21 bg:#b5bd68"
+format = '[$all_status$ahead_behind ]($style)[](fg:#b5bd68 bg:#1d1f21)'
+
+[python]
+style = "fg:#1d1f21 bg:#b294bb"
+format = '[](fg:#1d1f21 bg:#b294bb)[ $virtualenv ]($style)[](fg:#b294bb bg:#1d1f21)'
+
+[docker_context]
+symbol = "\uF308 "
+style = "fg:#1d1f21 bg:#b294bb"
+format = '[](fg:#1d1f21 bg:#b294bb)[ $symbol$context ]($style)[](fg:#b294bb bg:#1d1f21)'
+
+[character]
+success_symbol = "[ ❯](bold fg:#b5bd68)"
+error_symbol = "[ ❯](bold fg:#cc6666)"

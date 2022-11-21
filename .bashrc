@@ -175,3 +175,8 @@ then
   fi
 fi
 
+# check if starship is installed
+if [ -x "${HOME}/bin/starship" ]
+then
+  eval "$(starship init bash)"
+fi
