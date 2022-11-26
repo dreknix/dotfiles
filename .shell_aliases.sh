@@ -354,6 +354,13 @@ __xpreview() {
     xargs --no-run-if-empty --open-tty "${EDITOR}"
 }
 alias xpreview=__xpreview
+# preview files and start editor (stay in preview)
+__xvi() {
+  fzf --bind '?:preview:"${BAT_CAT}" --color=always {}' \
+      --preview-window hidden \
+      --bind "enter:execute(vim {})"
+}
+alias xvi=__xvi
 ##
 ## end of fzf
 ##
