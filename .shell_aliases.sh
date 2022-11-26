@@ -341,7 +341,11 @@ __xpkill() {
 }
 alias xpkill=__xpkill
 # preview files and start editor
-alias xpreview='fzf --preview="${BAT_CAT} --color=always {}" | xargs --no-run-if-empty vi'
+__xpreview() {
+  fzf --preview="${BAT_CAT} --color=always {}" | \
+    xargs --no-run-if-empty --open-tty "${EDITOR}"
+}
+alias xpreview=__xpreview
 ##
 ## end of fzf
 ##
