@@ -176,6 +176,8 @@ export FZF_DEFAULT_OPTS="\
 #  * xdir   - remove images
 #  * xdni   - inspect network
 #  * xdnr   - remove networks
+#  * xds    - search images in Docker hub
+#  * xdst   - search image tags Docker hub
 #  * xdsi   - system info
 #  * xdvi   - inspect volume
 #  * xdvr   - remove volumes
@@ -278,6 +280,32 @@ __xdnr() {
     xargs --no-run-if-empty docker network rm
 }
 alias xdnr=__xdnr
+# Docker search hub for tags
+__xdst() {
+  if [ $# -ne 1 ]
+  then
+    echo "Search Docker hub: xdst image"
+  else
+    curl -L -s "https://registry.hub.docker.com/v2/repositories/library/$1/tags?page_size=1024" |\
+      jq -r '.results|=sort_by(.last_updated) | .results[].name' | \
+      tac | fzf | \
+      xargs --no-run-if-empty -i echo "$1:{}"
+  fi
+}
+alias xdst=__xdst
+# Docker search hub
+__xds() {
+  if [ $# -ne 1 ]
+  then
+    echo "Search Docker hub: xds image"
+  else
+    __FSTR="{{.Name}}\t{{.Description}}\t{{.StarCount}}\t{{.IsOfficial}}"
+    docker search --format "table ${__FSTR}" "$1" | \
+      fzf --header-lines=1 | \
+      awk '{print $1}'
+  fi
+}
+alias xds=__xds
 # Docker system info
 alias xdsi='docker system info --format "{{json .}}" | __json_processor | "${PAGER}"'
 # Docker volume base
