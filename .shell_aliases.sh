@@ -19,9 +19,7 @@ fi
 # export TERMINAL='st'
 
 ## storing dotfiles in git
-#alias config='/usr/bin/git --git-dir=${HOME}/.cfg/ --work-tree=${HOME}'
-config()
-{
+__config() {
   if ! command -v git > /dev/null 2>&1
   then
     echo "Command git not found: apt install git"
@@ -29,15 +27,15 @@ config()
   fi
   if [ -z "$1" ]
   then
-    config s
+    __config s | "${PAGER}"
   else
     case "$1" in
       ls)
-        if ! command -v tree > /dev/null 2>&1
+        if command -v tree > /dev/null 2>&1
         then
-          config ls-files
+          __config ls-files | tree -C --fromfile . | "${PAGER}"
         else
-          config ls-files | tree --fromfile .
+          __config ls-files | "${PAGER}"
         fi
         ;;
       *)
@@ -46,6 +44,8 @@ config()
     esac
   fi
 }
+#alias config='/usr/bin/git --git-dir=${HOME}/.cfg/ --work-tree=${HOME}'
+alias config=__config
 
 ## cd
 if [ -n "${ZSH_NAME}" ]
@@ -128,14 +128,7 @@ alias diff='diff --color=auto'
 ## dmesg
 alias dmesg='dmesg --color=auto'
 
-## iproute2
-alias ip='ip -color=auto'
-alias ipa='ip -brief -family inet address'
-alias ipl='ip -brief link'
-alias ipn='ip neighbor'
-alias ipr='ip route'
-
-# ps
+## ps
 alias psc='ps xawf -eo pid,user,cgroup,args'
 
 ## jq - JSON processor
@@ -430,6 +423,13 @@ alias ssh_nr='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 ##
 ## network stuff
 ##
+
+# iproute2
+alias ip='ip -color=auto'
+alias ipa='ip -brief -family inet address'
+alias ipl='ip -brief link'
+alias ipn='ip neighbor'
+alias ipr='ip route'
 
 # get public IP address
 __net_public_ip() {
