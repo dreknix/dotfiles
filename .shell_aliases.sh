@@ -4,7 +4,12 @@
 
 ## define common environment variables
 export EDITOR='vim'
-export PAGER='less'
+if command -v less > /dev/null 2>&1
+then
+  export PAGER='less'
+else
+  export PAGER='more'
+fi
 # TODO
 # export TERMINAL='st'
 
@@ -128,6 +133,16 @@ alias ipr='ip route'
 # ps
 alias psc='ps xawf -eo pid,user,cgroup,args'
 
+## jq - JSON processor
+__json_processor() {
+  if command -v jq > /dev/null 2>&1
+  then
+    jq --color-output
+  else
+    cat
+  fi
+}
+
 ##
 ## fzf - command-line fuzzy finder
 ##
@@ -146,36 +161,140 @@ export FZF_DEFAULT_OPTS="\
 
 ### fzf - Docker
 #
-# Get available columns, e.g.: docker container ls -a --format "{{json .}}" | jq
+# Available aliases:
+#  * xdci   - inspect container
+#  * xdcr   - remove containers
+#  * xdctxc - change to context
+#  * xdctxi - inspect context
+#  * xdctxr - remove contexts
+#  * xdii   - inspect image
+#  * xdir   - remove images
+#  * xdni   - inspect network
+#  * xdnr   - remove networks
+#  * xdsi   - system info
+#  * xdvi   - inspect volume
+#  * xdvr   - remove volumes
 #
+# Extend information about available table columns:
+# $ docker container ls -a --format "{{json .}}" | jq
+#
+# Docker container base
+__xdc_base() {
+  __FSTR="{{.Image}}\t{{.Command}}\t{{.ID}}\t{{.Names}}\t{{.Status}}"
+  docker container ls -a --format "table ${__FSTR}"
+}
+# Docker container inspect
+__xdci() {
+  __xdc_base | \
+    fzf --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty docker container inspect | \
+    __json_processor | "${PAGER}"
+}
+alias xdci=__xdci
 # Docker container remove
 __xdcr() {
-  __FSTR="{{.Image}}\t{{.Command}}\t{{.ID}}\t{{.Names}}\t{{.Status}}"
-  docker container ls -a \
-    --format "table ${__FSTR}" | \
-   fzf --multi --header-lines=1 | \
-   awk '{print $3}' | \
-   xargs --no-run-if-empty docker container rm --force --volumes
+  __xdc_base | \
+    fzf --multi --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty docker container rm --force --volumes
 }
 alias xdcr=__xdcr
+# Docker context base
+__xdctx_base() {
+  __FSTR="{{.Current}}\t{{.Name}}\t{{.Description}}\t{{.DockerEndpoint}}\t{{.KubernetesEndpoint}}"
+  docker context ls --format "table ${__FSTR}"
+}
+# Docker context change
+__xdctxc() {
+  __xdctx_base | \
+    fzf --header-lines=1 | \
+    awk '{print $2}' | \
+    xargs --no-run-if-empty docker context use
+}
+alias xdctxc=__xdctxc
+# Docker context inspect
+__xdctxi() {
+  __xdctx_base | \
+    fzf --header-lines=1 | \
+    awk '{print $2}' | \
+    xargs --no-run-if-empty docker context inspect | \
+    __json_processor | "${PAGER}"
+}
+alias xdctxi=__xdctxi
+# Docker context remove - dont use force here
+__xdctxr() {
+  __xdctx_base | \
+    fzf --multi --header-lines=1 | \
+    awk '{print $2}' | \
+    xargs --no-run-if-empty docker context rm
+}
+alias xdctxr=__xdctxr
+# Docker image base
+__xdi_base() {
+  __FSTR="{{.Repository}}\t{{.Containers}}\t{{.ID}}\t{{.Tag}}\t{{.Size}}\t{{.CreatedSince}}"
+  docker image ls --format "table ${__FSTR}"
+}
+# Docker image inspect
+__xdii() {
+  __xdi_base | \
+    fzf --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty docker image inspect | \
+    __json_processor | "${PAGER}"
+}
+alias xdii=__xdii
 # Docker image remove
 __xdir() {
-  __FSTR="{{.Repository}}\t{{.Containers}}\t{{.ID}}\t{{.Tag}}\t{{.Size}}\t{{.CreatedSince}}"
-  docker image ls \
-    --format "table ${__FSTR}" | \
-   fzf --multi --header-lines=1 | \
-   awk '{print $3}' | \
-   xargs --no-run-if-empty docker image rm --force
+  __xdi_base | \
+    fzf --multi --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty docker image rm --force
 }
-alias xdir=__xdir
+# Docker network base
+__xdn_base() {
+  __FSTR="{{.Driver}}\t{{.Scope}}\t{{.ID}}\t{{.Name}}\t{{.Internal}}\t{{IPv6}}"
+  docker network ls --format "table ${__FSTR}"
+}
+# Docker network inspect
+__xdni() {
+  __xdn_base | \
+    fzf --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty docker network inspect | \
+    __json_processor | "${PAGER}"
+}
+alias xdni=__xdni
+# Docker network remove - do not use force here
+__xdnr() {
+  __xdn_base | \
+    fzf --multi --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty docker network rm
+}
+alias xdnr=__xdnr
+# Docker system info
+alias xdsi='docker system info --format "{{json .}}" | __json_processor | "${PAGER}"'
+# Docker volume base
+__xdv_base() {
+  __FSTR="{{.Driver}}\t{{.Scope}}\t{{.Name}}\t{{.Mountpoint}}"
+  docker volume ls --format "table ${__FSTR}"
+}
+# Docker volume inspect
+__xdvi() {
+  __xdv_base | \
+    fzf --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty docker volume inspect | \
+    __json_processor | "${PAGER}"
+}
+alias xdvi=__xdvi
 # Docker volume remove - do not use force here
 __xdvr() {
-  __FSTR="{{.Driver}}\t{{.Scope}}\t{{.Name}}\t{{.Mountpoint}}"
-  docker volume ls \
-    --format "table ${__FSTR}" | \
-   fzf --multi --header-lines=1 | \
-   awk '{print $3}' | \
-   xargs --no-run-if-empty docker volume rm
+  __xdv_base | \
+    fzf --multi --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty docker volume rm
 }
 alias xdvr=__xdvr
 ### general fzf aliases
