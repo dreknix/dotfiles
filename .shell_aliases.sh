@@ -331,7 +331,7 @@ __xdvr() {
 }
 alias xdvr=__xdvr
 ### general fzf aliases
-# fast switch to directory
+# xcd - fast switch to directory
 __xcd() {
   if command -v fdfind > /dev/null 2>&1
   then
@@ -341,36 +341,42 @@ __xcd() {
   fi
 }
 alias xcd=__xcd
-# kill processes
+# xpkill - kill processes
 __xpkill() {
   ps -o 'pid,ppid,user,%cpu,%mem,etime,cmd' -U "$(id -u)" | \
    fzf --multi --header-lines=1 | \
    xargs --no-run-if-empty kill -9
 }
 alias xpkill=__xpkill
-# preview files and start editor
+# xpreview - preview files and start editor
 __xpreview() {
   fzf --preview="${BAT_CAT} --color=always {}" | \
     xargs --no-run-if-empty --open-tty "${EDITOR}"
 }
 alias xpreview=__xpreview
-# preview files and start editor (stay in preview)
+# xvi - preview files and start editor (stay in preview)
 __xvi() {
   fzf --bind '?:preview:"${BAT_CAT}" --color=always {}' \
       --preview-window hidden \
       --bind "enter:execute(vim {})"
 }
 alias xvi=__xvi
+# xssh - ssh to host
+__xssh() {
+   ( \
+     awk '!/\*/ && /^Host /{print $2}' ~/.ssh/config.d/*; \
+     awk '{sub(",.*$","",$1);print $1}' ~/.ssh/known_hosts*; \
+   ) | \
+   grep -v '?' | \
+   grep -e "\.[a-z]\+$" | \
+   sort -u | \
+   fzf | \
+   xargs --no-run-if-empty --open-tty ssh
+}
+alias xssh=__xssh
 ##
 ## end of fzf
 ##
-
-## get external IP address
-__ip_address() {
-  curl -s -H "Accept: application/json" https://ipinfo.io/json | \
-    jq "del(.loc, .postal, .readme)"
-}
-alias ip-address=__ip_address
 
 ## nnn - terminal file manager
 alias n='nnn -d'
@@ -420,14 +426,53 @@ alias open='ii'
 ## ssh - do not remember
 alias ssh_nr='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
+
+##
 ## network stuff
+##
+
+# get public IP address
+__net_public_ip() {
+  curl -s -H "Accept: application/json" https://ipinfo.io/json | \
+    jq "del(.loc, .postal, .readme)"
+}
+alias net-public-ip=__net_public_ip
+
+# get primary IP address
+alias net-public-ip=__net_public_ip
+__net_ip() {
+  # $ ip route get 8.8.8.8 | head -1
+  # 8.8.8.8 via x.x.x.x dev device src x.x.x.x uid yyyy
+  # or
+  # 8.8.8.8 dev device src x.x.x.x uid yyyy
+  __route_str="$(ip route get 8.8.8.8 | head -1)"
+  if echo "${__route_str}" | grep -q " via "
+  then
+    echo "${__route_str}" | cut -d' ' -f7
+  else
+    echo "${__route_str}" | cut -d' ' -f5
+  fi
+}
+alias net-ip=__net_ip
 
 # get the current netmask
-alias netmask="ip -o -f inet addr show | awk '/scope global/ {print \$4}'"
+__net_netmask() {
+  ip -o -f inet addr show | \
+    grep "$(net-ip)" | \
+    awk '/scope global/ {print $4}'
+}
+alias net-netmask=__net_netmask
 
 # get all nodes in current network
-alias scan_net='nmap -sn -oG - $(netmask)'
+__net_scan() {
+  nmap -sn -oG - "$(net-netmask)" | \
+    grep -v "^#" | \
+    fzf --multi | \
+    awk '{print $2}' | \
+    xargs --no-run-if-empty nmap -A -sV
+}
+alias net-scan=__net_scan
 
 # get all nodes with ssh port in current network
-alias scan_ssh='nmap -sV -p 22 -oG - $(netmask)'
+alias net-scan-ssh='nmap -sV -p 22 -oG - $(net-netmask)'
 
