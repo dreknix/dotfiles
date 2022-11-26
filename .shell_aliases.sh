@@ -123,6 +123,13 @@ fi
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 export GREP_COLOR='1;32'
 
+## ripgrep
+if command -v rg > /dev/null 2>&1
+then
+  export RIPGREP_CONFIG_PATH="${HOME}/.config/ripgrep/config"
+  export FZF_DEFAULT_COMMAND="rg --files"
+fi
+
 ## diff
 alias diff='diff --color=auto'
 
@@ -335,6 +342,29 @@ __xcd() {
   fi
 }
 alias xcd=__xcd
+# xtv - start vi in tmux in new directory
+__xtv() {
+  if command -v fdfind > /dev/null 2>&1
+  then
+    __dir="$(fdfind --type d . "${HOME}" | fzf -1)"
+  else
+    __dir="$(find "${HOME}" -type d | fzf -1)"
+  fi
+  if [ -n "${__dir}" ]
+  then
+    __target="$(basename "${__dir}")"
+    (cd "${__dir}" && tmux new-session -d -n "${__target}")
+    __tmux_session=$(tmux list-session | \
+                     grep -e '^[0-9]*:' | \
+                     grep -v '(attached)$' | \
+                     tail -1 | \
+                     cut -d':' -f1)
+
+    tmux send-keys -t "${__tmux_session}" "vim" ENTER
+    tmux attach-session -t "${__tmux_session}"
+  fi
+}
+alias xtv=__xtv
 # xpkill - kill processes
 __xpkill() {
   ps -o 'pid,ppid,user,%cpu,%mem,etime,cmd' -U "$(id -u)" | \

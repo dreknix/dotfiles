@@ -1,0 +1,17 @@
+**/*.ansible*/
+**/*.cache/
+**/*.cfg/
+**/*.config/
+**/*.davfs2/
+**/*.docker/
+**/*.gnupg/
+**/*.local/
+**/*.thunderbird/
+**/*.mozilla/
+**/*.texlive*/
+**/*.tmux/
+**/*.var/
+**/*.vim/
+**/*.zoom/
+**/*.git/
+**/*.svn/

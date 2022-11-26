@@ -1,0 +1,13 @@
+# ripgrep config file
+#
+# ~/.rgignore is used
+#
+#--colors=column:none
+#--colors=line:none
+#--colors=match:none
+#--colors=match:bg:white
+#--colors=match:fg:black
+#--colors=path:none
+--hidden
+--smart-case
+--sort=path
