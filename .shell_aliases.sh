@@ -80,9 +80,13 @@ alias l='ls --color=auto -lA'
 eval "$(dircolors -b ~/.dir_colors)"
 
 ## less / man
-# -X is needed for less version older than 530
-# -X breaks the mouse-wheel
-export LESS="-R --LONG-PROMPT -F -X"
+export LESS="\
+  --LONG-PROMPT \
+  --quit-if-one-screen \
+  --ignore-case \
+  --RAW-CONTROL-CHARS \
+  --use-color \
+  "
 # disable history of less
 export LESSHISTFILE='-'
 # color less for man
@@ -101,7 +105,6 @@ man() {
   LESS_TERMCAP_se=$(printf "\e[0m")       \
   LESS_TERMCAP_us=$(printf "\e[4;33m")    \
   LESS_TERMCAP_ue=$(printf "\e[0m")       \
-  LESS="-R --LONG-PROMPT -F"              \
   command man "$@"
 }
 
