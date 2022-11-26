@@ -360,7 +360,7 @@ __xtv() {
                      tail -1 | \
                      cut -d':' -f1)
 
-    tmux send-keys -t "${__tmux_session}" "vim" ENTER
+    tmux send-keys -t "${__tmux_session}" "${EDITOR}" ENTER
     tmux attach-session -t "${__tmux_session}"
   fi
 }
@@ -382,7 +382,7 @@ alias xpreview=__xpreview
 __xvi() {
   fzf --bind '?:preview:"${BAT_CAT}" --color=always {}' \
       --preview-window hidden \
-      --bind "enter:execute(vim {})"
+      --bind "enter:execute(${EDITOR} {})"
 }
 alias xvi=__xvi
 # xssh - ssh to host
