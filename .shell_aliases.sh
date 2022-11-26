@@ -99,6 +99,14 @@ man() {
 # -X is needed for less version older than 530
 # -X breaks the mouse-wheel
 export BAT_PAGER="-R --LONG-PROMPT -F -X"
+# on Ubuntu bat is renamed as batcat
+if command -v batcat > /dev/null 2>&1
+then
+  export BAT_CAT="batcat"
+  alias bat="batcat"
+else
+  export BAT_CAT="bat"
+fi
 
 ## grep
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
@@ -120,9 +128,71 @@ alias ipr='ip route'
 # ps
 alias psc='ps xawf -eo pid,user,cgroup,args'
 
+##
 ## fzf - command-line fuzzy finder
-#alias preview='fzf --height=50% --layout=reverse --preview="bat --color=always {}"'
-alias preview='fzf --layout=reverse --preview="bat --color=always {}"'
+##
+export FZF_DEFAULT_OPTS="\
+  --ansi \
+  --multi \
+  --layout=reverse \
+  --inline-info \
+  --no-mouse \
+  --cycle \
+  --height=50% \
+  --border \
+  --margin=0,3,0,3 \
+  --info=inline \
+  "
+
+### fzf - Docker
+#
+# Get available columns, e.g.: docker container ls -a --format "{{json .}}" | jq
+#
+# Docker container remove
+__xdcr() {
+  __FSTR="{{.Image}}\t{{.Command}}\t{{.ID}}\t{{.Names}}\t{{.Status}}"
+  docker container ls -a \
+    --format "table ${__FSTR}" | \
+   fzf --multi --header-lines=1 | \
+   awk '{print $3}' | \
+   xargs --no-run-if-empty docker container rm --force --volumes
+}
+alias xdcr=__xdcr
+# Docker image remove
+__xdir() {
+  __FSTR="{{.Repository}}\t{{.Containers}}\t{{.ID}}\t{{.Tag}}\t{{.Size}}\t{{.CreatedSince}}"
+  docker image ls \
+    --format "table ${__FSTR}" | \
+   fzf --multi --header-lines=1 | \
+   awk '{print $3}' | \
+   xargs --no-run-if-empty docker image rm --force
+}
+alias xdir=__xdir
+# Docker volume remove - do not use force here
+__xdvr() {
+  __FSTR="{{.Driver}}\t{{.Scope}}\t{{.Name}}\t{{.Mountpoint}}"
+  docker volume ls \
+    --format "table ${__FSTR}" | \
+   fzf --multi --header-lines=1 | \
+   awk '{print $3}' | \
+   xargs --no-run-if-empty docker volume rm
+}
+alias xdvr=__xdvr
+### general fzf aliases
+# fast switch to directory
+alias xcd='cd $(fdfind --type d . "${HOME}" | fzf -1)'
+# kill processes
+__xpkill() {
+  ps -o 'pid,ppid,user,%cpu,%mem,etime,cmd' -U "$(id -u)" | \
+   fzf --multi --header-lines=1 | \
+   xargs --no-run-if-empty kill -9
+}
+alias xpkill=__xpkill
+# preview files and start editor
+alias xpreview='fzf --preview="${BAT_CAT} --color=always {}" | xargs --no-run-if-empty vi'
+##
+## end of fzf
+##
 
 ## get external IP address
 alias ip-address='curl -s -H "Accept: application/json" https://ipinfo.io/json | jq "del(.loc, .postal, .readme)"'
