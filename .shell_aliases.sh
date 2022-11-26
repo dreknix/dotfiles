@@ -109,8 +109,6 @@ man() {
 }
 
 ## bat
-# -X is needed for less version older than 530
-# -X breaks the mouse-wheel
 export BAT_PAGER="-R --LONG-PROMPT -F -X"
 # on Ubuntu bat is renamed as batcat
 if command -v batcat > /dev/null 2>&1
