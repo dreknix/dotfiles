@@ -332,7 +332,15 @@ __xdvr() {
 alias xdvr=__xdvr
 ### general fzf aliases
 # fast switch to directory
-alias xcd='cd $(fdfind --type d . "${HOME}" | fzf -1)'
+__xcd() {
+  if command -v fdfind > /dev/null 2>&1
+  then
+    cd "$(fdfind --type d . "${HOME}" | fzf -1)" || return
+  else
+    cd "$(find "${HOME}" -type d | fzf -1)" || return
+  fi
+}
+alias xcd=__xcd
 # kill processes
 __xpkill() {
   ps -o 'pid,ppid,user,%cpu,%mem,etime,cmd' -U "$(id -u)" | \
@@ -351,7 +359,11 @@ alias xpreview=__xpreview
 ##
 
 ## get external IP address
-alias ip-address='curl -s -H "Accept: application/json" https://ipinfo.io/json | jq "del(.loc, .postal, .readme)"'
+__ip_address() {
+  curl -s -H "Accept: application/json" https://ipinfo.io/json | \
+    jq "del(.loc, .postal, .readme)"
+}
+alias ip-address=__ip_address
 
 ## nnn - terminal file manager
 alias n='nnn -d'
@@ -388,8 +400,7 @@ getpw() {
 ## taskwarrior
 alias t='taskwarrior rc:~/.taskrc_dreknix'
 
-### open applications from prompt
-
+### open/ii - open applications from prompt
 if [ -x "${HOME}/bin/wsl-open.sh" ]
 then
   alias wsl-open='wsl-open.sh'
@@ -397,7 +408,6 @@ then
 else
   alias ii='xdg-open'
 fi
-
 alias open='ii'
 
 ## ssh - do not remember
@@ -406,7 +416,7 @@ alias ssh_nr='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 ## network stuff
 
 # get the current netmask
-alias netmask='ip -o -f inet addr show | awk "/scope global/ {print \$4}"'
+alias netmask="ip -o -f inet addr show | awk '/scope global/ {print \$4}'"
 
 # get all nodes in current network
 alias scan_net='nmap -sn -oG - $(netmask)'
