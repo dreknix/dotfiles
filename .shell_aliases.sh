@@ -3,7 +3,12 @@
 #
 
 ## define common environment variables
-export EDITOR='vim'
+if command -v vim > /dev/null 2>&1
+then
+  export EDITOR='vim'
+else
+  export EDITOR='vi'
+fi
 if command -v less > /dev/null 2>&1
 then
   export PAGER='less'
