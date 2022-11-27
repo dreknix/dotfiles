@@ -51,48 +51,6 @@ then
   export GPG_AGENT_INFO
 fi
 
-# add dart when available
-if [ -d "/usr/lib/dart/bin" ]
-then
-  PATH="/usr/lib/dart/bin:${PATH}"
-fi
-
-# add rust when available
-if [ -d "$HOME/.cargo/bin" ]
-then
-  PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-# add go when available
-if [ -d "${HOME}/go-workspace" ]
-then
-  export GOPATH=${HOME}/go-workspace
-
-  # add local scripts
-  if [ -d "${GOPATH}/bin" ]
-  then
-    PATH="${GOPATH}/bin:${PATH}"
-  fi
-fi
-
-# add local installed python programs
-if [ -d "${HOME}/.local/bin" ]
-then
-  PATH="${HOME}/.local/bin:${PATH}"
-fi
-
-# add Poetry when available
-if [ -d "${HOME}/.poetry/bin" ]
-then
-  PATH="${HOME}/.poetry/bin:${PATH}"
-fi
-
-# add local scripts
-if [ -d "${HOME}/bin" ]
-then
-  PATH="${HOME}/bin:${PATH}"
-fi
-
 # do some cygwin specific configs
 case "${UNAMEOUT}" in
   CYGWIN*)
@@ -132,6 +90,12 @@ case "${UNAMEOUT}" in
     fi
     ;;
 esac
+
+# set common profile settings and path
+if [ -f "${HOME}/.profile_common.sh" ]
+then
+  . "${HOME}/.profile_common.sh"
+fi
 
 # only if not sourced by .profile
 if [ -z "${commingFromProfile}" ]

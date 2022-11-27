@@ -146,9 +146,6 @@ function __prompt_command() {
   PS1+=' \[\e['${errFG}'\]'${errSymbol}'\[\e[m\] '
 }
 
-# disable the use of `/etc/hots` for bash completion
-export COMP_KNOWN_HOSTS_WITH_HOSTFILE=""
-
 # set common settings and color
 if [ -f "${HOME}/.shell_common.sh" ]
 then
@@ -175,6 +172,9 @@ then
     fi
   fi
 fi
+
+# disable the use of `/etc/hots` for bash completion
+export COMP_KNOWN_HOSTS_WITH_HOSTFILE=""
 
 # check if starship is installed
 if [ -x "${HOME}/bin/starship" ]

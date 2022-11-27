@@ -1,0 +1,11 @@
+#
+# Special profile settings
+#
+
+# copy this file to .profile_common_local.sh
+
+## add ${HOME}/bin-local to path
+#if [ -d "${HOME}/bin-local" ]
+#then
+#  export PATH="${PATH}:${HOME}/bin-local"
+#fi

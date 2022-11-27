@@ -13,7 +13,7 @@ then
   if [ -s "${BASE16_SHELL}/profile_helper.sh" ]
   then
     # shellcheck disable=SC1091
-    source "${BASE16_SHELL}/profile_helper.sh"
+    . "${BASE16_SHELL}/profile_helper.sh"
   fi
 fi
 
@@ -21,7 +21,7 @@ fi
 export QT_STYLE_OVERRIDE=kvantum
 
 # enable direnv if installed
-if type -p direnv > /dev/null 2>&1
+if command -v direnv > /dev/null 2>&1
 then
   if [ -n "${ZSH_NAME}" ]
   then
@@ -54,9 +54,11 @@ case $TERM in
     ;;
 esac
 
+export START_DIR_DIRS="${HOME}/dreknix ${HOME}/workspace"
+
 # load local shell config
 if [ -s "${HOME}/.shell_common_local.sh" ]
 then
   # shellcheck disable=SC1091
-  source "${HOME}/.shell_common_local.sh"
+  . "${HOME}/.shell_common_local.sh"
 fi

@@ -19,7 +19,7 @@ fi
 # export TERMINAL='st'
 
 ## storing dotfiles in git
-__config() {
+__dreknix_config() {
   if ! command -v git > /dev/null 2>&1
   then
     echo "Command git not found: apt install git"
@@ -45,7 +45,7 @@ __config() {
   fi
 }
 #alias config='/usr/bin/git --git-dir=${HOME}/.cfg/ --work-tree=${HOME}'
-alias config=__config
+alias config=__dreknix_config
 
 ## cd
 if [ -n "${ZSH_NAME}" ]
