@@ -317,10 +317,26 @@ __xdrc() {
 alias xdrc=__xdrc
 # Docker run command in container
 __xdri() {
-  __xdc_base | \
-    fzf --header-lines=1 | \
-    awk '{print $3}' | \
-    xargs --no-run-if-empty --open-tty -i docker exec -it "{}" sh
+  __container="$(__xdc_base | \
+                 fzf --header-lines=1 | \
+                 awk '{print $3}')"
+  if [ -n "${__container}" ]
+  then
+    printf "\n   \033[92mDocker container:\033[93m %s\n" "${__container}"
+    printf "   \033[92mOptions: \033[93m"
+    # shellcheck disable=SC3045
+    read -r -e -p "" -i "-it" __options
+    printf "   \033[92mCommand: \033[93m"
+    # shellcheck disable=SC3045
+    read -r -e -i "/bin/sh" __cmd
+    printf "\033[0m\n"
+    history -s xdri # must be set due to next 'history -s'
+    # shellcheck disable=SC2086
+    history -s docker exec ${__options} ${__container} ${__cmd}
+    # shellcheck disable=SC2086
+    docker exec ${__options} ${__container} ${__cmd}
+    echo ''
+  fi
 }
 alias xdri=__xdri
 # Docker search hub for tags
@@ -460,6 +476,7 @@ alias xhistory=__dreknix_xhistory
 __dreknix_xgrep() {
   RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
   INITIAL_QUERY="${*:-}"
+  # shellcheck disable=SC2016,SC3001,SC3045,SC3050,SC3054
   IFS=: read -ra selected < <(
     FZF_DEFAULT_COMMAND="$RG_PREFIX $(printf %q "$INITIAL_QUERY")" \
     fzf --ansi \
@@ -473,6 +490,7 @@ __dreknix_xgrep() {
         --preview '${BAT_CAT} --color=always {1} --highlight-line {2}' \
         --preview-window 'right,60%,border-bottom,+{2}+3/3'
   )
+  # shellcheck disable=SC3054
   [ -n "${selected[0]}" ] && "${EDITOR}" "${selected[0]}" "+${selected[1]}"
 }
 alias xgrep=__dreknix_xgrep
@@ -584,4 +602,3 @@ alias net-scan=__net_scan
 
 # get all nodes with ssh port in current network
 alias net-scan-ssh='nmap -sV -p 22 -oG - $(net-netmask)'
-
