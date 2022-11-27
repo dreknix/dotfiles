@@ -169,7 +169,9 @@ export FZF_DEFAULT_OPTS="\
 #
 # Available aliases:
 #  * xdci   - inspect container
+#  * xdcip  - get container IP
 #  * xdcr   - remove containers
+#  * xdcs   - stop containers
 #  * xdctxc - change to context
 #  * xdctxi - inspect context
 #  * xdctxr - remove contexts
@@ -177,6 +179,8 @@ export FZF_DEFAULT_OPTS="\
 #  * xdir   - remove images
 #  * xdni   - inspect network
 #  * xdnr   - remove networks
+#  * xdrc   - run an image as container
+#  * xdri   - run a shell inside a container
 #  * xds    - search images in Docker hub
 #  * xdst   - search image tags Docker hub
 #  * xdsi   - system info
@@ -200,6 +204,20 @@ __xdci() {
     __json_processor | "${PAGER}"
 }
 alias xdci=__xdci
+# Docker container IP
+__xdcip() {
+  __container="$(__xdc_base | \
+    fzf --header-lines=1 | \
+    awk '{print $3}')"
+  if [ -n "${__container}" ]
+  then
+    __network="$(docker inspect "${__container}" -f '{{.NetworkSettings.Networks}}' | \
+                 awk -F 'map\\[|:' '{print $2}')"
+    history -s docker inspect -f "{{.NetworkSettings.Networks.${__network}.IPAddress}}" "${__container}"
+    docker inspect -f "{{.NetworkSettings.Networks.${__network}.IPAddress}}" "${__container}"
+  fi
+}
+alias xdcip=__xdcip
 # Docker container remove
 __xdcr() {
   __xdc_base | \
@@ -208,6 +226,14 @@ __xdcr() {
     xargs --no-run-if-empty docker container rm --force --volumes
 }
 alias xdcr=__xdcr
+# Docker container stop
+__xdcs() {
+  __xdc_base | \
+    fzf --multi --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty docker container stop
+}
+alias xdcs=__xdcs
 # Docker context base
 __xdctx_base() {
   __FSTR="{{.Current}}\t{{.Name}}\t{{.Description}}\t{{.DockerEndpoint}}\t{{.KubernetesEndpoint}}"
@@ -281,6 +307,22 @@ __xdnr() {
     xargs --no-run-if-empty docker network rm
 }
 alias xdnr=__xdnr
+# Docker run image as container
+__xdrc() {
+  __xdi_base | \
+    fzf --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty --open-tty docker run -it --rm
+}
+alias xdrc=__xdrc
+# Docker run command in container
+__xdri() {
+  __xdc_base | \
+    fzf --header-lines=1 | \
+    awk '{print $3}' | \
+    xargs --no-run-if-empty --open-tty -i docker exec -it "{}" sh
+}
+alias xdri=__xdri
 # Docker search hub for tags
 __xdst() {
   if [ $# -ne 1 ]
