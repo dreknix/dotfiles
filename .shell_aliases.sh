@@ -408,6 +408,32 @@ __dreknix_xhistory() {
      "${SHELL}"
 }
 alias xhistory=__dreknix_xhistory
+# xgrep - advanced grep with ripgrep and fzf
+#
+# based on: https://fossies.org/linux/fzf/ADVANCED.md
+# if fzf version is > 0.3 a better version can be used
+#
+# Alt-Enter: switch from ripgrep to fzf
+#
+__dreknix_xgrep() {
+  RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+  INITIAL_QUERY="${*:-}"
+  IFS=: read -ra selected < <(
+    FZF_DEFAULT_COMMAND="$RG_PREFIX $(printf %q "$INITIAL_QUERY")" \
+    fzf --ansi \
+        --height=100% \
+        --color "hl:-1:underline,hl+:-1:underline:reverse" \
+        --disabled --query "$INITIAL_QUERY" \
+        --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
+        --bind "alt-enter:unbind(change,alt-enter)+change-prompt(2. fzf> )+enable-search+clear-query" \
+        --prompt '1. ripgrep> ' \
+        --delimiter : \
+        --preview '${BAT_CAT} --color=always {1} --highlight-line {2}' \
+        --preview-window 'right,60%,border-bottom,+{2}+3/3'
+  )
+  [ -n "${selected[0]}" ] && "${EDITOR}" "${selected[0]}" "+${selected[1]}"
+}
+alias xgrep=__dreknix_xgrep
 ##
 ## end of fzf
 ##
