@@ -398,6 +398,16 @@ __xssh() {
    xargs --no-run-if-empty --open-tty ssh
 }
 alias xssh=__xssh
+# xhistory - fzf history selection
+# the history is empty during execution, so history commands
+# will not work, when selected in fzf
+__dreknix_xhistory() {
+   history | \
+     sed 's/^[ ]*[0-9]\+[ ]*//' | \
+     fzf | \
+     "${SHELL}"
+}
+alias xhistory=__dreknix_xhistory
 ##
 ## end of fzf
 ##
