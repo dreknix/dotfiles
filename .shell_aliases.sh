@@ -166,6 +166,45 @@ export FZF_DEFAULT_OPTS="\
   --info=inline \
   "
 
+### fzf - git
+#
+# Available aliases
+#  * xgcv   - view git log and copy/view commit
+#
+# xgcv - view git log and copy/view commit
+__dreknix_xclip() {
+  tr -d '\n' | xclip -i -sel clipboard -filter | xclip -i -sel primary
+}
+__dreknix_xgcv() {
+  git log \
+    --color=always \
+    --format="%C(cyan)%h %C(blue)%ar %C(yellow)%s %C(green)%ae" \
+    "$@" | \
+  fzf --exit-0 \
+      --tiebreak=index \
+      --preview="echo '{}' | \
+                 grep -o '[a-f0-9]\{7\}' | \
+                 head -1 | \
+                 xargs -i sh -c 'git show --color=always {} |
+                 delta'" \
+      --header "enter: view, C-c: copy hash, escape: exit fzf" \
+      --bind "enter:execute(echo '{}' | \
+                            grep -o '[a-f0-9]\{7\}' | \
+                            head -1 | \
+                            xargs -i sh -c 'LESS=-R\ -M\ --use-color \
+                              git show --color=always {} | \
+                              delta --paging=always > /dev/tty' \
+                           )" \
+      --bind "ctrl-c:execute(echo '{}' | \
+                             grep -o '[a-f0-9]\{7\}' | \
+                             head -1 | \
+                             tr -d '\n' | \
+                             xclip -i -sel clipboard -filter | \
+                             xclip -i -sel primary \
+                            )"
+}
+alias xgcv=__dreknix_xgcv
+
 ### fzf - Docker
 #
 # Available aliases:
