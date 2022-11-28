@@ -427,7 +427,19 @@ __xdvr() {
     xargs --no-run-if-empty docker volume rm
 }
 alias xdvr=__xdvr
-### general fzf aliases
+
+### fzf - General aliases
+#
+# Available aliases:
+# * xcd - fast switch to directory
+# * xgrep - advanced grep with ripgrep and fzf
+# * xhistory - fzf history selection
+# * xpkill - kill processes
+# * xpreview - preview files and start editor
+# * xssh - ssh to host
+# * xtv - start vi in tmux in new directory
+# * xvi - preview files and start editor (stay in preview)
+#
 # xcd - fast switch to directory
 __xcd() {
   if command -v fdfind > /dev/null 2>&1
