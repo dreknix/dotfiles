@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #
 # Shell aliases - read by .bashrc and .zshrc
 #
