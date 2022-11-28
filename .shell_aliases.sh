@@ -325,10 +325,8 @@ __xdri() {
   then
     printf "\n   \033[92mDocker container:\033[93m %s\n" "${__container}"
     printf "   \033[92mOptions: \033[93m"
-    # shellcheck disable=SC3045
     read -r -e -p "" -i "-it" __options
     printf "   \033[92mCommand: \033[93m"
-    # shellcheck disable=SC3045
     read -r -e -i "/bin/sh" __cmd
     printf "\033[0m\n"
     history -s xdri # must be set due to next 'history -s'
@@ -412,15 +410,16 @@ __xtv() {
   if [ -n "${__dir}" ]
   then
     __target="$(basename "${__dir}")"
-    (cd "${__dir}" && tmux new-session -d -n "${__target}")
-    __tmux_session=$(tmux list-session | \
-                     grep -e '^[0-9]*:' | \
-                     grep -v '(attached)$' | \
-                     tail -1 | \
-                     cut -d':' -f1)
-
-    tmux send-keys -t "${__tmux_session}" "${EDITOR}" ENTER
-    tmux attach-session -t "${__tmux_session}"
+    if [ "$TERM_PROGRAM" = tmux ]
+    then
+      echo tmux new-window -c "${__dir}" -n "${__target}"
+      tmux new-window -c "${__dir}" -n "${__target}"
+      tmux send-keys -t ':.' "${EDITOR}" ENTER
+    else
+      tmux new-session -d -c "${__dir}" -n "${__target}"
+      tmux send-keys -t ':.' "${EDITOR}" ENTER
+      tmux attach-session -t ":"
+    fi
   fi
 }
 alias xtv=__xtv
@@ -477,7 +476,7 @@ alias xhistory=__dreknix_xhistory
 __dreknix_xgrep() {
   RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
   INITIAL_QUERY="${*:-}"
-  # shellcheck disable=SC2016,SC3001,SC3045,SC3050,SC3054
+  # shellcheck disable=SC2016
   IFS=: read -ra selected < <(
     FZF_DEFAULT_COMMAND="$RG_PREFIX $(printf %q "$INITIAL_QUERY")" \
     fzf --ansi \
@@ -491,7 +490,6 @@ __dreknix_xgrep() {
         --preview '${BAT_CAT} --color=always {1} --highlight-line {2}' \
         --preview-window 'right,60%,border-bottom,+{2}+3/3'
   )
-  # shellcheck disable=SC3054
   [ -n "${selected[0]}" ] && "${EDITOR}" "${selected[0]}" "+${selected[1]}"
 }
 alias xgrep=__dreknix_xgrep
