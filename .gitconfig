@@ -9,10 +9,13 @@
   aa = add -A
   c = commit -m
   ca = commit -am
+  # git fc <pattern> - search in the commits for pattern
   fc = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --grep=$1; }; f"
+  # git fs <pattern> - search in the commit logs for pattern
   fs = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' -S$1; }; f"
   last = log -1 HEAD
-  lg = log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
+  l = log --color=always --format='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)%ae'
+  lg = log --graph --pretty='%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
   pm = pull --no-rebase
   remotes = remote -v
   s = status -sb
@@ -20,8 +23,6 @@
   unstage = reset HEAD --
 
 [core]
-  editor = vim
-  autocrlf = false
   excludesfile = ~/.gitignore_global
 
 [init]
@@ -63,11 +64,6 @@
     changed = yellow
     untracked = red
 
-# [user] and local changes in seperate files (not in git)
-[include]
-  path = ~/.gitconfig-user
-  path = ~/.gitconfig-local
-
 ### additional stuff (i.e. delta config)
 [delta]
   syntax-theme = Solarized (dark)
@@ -76,3 +72,17 @@
   side-by-side = true
   navigate = true
   hyperlinks = true
+
+# includeif is only working inside a git repository
+# path must be ending with '/'
+
+# operating system specific
+[includeIf "gitdir/i:/home/"]
+  path = ~/.gitconfig-linux
+[includeIf "gitdir/i:C:/"]
+  path = ~/.gitconfig-windows
+
+# [user] and local changes in seperate files (not in git)
+[include]
+  path = ~/.gitconfig-local
+  path = ~/.gitconfig-user

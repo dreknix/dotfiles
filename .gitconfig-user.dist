@@ -1,3 +1,19 @@
+# This is Git's user configuration
+#
+
+# copy to ~/.gitconfig-user
+
 [user]
   name = xxx
   email = xxx@example.org
+
+# configure different users for different projects
+
+#[includeIf "gitdir:~/dreknix/"]
+#  path = ~/.gitconfig-user-dreknix
+
+#[includeIf "gitdir:~/workspace/private/project"]
+#  path = ~/.gitconfig-user-project
+
+#[includeIf "gitdir:~/work/"]
+#  path = ~/.gitconfig-user-work

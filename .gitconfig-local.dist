@@ -1,22 +1,8 @@
 # This is Git's local configuration file.
 #
 
-#[merge]
-#  tool = vimdiff
+# copy to ~/.gitconfig-local
 
-#[pager]
-#    diff = diff-so-fancy | less --tabs=4 -RFX
-#    show = diff-so-fancy | less --tabs=4 -RFX
-
-#[credential]
-#	helper = manager-core
-
-#[includeIf "gitdir:~/work/"]
-#  path = ~/.gitconfig-user-work
-
-#[includeIf "gitdir:~/project/"]
-#  path = ~/.gitconfig-user-project
-
-#[includeIf "gitdir:~/dreknix/"]
-#  path = ~/.gitconfig-user-dreknix
-
+#[core]
+#  core.editor = vi
+#  core.pager = less
