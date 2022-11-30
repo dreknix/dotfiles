@@ -11,7 +11,7 @@ fi
 __if=$(ip address show to "${__ip}" | head -1 | cut -f2 -d: | tr -d ' ' | cut -c1-2)
 
 case "${__if}" in
-  en)
+  en|et)
     echo -n " "
     ;;
   wl)
