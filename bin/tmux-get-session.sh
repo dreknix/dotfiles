@@ -13,14 +13,10 @@ fi
 
 case "$(grep -e '^ID=' /etc/os-release | cut -f 2 -d '=')" in
   ubuntu)
-    case "$(grep -e '^NAME=' /etc/os-release | cut -f 2 -d '=')" in
-      Pop!_OS)
-        echo -n " "
-        ;;
-      *)
-        echo -n " "
-        ;;
-    esac
+    echo -n " "
+    ;;
+  pop)
+    echo -n " "
     ;;
   debian)
     echo -n " "
