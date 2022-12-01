@@ -3,6 +3,8 @@
 
 [core]
   autocrlf = false
+  sshcommand = C:/Windows/System32/OpenSSH/ssh.exe
+  pager =
 
 #[merge]
 #  tool = vimdiff
