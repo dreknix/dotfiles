@@ -105,7 +105,9 @@ function __prompt_command() {
   PS1+='\n' # start with a newline
   if [ -n "${SSH_CONNECTION}" ]
   then
-    PS1+='\[\e[48;5;1;38;5;19m\] SSH \[\e[m\]\[\e[48;5;19;38;5;1m\]'
+    PS1+='\e[38;5;5m\]\[\e[48;5;5;38;5;19m\] \[\e[m\]\[\e[48;5;19;38;5;5m\]'
+  else
+    PS1+='\e[38;5;19m\]'
   fi
   #PS1+='\[\e[48;5;19;1;38;5;14m\] ' # bold
   PS1+='\[\e[48;5;19;38;5;14m\] '
