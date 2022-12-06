@@ -81,13 +81,24 @@ alias l='ls --color=auto -lA'
 eval "$(dircolors -b ~/.dir_colors)"
 
 ## less / man
-export LESS="\
-  --LONG-PROMPT \
-  --quit-if-one-screen \
-  --ignore-case \
-  --RAW-CONTROL-CHARS \
-  --use-color \
-  "
+if [ "$(less --version | grep -e '^less [0-9][0-9]* ' | cut -f2 -d' ')" -lt 590 ]
+then
+  # old versions of less have no option --use-color
+  export LESS_BASIC_OPTS="\
+    --RAW-CONTROL-CHARS \
+    --LONG-PROMPT \
+    --ignore-case \
+    "
+else
+  export LESS_BASIC_OPTS="\
+    --RAW-CONTROL-CHARS \
+    --LONG-PROMPT \
+    --ignore-case \
+    --use-color \
+    "
+fi
+export LESS="${LESS_BASIC_OPTS} --quit-if-one-screen"
+
 # disable history of less
 export LESSHISTFILE='-'
 # color less for man
@@ -191,7 +202,7 @@ __dreknix_xgcv() {
       --bind "enter:execute(echo '{}' | \
                             grep -o '[a-f0-9]\{7\}' | \
                             head -1 | \
-                            xargs -i sh -c 'LESS=-R\ -M\ --use-color \
+                            xargs -i sh -c 'LESS="${LESS_BASIC_OPTS}" \
                               git show --color=always {} | \
                               delta --paging=always > /dev/tty' \
                            )" \
