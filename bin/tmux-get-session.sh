@@ -11,7 +11,7 @@ then
   echo -n " "
 fi
 
-case "$(grep -e '^ID=' /etc/os-release | cut -f 2 -d '=')" in
+case "$(grep -e '^ID=' /etc/os-release | cut -f 2 -d '=' | cut -f 2 -d '"')" in
   ubuntu)
     echo -n " "
     ;;
@@ -32,4 +32,4 @@ case "$(grep -e '^ID=' /etc/os-release | cut -f 2 -d '=')" in
     ;;
 esac
 
-echo " $1($(tmux list-clients -t "$1" | wc -l))"
+echo " $1($(tmux list-clients -t "$1" 2>/dev/null | wc -l))"
