@@ -77,7 +77,7 @@
 # path must be ending with '/'
 
 # operating system specific
-[includeIf "gitdir/i:/home/"]
+[includeIf "gitdir/i:%(prefix)/home/"]
   path = ~/.gitconfig-linux
 [includeIf "gitdir/i:C:/"]
   path = ~/.gitconfig-windows
