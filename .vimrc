@@ -54,6 +54,9 @@ if exists(':Plugin')
 
   Plugin 'preservim/tagbar'
 
+  "Plugin 'jayli/vim-easycomplete'
+  "" install language servers:
+  "" * apt install clangd
   Plugin 'SirVer/ultisnips'
 
   " vim-devicons should be loaded last
