@@ -90,22 +90,17 @@ function __git_info() {
 function __prompt_command() {
   local EXIT="$?" # first store return value of last command
 
+  PS1='\n' # start with a newline
   case $TERM in
     *xterm*|rxvt*|st*)
-      PS1='\[\e]0;\u@\h: \w\a\]'
-      ;;
-    *)
-      PS1=''
+      PS1+='\[\e]0;\u@\h: \w\a\]'
       ;;
   esac
 
-  #
-  # color 48;5;1;38;5;19m - bg 1 and fg 19
-  #
-  PS1+='\n' # start with a newline
   if [ -n "${SSH_CONNECTION}" ]
   then
-    PS1+='\e[38;5;5m\]\[\e[48;5;5;38;5;19m\] \[\e[m\]\[\e[48;5;19;38;5;5m\]'
+    PS1+='\[\e[48;5;19;38;5;5m\]\[\e[48;5;5;38;5;19m\] \[\e[m\]\[\e[48;5;19;38;5;5m\]'
+    #PS1+='\e[38;5;5m\]\[\e[48;5;5;38;5;19m\] \[\e[m\]\[\e[48;5;19;38;5;5m\]'
   else
     PS1+='\e[38;5;19m\]'
   fi
