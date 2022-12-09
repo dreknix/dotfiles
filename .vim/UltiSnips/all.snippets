@@ -1,0 +1,7 @@
+snippet modeline "Vim modeline"
+vim`!v ':set '. (&expandtab ? printf('et sw=%i ts=%i', &sw, &ts) : printf('noet sts=%i sw=%i ts=%i', &sts, &sw, &ts)) . (&tw ? ' tw='. &tw : '') . ':'`
+endsnippet
+
+snippet todo "TODO comment" bw
+`!v GetCommentMarker()` ${2:TODO}: $0 ${3:<${4:`!v strftime('%d.%m.%y')`}, ${5:`!v g:snips_author`}>}
+endsnippet

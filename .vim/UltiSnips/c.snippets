@@ -1,0 +1,17 @@
+snippet prog "Simple C program" b
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    ${VISUAL}${0}
+    return EXIT_SUCCESS;
+}
+endsnippet
+
+snippet "errno if" "if with errno" b
+if (${1} == -1) {
+    ${1/(\w*).*/$1/}
+    fprintf(stderr, "error: ${1/(\w*).*/$1/}() failed: %s\n", strerror(errno));
+    exit(EXIT_FAILURE);
+}
+endsnippet
