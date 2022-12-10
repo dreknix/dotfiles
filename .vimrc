@@ -32,6 +32,8 @@ if exists(':Plugin')
 
   Plugin 'christoomey/vim-tmux-navigator'
 
+  Plugin 'gelguy/wilder.nvim'
+
   Plugin 'chriskempson/base16-vim'
 
   Plugin 'vim-airline/vim-airline'
@@ -52,7 +54,8 @@ if exists(':Plugin')
 
   "Plugin 'sbdchd/neoformat'
 
-  Plugin 'preservim/tagbar'
+  "TODO: configure
+  "Plugin 'preservim/tagbar'
 
   "Plugin 'jayli/vim-easycomplete'
   "" install language servers:
@@ -83,9 +86,7 @@ filetype plugin indent on   " required by Vundle
 """
 let g:tmux_navigator_no_mappings = 1
 
-"""
 """ get the keyboard code use: "sed -n l"
-"""
 
 """ Alt + Arrow Keys
 nnoremap <silent> <Esc>[1;3D :TmuxNavigateLeft<cr>
@@ -93,7 +94,7 @@ nnoremap <silent> <Esc>[1;3B :TmuxNavigateDown<cr>
 nnoremap <silent> <Esc>[1;3A :TmuxNavigateUp<cr>
 nnoremap <silent> <Esc>[1;3C :TmuxNavigateRight<cr>
 
-" If the tmux window is zoomed, keep it zoomed when moving from Vim to another pane
+""" If the tmux window is zoomed, keep it zoomed when moving from Vim to another pane
 let g:tmux_navigator_preserve_zoom = 1
 
 """ Shift + Arrow Keys
@@ -101,6 +102,14 @@ nnoremap <silent> <Esc>[1;2D :vertical resize +1<cr>
 nnoremap <silent> <Esc>[1;2B :resize +1<cr>
 nnoremap <silent> <Esc>[1;2A :resize -1<cr>
 nnoremap <silent> <Esc>[1;2C :vertical resize -1<cr>
+
+"""
+""" Configuration: Plugin 'gelguy/wilder.nvim'
+"""
+call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ 'enable_cmdline_enter': 0,
+      \ })
 
 """
 """ Configuration: Plugin 'chriskempson/base16-vim'
@@ -331,7 +340,10 @@ set numberwidth=5
 set cursorline
 
 " better command-line completion
-set wildmenu
+" disable: using plugin wilder.nvim
+"set wildmenu
+"set wildmode=list:longest,full
+"set wildignorecase
 
 " show partial commands in the last line of the screen
 set showcmd
