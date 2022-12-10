@@ -39,7 +39,7 @@ if exists(':Plugin')
   Plugin 'vim-airline/vim-airline'
   Plugin 'vim-airline/vim-airline-themes'
 
-  Plugin 'scrooloose/nerdtree'
+  Plugin 'preservim/nerdtree'
   Plugin 'Xuyuanp/nerdtree-git-plugin'
 
   Plugin 'sgur/vim-editorconfig'
@@ -48,14 +48,9 @@ if exists(':Plugin')
   Plugin 'godlygeek/tabular'
   Plugin 'plasticboy/vim-markdown'
 
-  "why? Plugin 'vim-syntastic/syntastic'
-
   Plugin 'dense-analysis/ale'
 
-  "Plugin 'sbdchd/neoformat'
-
-  "TODO: configure
-  "Plugin 'preservim/tagbar'
+  Plugin 'preservim/tagbar'
 
   "Plugin 'jayli/vim-easycomplete'
   "" install language servers:
@@ -136,6 +131,9 @@ augroup on_change_colorschema
   autocmd ColorScheme * call s:base16_customize()
 augroup END
 
+"""
+""" Configuration: Plugin 'chriskempson/base16-vim'
+"""
 "
 " configure plugin base16-vim and base16-shell
 if filereadable(expand("~/.vimrc_background"))
@@ -145,20 +143,25 @@ if filereadable(expand("~/.vimrc_background"))
 endif
 " end base16-vim
 
-"
-" configure plugin powerline
+"""
+""" Configuration: Plugin 'vim-airline/vim-airline'
+"""
 set noshowmode     " show no mode information
 let g:airline_powerline_fonts = 1
-let g:airline_theme='base16'
 " do not show spell info in status line
 let g:airline_detect_spell=0
 " extensions
 let g:airline#extensions#tabline#enabled = 1  " enable a tabline for buffers
 let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
-" end powerline
 
-"
-" configure plugin NERDTree
+"""
+""" Configuration: Plugin 'vim-airline/vim-airline-themes'
+"""
+let g:airline_theme='base16'
+
+"""
+""" Configuration: Plugin 'preservim/nerdtree'
+"""
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 augroup nerdtree
@@ -169,11 +172,14 @@ augroup nerdtree
   " close NERDTree if it the last buffer
   autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
-" end NERDTree
 
-"
-" configure plugin vim-editorconfig
+"""
+""" Configuration: Plugin 'Xuyuanp/nerdtree-git-plugin'
+"""
 
+"""
+""" Configuration: Plugin 'sgur/vim-editorconfig'
+"""
 " Softtabs, 2 spaces
 set tabstop=2
 set softtabstop=0
@@ -194,34 +200,26 @@ let g:editorconfig_blacklist = {
 " the direcory and breaks so several other vim settings
 "let g:editorconfig_root_chdir = 1
 let g:editorconfig_verbose = 1
-" end vim-editorconfig
 
-"
-" configure plugin vim-markdown
+"""
+""" Configuration: Plugin 'godlygeek/tabular'
+"""
+
+"""
+""" Configuration: Plugin 'plasticboy/vim-markdown'
+"""
 let g:vim_markdown_no_default_key_mappings = 1 " disable key bindings
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_no_extensions_in_markdown = 1
-" end: vim-markdown
 
-" first check, why i need this plugin
-""
-"" configure plugin vim-syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"" deactivate vim-syntastic for specific filetypes
-"let g:syntastic_mode_map = { 'passive_filetypes' : ['c'] }
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"" end: vim-syntastic
+"""
+""" Configuration: Plugin 'dense-analysis/ale'
+"""
+" see below:
+" nnoremap <F5> :ALEToggle<CR>
+" inoremap <ESC><F5> :ALEToggle<CR>i
 
-"
-" configure plugin ale
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = ''
@@ -244,43 +242,21 @@ let g:ale_fix_on_save = 1
 " Map keys CTRL-j and CTRL-k to moving between errors
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-" end: ale
 
-""
-"" configure plugin vim-autoformat
-""augroup vim-autoformat
-""  autocmd!
-""  autocmd BufWrite *.{c,cpp,h} :Autoformat
-""augroup END
-"" end: vim-autoformat
-"
-""
-"" configure plugin neoformat
-"let g:neoformat_verbose = 1 " only affects the verbosity of Neoformat
-"let g:neoformat_enabled_c = ['clangformat']
-"let g:neoformat_enabled_java = ['astyle']
-"let g:neoformat_python_yapf3 = {
-            "\ 'exe': 'yapf3',
-            "\ 'stdin': 1,
-            "\ }
-"let g:neoformat_enabled_python = ['yapf3']
-"let g:neoformat_enabled_go = ['gofmt']         " part of go
-"let g:neoformat_enabled_dart = ['dartfmt']     " part of dart sdk
-"let g:neoformat_enabled_rust = ['rustfmt']     " part of rustup
-"augroup fmt
-  "autocmd!
-  "autocmd BufWritePre *.{c,C,cc,cpp,cxx,c++,h} try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endt
-  "autocmd BufWritePre *.{java} try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endt
-  "autocmd BufWritePre *.{py} try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endt
-  "X"autocmd BufWritePre *.{go} try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endt
-  "autocmd BufWritePre *.{dart} try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endt
-  "autocmd BufWritePre *.{rs} try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endt
-"augroup END
-"" end: neoformat
+"""
+""" Configuration: Plugin 'preservim/tagbar'
+"""
+" see below:
+" nnoremap <F8> :TagbarToggle<CR>
+" inoremap <ESC><F8> :TagbarToggle<CR>i
 
-"
-" configure plugin UltiSnips
-"
+"""
+""" Configuration: Plugin 'jayli/vim-easycomplete'
+"""
+
+"""
+""" Configuration: Plugin 'SirVer/ultisnips'
+"""
 " Helper Function to get line comment character
 function GetCommentMarker()
   if len(split(&l:commentstring, '%s')) == 1
@@ -309,11 +285,10 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-"" end: UltiSnips
 
-"
-" non plugin settings
-"
+"""
+""" Configuration: non plugin settings
+"""
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it for commit messages, when the position is invalid, or when
@@ -498,3 +473,4 @@ abbr flase false
 set exrc
 set secure
 
+""" end of ~/.vimrc
