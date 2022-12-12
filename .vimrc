@@ -347,7 +347,7 @@ set cursorline
 "set wildmenu
 
 " better ignorecase search
-"set ignorecase
+set ignorecase
 set smartcase
 
 " show partial commands in the last line of the screen
