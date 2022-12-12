@@ -54,7 +54,7 @@ if exists(':Plugin')
 
   Plugin 'preservim/tagbar'
 
-  "Plugin 'jayli/vim-easycomplete'
+  Plugin 'jayli/vim-easycomplete'
   "" install language servers:
   "" * apt install clangd
   Plugin 'SirVer/ultisnips'
@@ -283,10 +283,6 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " inoremap <ESC><F8> :TagbarToggle<CR>i
 
 """
-""" Configuration: Plugin 'jayli/vim-easycomplete'
-"""
-
-"""
 """ Configuration: Plugin 'SirVer/ultisnips'
 """
 " Helper Function to get line comment character
@@ -312,9 +308,9 @@ if !exists("g:snips_github")
     let g:snips_github = "https://github.com/dreknix"
 endif
 " Use <tab> key
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
@@ -349,8 +345,6 @@ set cursorline
 " better command-line completion
 " disable: using plugin wilder.nvim
 "set wildmenu
-"set wildmode=list:longest,full
-"set wildignorecase
 
 " better ignorecase search
 "set ignorecase
@@ -413,7 +407,7 @@ au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
 set spelllang=en_us
 
 "
-" Turn on spellchecking the the ftplugin/filetype.vim file
+" Turn on spellchecking the ftplugin/filetype.vim file
 "
 " autocmd FileType filetype setlocal spell
 
@@ -483,20 +477,20 @@ nnoremap <leader>B :sbuffer <C-z><S-Tab>
 nnoremap <C-d> :bprevious<CR>
 nnoremap <C-c> :bnext<CR>
 
-" Tab completion
-" will insert tab at beginning of line,
-" will use completion if not at beginning
-set wildmode=list:longest,list:full
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<Tab>"
-    else
-        return "\<C-p>"
-    endif
-endfunction
-inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
-inoremap <S-Tab> <C-n>
+"" Tab completion
+"" will insert tab at beginning of line,
+"" will use completion if not at beginning
+"set wildmode=list:longest,list:full
+"function! InsertTabWrapper()
+"    let col = col('.') - 1
+"    if !col || getline('.')[col - 1] !~ '\k'
+"        return "\<Tab>"
+"    else
+"        return "\<C-p>"
+"    endif
+"endfunction
+"inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
+"inoremap <S-Tab> <C-n>
 
 
 "

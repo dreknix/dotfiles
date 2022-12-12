@@ -1,3 +1,6 @@
+" Spell-Check TeX files
+set spell
+
 "
 " Configure plugin ale
 
@@ -52,4 +55,3 @@ endfunction
 " \e
 " important to redraw afterwards
 nnoremap <buffer> <LocalLeader>e :call EvinceNearestLabel()<CR>:redraw!<CR>
-

@@ -1,3 +1,6 @@
+" Spell-check C++ files
+set spell
+
 "
 " Configure plugin ale
 
