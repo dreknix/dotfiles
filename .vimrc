@@ -54,9 +54,12 @@ if exists(':Plugin')
 
   Plugin 'preservim/tagbar'
 
+  Plugin 'davidhalter/jedi-vim' " Python Autocomplete
+
   Plugin 'jayli/vim-easycomplete'
   "" install language servers:
   "" * apt install clangd
+  "" * apt install python3-pyls
   Plugin 'SirVer/ultisnips'
 
   " vim-devicons should be loaded last
