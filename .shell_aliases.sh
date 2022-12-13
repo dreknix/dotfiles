@@ -609,6 +609,7 @@ alias ssh_nr='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
 ## superpet - command-line environment and snippet manager
 ## https://github.com/RamiAwar/superpet
+## snippets and environments are stored as GitHub gists
 alias pet='superpet'
 
 # convert a previous command from history into a snippet
