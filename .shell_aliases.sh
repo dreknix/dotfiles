@@ -523,8 +523,8 @@ alias xssh=__xssh
 # will not work, when selected in fzf
 __dreknix_xhistory() {
    history | \
+     fzf --tac | \
      sed 's/^[ ]*[0-9]\+[ ]*//' | \
-     fzf | \
      "${SHELL}"
 }
 alias xhistory=__dreknix_xhistory
@@ -606,6 +606,38 @@ alias open='ii'
 
 ## ssh - do not remember
 alias ssh_nr='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
+
+## superpet - command-line environment and snippet manager
+## https://github.com/RamiAwar/superpet
+alias pet='superpet'
+
+# convert a previous command from history into a snippet
+function prev() {
+  PREV="$(history | \
+    fzf --tac | \
+    sed 's/^[ ]*[0-9]\+[ ]*//')"
+  if [ -n "${PREV}" ]
+  then
+    superpet new "${PREV}"
+  fi
+}
+
+# select a snippet and copy it in the command line
+function superpet-select() {
+  BUFFER=$(superpet search --query "$READLINE_LINE")
+  READLINE_LINE=$BUFFER
+  READLINE_POINT=${#BUFFER}
+}
+bind -x '"\C-x\C-r": superpet-select'
+
+# select a snippet and copy it in the clipboard
+function superpet-xcopy() {
+  superpet search --query "$READLINE_LINE" | __dreknix_xclip
+  # reset search string in current line
+  READLINE_LINE=""
+  READLINE_POINT=0
+}
+bind -x '"\C-x\C-x": superpet-xcopy'
 
 
 ##
