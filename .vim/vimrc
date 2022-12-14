@@ -48,6 +48,9 @@ set cursorline
 set ignorecase
 set smartcase
 
+" enable leaving modified buffers
+set hidden
+
 " show partial commands in the last line of the screen
 set showcmd
 

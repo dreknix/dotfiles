@@ -37,11 +37,10 @@ inoremap <F4> <ESC>:set relativenumber!<CR>i
 " <C-L> (redraw screen) - turn off search highlighting until next search
 nnoremap <C-L> :nohlsearch<CR><C-L>
 
+nnoremap <leader>b :bnext<CR>
+nnoremap <leader>B :bprevious<CR>
 
-" juggling with buffers
-set wildcharm=<C-z>
-nnoremap <leader>b :buffer <C-z><S-Tab>
-nnoremap <leader>B :sbuffer <C-z><S-Tab>
-
-nnoremap <C-d> :bprevious<CR>
-nnoremap <C-c> :bnext<CR>
+" Edit vimrc configuration file
+nnoremap <Leader>ve :e $MYVIMRC<CR>
+" Reload vimrc configuration file
+nnoremap <Leader>vr :source $MYVIMRC<CR>
