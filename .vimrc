@@ -1,321 +1,71 @@
-""" only needed without vim-dart-plugin
-""" adding dart support
-"augroup dart
-"  autocmd!
-"  autocmd BufRead,BufNewFile *.dart set filetype=dart
-"augroup END
-"""
+" Disable compatibility with vi which can cause unexpected issues.
+set nocompatible
 
 set encoding=utf-8
 scriptencoding=utf-8
 
-" TODO first define a good leader
-" set <leader> to "ö"
-let mapleader = "ö"
+" Set <space> as the leader key
+let mapleader = " "
 
 "
-" Vundle - Vim plugin manager
+" vim-plug - Vim plugin manager
 "
-set nocompatible
-filetype off                " required by Vundle
-set shellslash
+let data_dir = '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin('~/.vim/bundle')
-" alternatively, pass a path where Vundle should install plugins
-" call vundle#begin('~/some/path/here')
+  Plug 'christoomey/vim-tmux-navigator'
 
-if exists(':Plugin')
-  " let Vundle manage Vundle, required
-  Plugin 'VundleVim/Vundle.vim'
+  Plug 'gelguy/wilder.nvim'
 
-  Plugin 'christoomey/vim-tmux-navigator'
+  Plug 'ctrlpvim/ctrlp.vim'
 
-  Plugin 'gelguy/wilder.nvim'
+  Plug 'chriskempson/base16-vim'
 
-  Plugin 'ctrlpvim/ctrlp.vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
-  Plugin 'chriskempson/base16-vim'
+  Plug 'preservim/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
 
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
-
-  Plugin 'preservim/nerdtree'
-  Plugin 'Xuyuanp/nerdtree-git-plugin'
-
-  Plugin 'sgur/vim-editorconfig'
+  Plug 'sgur/vim-editorconfig'
 
   " both are necessary
-  Plugin 'godlygeek/tabular'
-  Plugin 'plasticboy/vim-markdown'
+  Plug 'godlygeek/tabular'
+  Plug 'plasticboy/vim-markdown'
 
-  Plugin 'dense-analysis/ale'
+  Plug 'dense-analysis/ale'
 
-  Plugin 'preservim/tagbar'
+  Plug 'preservim/tagbar'
 
-  Plugin 'davidhalter/jedi-vim' " Python Autocomplete
+  Plug 'davidhalter/jedi-vim' " Python Autocomplete
 
-  Plugin 'jayli/vim-easycomplete'
-  "" install language servers:
-  "" * apt install clangd
-  "" * apt install python3-pyls
-  Plugin 'SirVer/ultisnips'
+  Plug 'SirVer/ultisnips'
 
   " vim-devicons should be loaded last
-  Plugin 'ryanoasis/vim-devicons'
-endif
+  Plug 'ryanoasis/vim-devicons'
 
-" All of your Plugins must be added before the following line
-call vundle#end()           " required by Vundle
-filetype plugin indent on   " required by Vundle
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+" Initialize plugin system
+" - Automatically executes `filetype plugin indent on` and `syntax enable`.
+call plug#end()
+" You can revert the settings after the call like so:
+"   filetype indent off   " Disable file-type-specific indentation
+"   syntax off            " Disable syntax highlighting
 "
 " Brief help
-" :PluginList - lists configured plugins
-" :PluginInstall - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+" :PlugStatus  - check the status of plugins
+" :PlugInstall - install or update plugins
+" :PlugClean   - remove unlisted plugins
 
 """
-""" Configuration:  Plugin 'christoomey/vim-tmux-navigator'
+""" Configuration of plugins in ~/.vim/plugin/config/{plugin-name}.vim
 """
-let g:tmux_navigator_no_mappings = 1
-
-""" get the keyboard code use: "sed -n l"
-
-""" Alt + Arrow Keys
-nnoremap <silent> <Esc>[1;3D :TmuxNavigateLeft<cr>
-nnoremap <silent> <Esc>[1;3B :TmuxNavigateDown<cr>
-nnoremap <silent> <Esc>[1;3A :TmuxNavigateUp<cr>
-nnoremap <silent> <Esc>[1;3C :TmuxNavigateRight<cr>
-
-""" If the tmux window is zoomed, keep it zoomed when moving from Vim to another pane
-let g:tmux_navigator_preserve_zoom = 1
-
-""" Shift + Arrow Keys
-nnoremap <silent> <Esc>[1;2D :vertical resize +1<cr>
-nnoremap <silent> <Esc>[1;2B :resize +1<cr>
-nnoremap <silent> <Esc>[1;2A :resize -1<cr>
-nnoremap <silent> <Esc>[1;2C :vertical resize -1<cr>
-
-"""
-""" Configuration: Plugin 'gelguy/wilder.nvim'
-"""
-call wilder#setup({
-      \ 'modes': [':', '/', '?'],
-      \ 'enable_cmdline_enter': 0,
-      \ })
-" Use wilder#wildmenu_lightline_theme() if using Lightline
-" 'highlights' : can be overriden, see :h wilder#wildmenu_renderer()
-" TODO: highlight color is currently red should be changed <10.12.22, dreknix>
-call wilder#set_option('renderer', wilder#wildmenu_renderer(
-      \ wilder#wildmenu_airline_theme({
-      \   'highlights': {},
-      \   'highlighter': wilder#basic_highlighter(),
-      \   'separator': '  ',
-      \ })))
-
-"""
-""" Configuration: Plugin 'kien/ctrlp.vim'
-"""
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-" 'r' - the nearest ancestor that contains one of these directories or files:
-"       .git .hg .svn .bzr _darcs, and your own root markers defined with the
-"       g:ctrlp_root_markers option.
-" 'a' - like 'c', but only applies when the current working directory outside
-"       of CtrlP isn't a direct ancestor of the directory of the current file.
-let g:ctrlp_working_path_mode = 'ra'
-" Exclude files or directories using Vim's wildignore:
-set wildignore+=*/tmp/*,*.so,*.swp,*~,*.bak,*.zip
-" Exclude files or directories using CtrlP option
-" TODO: add option for ignore also .gitignore files <10.12.22, dreknix>
-let g:ctrlp_custom_ignore = {
-	\ 'dir':  '\v[\/]\.(git|hg|svn)$',
-	\ 'file': '\v\.(exe|so|dll)$',
-	\ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-	\ }
-
-"""
-""" Configuration: Plugin 'chriskempson/base16-vim'
-"""
-if !has('gui_running')
-  set t_Co=256
-  set termguicolors
-endif
-
-syntax enable
-
-" Fix highlighting for spell checks in terminal
-function! s:base16_customize() abort
-  " Colors: https://github.com/chriskempson/base16/blob/master/styling.md
-  " Arguments: group, guifg, guibg, ctermfg, ctermbg, attr, guisp
-  call Base16hi("SpellBad",   "", "", "", g:base16_cterm02, "", "")
-  call Base16hi("SpellCap",   "", "", "", g:base16_cterm02, "", "")
-  call Base16hi("SpellLocal", "", "", "", g:base16_cterm02, "", "")
-  call Base16hi("SpellRare",  "", "", "", g:base16_cterm02, "", "")
-endfunction
-
-augroup on_change_colorschema
-  autocmd!
-  autocmd ColorScheme * call s:base16_customize()
-augroup END
-
-"""
-""" Configuration: Plugin 'chriskempson/base16-vim'
-"""
-"
-" configure plugin base16-vim and base16-shell
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  set background=dark
-  source ~/.vimrc_background
-endif
-" end base16-vim
-
-"""
-""" Configuration: Plugin 'vim-airline/vim-airline'
-"""
-set noshowmode     " show no mode information
-let g:airline_powerline_fonts = 1
-" do not show spell info in status line
-let g:airline_detect_spell=0
-" extensions
-let g:airline#extensions#tabline#enabled = 1  " enable a tabline for buffers
-let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
-
-"""
-""" Configuration: Plugin 'vim-airline/vim-airline-themes'
-"""
-let g:airline_theme='base16'
-
-"""
-""" Configuration: Plugin 'preservim/nerdtree'
-"""
-nnoremap <Leader>f :NERDTreeToggle<Enter>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
-augroup nerdtree
-  let NERDTreeIgnore = ['\.aux$','\.bbl$','\.blg$','\.hsh$','\.log$','\.nav$','\.out$','\.snm$','\.toc$','\.upa$','\.vrb$','\.vtc$','\.pdf$','\~$','\.bak$','\.swp$']
-  " open NERDTree on start if no argument was given
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
-  " close NERDTree if it the last buffer
-  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-augroup END
-
-"""
-""" Configuration: Plugin 'Xuyuanp/nerdtree-git-plugin'
-"""
-
-"""
-""" Configuration: Plugin 'sgur/vim-editorconfig'
-"""
-" Softtabs, 2 spaces
-set tabstop=2
-set softtabstop=0
-set shiftwidth=2
-set shiftround
-set expandtab
-" check which plugin or file set the variable
-":verbose set tabstop
-
-if has("autocmd")
-  autocmd BufRead,BufNewFile Makefile*   :set noexpandtab
-endif
-
-let g:editorconfig_blacklist = {
-      \ 'filetype': ['git.*', 'fugitive'],
-      \ 'pattern': ['\.un~$'] }
-" editorconfig_root_chdir is dangerous since it makes a lcd to change
-" the direcory and breaks so several other vim settings
-"let g:editorconfig_root_chdir = 1
-let g:editorconfig_verbose = 1
-
-"""
-""" Configuration: Plugin 'godlygeek/tabular'
-"""
-
-"""
-""" Configuration: Plugin 'plasticboy/vim-markdown'
-"""
-let g:vim_markdown_no_default_key_mappings = 1 " disable key bindings
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_new_list_item_indent = 2
-let g:vim_markdown_no_extensions_in_markdown = 1
-
-"""
-""" Configuration: Plugin 'dense-analysis/ale'
-"""
-" see below:
-" nnoremap <F5> :ALEToggle<CR>
-" inoremap <ESC><F5> :ALEToggle<CR>i
-
-let g:ale_completion_enabled = 1
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = ''
-let g:ale_sign_warning = ''
-let g:ale_sign_info = ''
-highlight ALEErrorSign ctermfg=9 ctermbg=18 guifg=#cc6666 guibg=#373b41
-highlight ALEWarningSign ctermfg=11 ctermbg=18 guifg=#f0c674 guibg=#373b41
-highlight ALEInfoSign ctermfg=10 ctermbg=18 guifg=#b5bd68 guibg=#373b41
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
-"
-" INFORMATION
-" Setting g:ale_linters and g:ale_fixers in the filetype specific file in
-" ~/.vim/after/ftplugin/filetype.vim
-"
-" Only run linters named in g:ale_linters settings.
-let g:ale_linters_explicit = 1
-" Enable fixers at writing file
-let g:ale_fix_on_save = 1
-" Map keys CTRL-j and CTRL-k to moving between errors
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-"""
-""" Configuration: Plugin 'preservim/tagbar'
-"""
-" see below:
-" nnoremap <F8> :TagbarToggle<CR>
-" inoremap <ESC><F8> :TagbarToggle<CR>i
-
-"""
-""" Configuration: Plugin 'SirVer/ultisnips'
-"""
-" Helper Function to get line comment character
-function GetCommentMarker()
-  if len(split(&l:commentstring, '%s')) == 1
-    " if 'commentstring' xx%sxx contains no end part
-    return split(&l:commentstring, '%s')[0]
-  elseif match(&l:comments, '\v(,|^):[^,:]*(,|$)')
-    " if 'comments' contains ',:xxx,'
-    return matchstr(&l:comments, '\v(,|^):\zs[^,:]*\ze(,|$)')
-  else
-    echoerr "unable to find line comment marker."
-  endif
-endfunction
-" Some variables need default value
-if !exists("g:snips_author")
-    let g:snips_author = "dreknix"
-endif
-if !exists("g:snips_email")
-    let g:snips_email = "dreknix@proton.me"
-endif
-if !exists("g:snips_github")
-    let g:snips_github = "https://github.com/dreknix"
-endif
-" Use <tab> key
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 """
 """ Configuration: non plugin settings
@@ -460,9 +210,6 @@ inoremap <F4> <ESC>:set relativenumber!<CR>i
 " <F5> - toogle ALE signs in gutter
 nnoremap <F5> :ALEToggle<CR>
 inoremap <ESC><F5> :ALEToggle<CR>i
-" <F8> - toogle Tagbar
-nnoremap <F8> :TagbarToggle<CR>
-inoremap <ESC><F8> :TagbarToggle<CR>i
 
 " move between ALE linting errors/warnings/infos
 nnoremap ]r :ALENextWrap<CR>

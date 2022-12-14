@@ -1,0 +1,3 @@
+"""
+""" Configuration: Plugin 'godlygeek/tabular'
+"""
