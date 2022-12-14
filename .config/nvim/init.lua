@@ -1,22 +1,37 @@
 -- from https://ramezanpour.net/post/2021/04/24/My-ultimate-Neovim-configuration-for-Python-development
 
--- Install vim-plug - https://github.com/junegunn/vim-plug
--- sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
---     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-local Plug = vim.fn['plug#']
-vim.call('plug#begin', '~/.config/nvim/plugged')
+-- Let's install it into ~/.local/share/nvim
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
 
-Plug('kien/ctrlp.vim')
-Plug('scrooloose/nerdcommenter')
-Plug('tmhedberg/matchit')
-Plug('scrooloose/nerdtree', {on = {'NERDTreeToggle', 'NERDTree'}})
-Plug('chriskempson/base16-vim')
-Plug('vim-airline/vim-airline')
-Plug('vim-airline/vim-airline-themes')
-Plug('arcticicestudio/nord-vim')
-Plug('sheerun/vim-polyglot')
-Plug('tpope/vim-fugitive')
--- Intellisense engine
+local packer_bootstrap = ensure_packer()
+
+require("packer").startup({function(use)
+
+  use 'wbthomason/packer.nvim'
+
+  use 'kien/ctrlp.vim'
+  use 'scrooloose/nerdcommenter'
+  use 'tmhedberg/matchit'
+  use 'scrooloose/nerdtree'
+  use 'chriskempson/base16-vim'
+  use 'vim-airline/vim-airline'
+  use 'vim-airline/vim-airline-themes'
+  use 'arcticicestudio/nord-vim'
+  use 'sheerun/vim-polyglot'
+  use 'tpope/vim-fugitive'
+-- COC - Intellisense engine
+-- install nodejs: curl -sL install-node.vercel.app/lts | sudo bash
+-- install packages: sudo apt install clangd black flake8
+-- :CocInstall coc-clangd
 -- :CocInstall coc-docker
 -- :CocInstall coc-git
 -- :CocInstall coc-json
@@ -25,10 +40,21 @@ Plug('tpope/vim-fugitive')
 -- :CocInstall coc-pyright
 -- :CocInstall coc-spell-checker
 -- :CocInstall coc-yaml
-Plug('neoclide/coc.nvim', {branch= 'release'})
-Plug('ryanoasis/vim-devicons')
+  use { 'neoclide/coc.nvim', branch= 'release' }
+  use 'ryanoasis/vim-devicons'
 
-vim.call('plug#end')
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+
+end,
+config = {
+  display = {
+    open_fn = require('packer.util').float,
+  }
+}})
 -- End of vim-plug
 
 vim.cmd('set t_Co=256')
