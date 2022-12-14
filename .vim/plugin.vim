@@ -137,16 +137,6 @@ au BufNewFile,BufRead ~/.ssh/config.d/*  setf sshconfig
 " syntax highlighting for *.rasi files (e.g. rofi config)
 au BufNewFile,BufRead /*.rasi  setf css
 
-" file marks
-" define a mark for every kind of file
-" jump with e.g. 'C to the latest C buffer
-augroup file_marks
-"Xautocmd!
-"Xautocmd BufLeave *.c    normal! mC
-"Xautocmd BufLeave *.tex  normal! mL
-augroup END
-
-
 "
 " securing gopass
 "
@@ -207,13 +197,6 @@ inoremap <F3> <ESC>:set number!<CR>i
 " <F4> - toogle display of relative line numbers
 nnoremap <F4> :set relativenumber!<CR>
 inoremap <F4> <ESC>:set relativenumber!<CR>i
-" <F5> - toogle ALE signs in gutter
-nnoremap <F5> :ALEToggle<CR>
-inoremap <ESC><F5> :ALEToggle<CR>i
-
-" move between ALE linting errors/warnings/infos
-nnoremap ]r :ALENextWrap<CR>
-nnoremap [r :ALEPreviousWrap<CR>
 
 " <C-L> (redraw screen) - turn off search highlighting until next search
 nnoremap <C-L> :nohlsearch<CR><C-L>
@@ -226,22 +209,6 @@ nnoremap <leader>B :sbuffer <C-z><S-Tab>
 
 nnoremap <C-d> :bprevious<CR>
 nnoremap <C-c> :bnext<CR>
-
-"" Tab completion
-"" will insert tab at beginning of line,
-"" will use completion if not at beginning
-"set wildmode=list:longest,list:full
-"function! InsertTabWrapper()
-"    let col = col('.') - 1
-"    if !col || getline('.')[col - 1] !~ '\k'
-"        return "\<Tab>"
-"    else
-"        return "\<C-p>"
-"    endif
-"endfunction
-"inoremap <Tab> <C-r>=InsertTabWrapper()<CR>
-"inoremap <S-Tab> <C-n>
-
 
 "
 " Autocorrect dictionary

@@ -5,8 +5,7 @@ if !has('gui_running')
   set t_Co=256
   set termguicolors
 endif
-
-syntax enable
+let base16colorspace=256
 
 " Fix highlighting for spell checks in terminal
 function! s:base16_customize() abort
@@ -22,11 +21,3 @@ augroup on_change_colorschema
   autocmd!
   autocmd ColorScheme * call s:base16_customize()
 augroup END
-
-"
-" configure plugin base16-vim and base16-shell
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  set background=dark
-  source ~/.vimrc_background
-endif
