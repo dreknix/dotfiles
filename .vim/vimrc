@@ -11,6 +11,9 @@ let mapleader = " "
 " vim-plug - Vim plugin manager
 "
 runtime plugin.vim
+" vim-plug sets automatically the following settings:
+" set filetype plugin indent on
+" syntax enable
 
 """
 """ Configuration: non plugin settings
@@ -43,6 +46,14 @@ set cursorline
 " better command-line completion
 " disable: using plugin wilder.nvim
 "set wildmenu
+
+" ignore file patterns
+set wildignore+=*/tmp/*,*/.direnv/*
+set wildignore+=*.swp,*.bak,*~
+set wildignore+=*.zip,*.tgz,*.tar.gz
+set wildignore+=*.o,*.a,*.so
+set wildignore+=*.aux,*.bbl,*.blg,*.hsh,*.log,*.nav,*.out,*.snm,*.toc,*.upa,*.vrb,*.vtc
+set wildignore+=*.pdf
 
 " better ignorecase search
 set ignorecase
