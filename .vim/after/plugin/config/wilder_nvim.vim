@@ -1,7 +1,7 @@
 """
 """ Configuration: Plugin 'gelguy/wilder.nvim'
 """
-if exists("wilder#setup")
+if &rtp =~ 'wilder.nvim'
   call wilder#setup({
         \ 'modes': [':', '/', '?'],
         \ 'enable_cmdline_enter': 0,

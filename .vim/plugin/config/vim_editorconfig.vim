@@ -10,7 +10,7 @@ set expandtab
 " check which plugin or file set the variable
 ":verbose set tabstop
 
-if has("autocmd")
+if has('autocmd')
   autocmd BufRead,BufNewFile Makefile*   :set noexpandtab
 endif
 

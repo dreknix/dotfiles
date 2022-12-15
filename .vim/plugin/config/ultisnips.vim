@@ -10,22 +10,22 @@ function GetCommentMarker()
     " if 'comments' contains ',:xxx,'
     return matchstr(&l:comments, '\v(,|^):\zs[^,:]*\ze(,|$)')
   else
-    echoerr "unable to find line comment marker."
+    echoerr 'unable to find line comment marker.'
   endif
 endfunction
 " Some variables need default value
-if !exists("g:snips_author")
-    let g:snips_author = "dreknix"
+if !exists('g:snips_author')
+    let g:snips_author = 'dreknix'
 endif
-if !exists("g:snips_email")
-    let g:snips_email = "dreknix@proton.me"
+if !exists('g:snips_email')
+    let g:snips_email = 'dreknix@proton.me'
 endif
-if !exists("g:snips_github")
-    let g:snips_github = "https://github.com/dreknix"
+if !exists('g:snips_github')
+    let g:snips_github = 'https://github.com/dreknix'
 endif
 " Use <tab> key
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsExpandTrigger='<tab>'
+"let g:UltiSnipsJumpForwardTrigger='<tab>'
+"let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit='vertical'
