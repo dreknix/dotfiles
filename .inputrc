@@ -12,3 +12,7 @@ set completion-ignore-case on
 $if Bash
   Space: magic-space
 $endif
+
+# Home and End keys not working in tmux
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
