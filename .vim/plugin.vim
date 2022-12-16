@@ -26,6 +26,9 @@ call plug#begin()
 "   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Vim (Windows): '~/vimfiles/plugged'
 
+  " A Vim cheat sheet that makes sense, inside Vim! - <leader>?
+  Plug 'lifepillar/vim-cheat40'
+
   Plug 'christoomey/vim-tmux-navigator'
 
   Plug 'gelguy/wilder.nvim'
