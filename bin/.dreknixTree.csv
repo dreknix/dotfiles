@@ -25,3 +25,7 @@ git;ansible/work/test;git@github.com:dreknix/ansible-test.git
 #
 git;docker/compose/pxe;git@github.com:dreknix/docker-compose-pxe.git
 git;docker/images/alpine-scratch;git@github.com:dreknix/docker-image-alpine-scratch.git
+#
+# Competitive Programming
+#
+git;cp/codeforces;git@github.com:dreknix/cp-codeforces.git
