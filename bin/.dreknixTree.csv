@@ -28,4 +28,5 @@ git;docker/images/alpine-scratch;git@github.com:dreknix/docker-image-alpine-scra
 #
 # Competitive Programming
 #
+git;cp/algorithms;git@github.com:dreknix/cp-algorithms.git
 git;cp/codeforces;git@github.com:dreknix/cp-codeforces.git
