@@ -28,7 +28,7 @@ git;docker/images/alpine-scratch;git@github.com:dreknix/docker-image-alpine-scra
 #
 git;docker/images/ipxe-tftp;git@github.com:dreknix/docker-image-ipxe-tftp.git
 git;docker/images/ipxe-httpd;git@github.com:dreknix/docker-image-ipxe-httpd.git
-git;docker/compse/ipxe;git@github.com:dreknix/docker-compose-ipxe.git
+git;docker/compose/ipxe;git@github.com:dreknix/docker-compose-ipxe.git
 #
 # Competitive Programming
 #
