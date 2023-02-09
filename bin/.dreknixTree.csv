@@ -26,7 +26,7 @@ git;ansible/work/test;git@github.com:dreknix/ansible-test.git
 git;docker/compose/pxe;git@github.com:dreknix/docker-compose-pxe.git
 git;docker/images/alpine-scratch;git@github.com:dreknix/docker-image-alpine-scratch.git
 #
-git;docker/images/ipxe-tftp;git@github.com:dreknix/docker-image-ipxe-tftp.git
+git;docker/images/ipxe-tftpd;git@github.com:dreknix/docker-image-ipxe-tftpd.git
 git;docker/images/ipxe-httpd;git@github.com:dreknix/docker-image-ipxe-httpd.git
 git;docker/compose/ipxe;git@github.com:dreknix/docker-compose-ipxe.git
 #
