@@ -25,8 +25,8 @@ git;ansible/work/test;git@github.com:dreknix/ansible-test.git
 #
 git;docker/images/alpine-scratch;git@github.com:dreknix/docker-image-alpine-scratch.git
 #
-git;docker/images/pxe-tftpd;git@github.com:dreknix/docker-image-ipxe-tftpd.git
-git;docker/images/pxe-httpd;git@github.com:dreknix/docker-image-ipxe-httpd.git
+git;docker/images/pxe-tftpd;git@github.com:dreknix/docker-image-pxe-tftpd.git
+git;docker/images/pxe-httpd;git@github.com:dreknix/docker-image-pxe-httpd.git
 git;docker/compose/pxe;git@github.com:dreknix/docker-compose-pxe.git
 #
 # Competitive Programming
