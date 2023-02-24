@@ -591,6 +591,9 @@ getpw() {
   fi
 }
 
+## kubectl
+alias k='kubectl'
+
 ## taskwarrior
 alias t='taskwarrior rc:~/.taskrc_dreknix'
 
