@@ -23,9 +23,23 @@ endif
 if !exists('g:snips_github')
     let g:snips_github = 'https://github.com/dreknix'
 endif
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
 " Use <tab> key
-"let g:UltiSnipsExpandTrigger='<tab>'
-"let g:UltiSnipsJumpForwardTrigger='<tab>'
-"let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+
+"let g:UltiSnipsListSnippets="<c-m>"
+
+let g:UltiSnipsSnippetsDir="~/.vim/ultisnips"
+
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit='vertical'
+
+" Open UltiSnips edit function
+nmap <leader>se :UltiSnipsEdit<cr>

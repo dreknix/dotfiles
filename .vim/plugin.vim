@@ -55,6 +55,10 @@ call plug#begin()
 
   Plug 'davidhalter/jedi-vim' " Python Autocomplete
 
+  Plug 'ervandew/supertab'
+
+  Plug 'ycm-core/YouCompleteMe'
+
   Plug 'SirVer/ultisnips'
 
   " vim-devicons should be loaded last
