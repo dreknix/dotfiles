@@ -13,6 +13,8 @@
   fc = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --grep=$1; }; f"
   # git fs <pattern> - search in the commit logs for pattern
   fs = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' -S$1; }; f"
+  # check if file is in repository
+  is = ls-files --error-unmatch
   last = log -1 HEAD
   l = log --color=always --format='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)%ae'
   lg = log --graph --pretty='%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
