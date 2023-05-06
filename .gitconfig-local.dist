@@ -1,8 +1,0 @@
-# This is Git's local configuration file.
-#
-
-# copy to ~/.gitconfig-local
-
-#[core]
-#  core.editor = vi
-#  core.pager = less

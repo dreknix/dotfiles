@@ -24,9 +24,6 @@
   undo = reset HEAD~1
   unstage = reset HEAD --
 
-[core]
-  excludesfile = ~/.gitignore_global
-
 [init]
 	defaultBranch = main
 
@@ -43,28 +40,28 @@
   diff = always
 
 [color "diff"]
-    meta = yellow bold
-    commit = cyan bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
-    whitespace = red reverse
+  meta = yellow bold
+  commit = cyan bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 
 [color "diff-highlight"]
-    oldNormal = red bold
-    oldHighlight = red bold 52
-    newNormal = green bold
-    newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
 
 [color "status"]
-    added = green
-    changed = yellow
-    untracked = red
+  added = green
+  changed = yellow
+  untracked = red
 
 ### additional stuff (i.e. delta config)
 [delta]
@@ -80,11 +77,11 @@
 
 # operating system specific
 [includeIf "gitdir/i:%(prefix)/home/"]
-  path = ~/.gitconfig-linux
+  path = ~/.config/git/config-linux
 [includeIf "gitdir/i:C:/"]
-  path = ~/.gitconfig-windows
+  path = ~/.config/git/config-windows
 
 # [user] and local changes in seperate files (not in git)
 [include]
-  path = ~/.gitconfig-local
-  path = ~/.gitconfig-user
+  path = ~/.config/git/config-local
+  path = ~/.config/git/config-user

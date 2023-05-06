@@ -1,7 +1,6 @@
 # This is Git's user configuration
-#
 
-# copy to ~/.gitconfig-user
+# copy to ~/.config/git/config-user
 
 [user]
   name = xxx
@@ -10,10 +9,10 @@
 # configure different users for different projects
 
 #[includeIf "gitdir:~/dreknix/"]
-#  path = ~/.gitconfig-user-dreknix
+#  path = ~/.config/git/config-user-dreknix
 
 #[includeIf "gitdir:~/workspace/private/project"]
-#  path = ~/.gitconfig-user-project
+#  path = ~/.config/git/config-user-project
 
 #[includeIf "gitdir:~/work/"]
-#  path = ~/.gitconfig-user-work
+#  path = ~/.config/git/config-user-work
