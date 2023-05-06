@@ -5,24 +5,58 @@
 #
 
 [alias]
-  a = add
-  aa = add -A
-  c = commit -m
-  ca = commit -am
+  # short for add
+  a   = add
+  # annotate file with the commit reference: git b <file>
+  b   = blame --color-lines
+  # short for commit
+  c   = commit -m
+  # check ignore patterns: git ci file~
+  ci  = check-ignore -v
+  # short for diff (repository <-> local changes)
+  d   = diff
+  # diff between current commit and previous
+  dl  = diff HEAD~1 HEAD
+  # compact diff summary between current commit and previous
+  dlc = diff --compact-summary HEAD~1 HEAD
+  # short for diff (repository <-> staged)
+  ds  = diff --staged
+  # short for diff with word-diff (repository <-> local changes)
+  dw  = diff --word-diff
   # git fc <pattern> - search in the commits for pattern
-  fc = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --grep=$1; }; f"
+  fc  = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%ae>%Creset' --grep=$1 --regexp-ignore-case; }; f"
   # git fs <pattern> - search in the commit logs for pattern
-  fs = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' -S$1; }; f"
-  # check if file is in repository
-  is = ls-files --error-unmatch
+  fs  = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%ae>%Creset' -S$1; }; f"
+  # check if file is in repository: git is file
+  is  = ls-files --error-unmatch
+  # get last commit information
   last = log -1 HEAD
-  l = log --color=always --format='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)%ae'
-  lg = log --graph --pretty='%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'
-  pm = pull --no-rebase
+  # print log messages 
+  l   = log --color=always --pretty='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)<%ae>'
+  # print log messages with graph
+  lg  = log --graph --pretty='%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an'
+  # pull without rebase
+  pm  = pull --no-rebase
+  # restore (undo local changes) file: git r <file>
+  r   = restore
+  # list of remotes repositories
   remotes = remote -v
-  s = status -sb
-  undo = reset HEAD~1
+  # print prettier status
+  s   = status -sb
+  # short for show commit: git sh ce6692 or git sh ce6692:<file>
+  sh  = show --pretty='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)<%ae>'
+  # undo last commit
+  undo = reset --mixed HEAD~1
+  # undo things in stage (i.e., git add): git unstage <file>
   unstage = reset HEAD --
+
+  ### additional commands without aliases
+  #
+  # show content of file in the given commit
+  # $ git show ce66692:<file>
+  #
+  # checkout file from given commit
+  # $ git checkout ce66692 -- <file>
 
 [init]
 	defaultBranch = main
