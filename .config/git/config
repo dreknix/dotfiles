@@ -57,6 +57,15 @@
   #
   # checkout file from given commit
   # $ git checkout ce66692 -- <file>
+  #
+  # show file at a specific date
+  # $ config show '@{01.05.2023}':<file>
+  #
+  # show current commit at a specific date
+  # $ config show '@{01.05.2023}'
+  #
+  # show all commits between a date an the current commit
+  # $ config log 'main@{two month ago}..'
 
 [init]
 	defaultBranch = main
