@@ -13,6 +13,7 @@ fi
 if command -v less > /dev/null 2>&1
 then
   export PAGER='less'
+  alias more='less'
 else
   export PAGER='more'
 fi
@@ -119,6 +120,10 @@ man() {
   LESS_TERMCAP_ue=$(printf "\e[0m")       \
   command man "$@"
 }
+
+# configure systemd and journalctl to use less with options
+export SYSTEMD_PAGERSECURE=true
+export SYSTEMD_LESS="$LESS"
 
 ## bat
 export BAT_PAGER="-R --LONG-PROMPT -F -X"
