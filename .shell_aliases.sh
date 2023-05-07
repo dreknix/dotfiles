@@ -122,11 +122,11 @@ man() {
 }
 
 # configure systemd and journalctl to use less with options
-export SYSTEMD_PAGERSECURE=true
-export SYSTEMD_LESS="$LESS"
+export SYSTEMD_PAGERSECURE="true"
+export SYSTEMD_LESS="${LESS}"
 
 ## bat
-export BAT_PAGER="-R --LONG-PROMPT -F -X"
+export BAT_PAGER="less ${LESS}"
 # on Ubuntu bat is renamed as batcat
 if command -v batcat > /dev/null 2>&1
 then
