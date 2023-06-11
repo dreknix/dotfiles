@@ -27,6 +27,8 @@ git;docker/images/alpine-scratch;git@github.com:dreknix/docker-image-alpine-scra
 #
 git;docker/images/pxe-tftpd;git@github.com:dreknix/docker-image-pxe-tftpd.git
 git;docker/images/pxe-httpd;git@github.com:dreknix/docker-image-pxe-httpd.git
+#
+git;docker/compose/base;git@github.com:dreknix/docker-compose-base.git
 git;docker/compose/pxe;git@github.com:dreknix/docker-compose-pxe.git
 #
 # Competitive Programming
