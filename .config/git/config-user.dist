@@ -11,7 +11,7 @@
 #[includeIf "gitdir:~/dreknix/"]
 #  path = ~/.config/git/config-user-dreknix
 
-#[includeIf "gitdir:~/workspace/private/project"]
+#[includeIf "gitdir:~/workspace/private/project/"]
 #  path = ~/.config/git/config-user-project
 
 #[includeIf "gitdir:~/work/"]
