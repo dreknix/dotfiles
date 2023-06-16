@@ -6,6 +6,10 @@ git;github;git@github.com:dreknix/dreknix.git
 git;dotfiles;git@github.com:dreknix/dotfiles.git
 git;config/ssh;git@github.com:dreknix/config-ssh.git
 git;wiki;git@github.com:dreknix/wiki.git
+#
+# Tools
+#
+git;tools/restic-backup;git@github.com:dreknix/tools-restic-backup.git
 git;tools/virtadm;git@github.com:dreknix/virtadm.git
 #
 # Ansible
