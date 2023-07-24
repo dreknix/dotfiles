@@ -68,7 +68,7 @@
   # $ config log 'main@{two month ago}..'
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [push]
   default = simple
