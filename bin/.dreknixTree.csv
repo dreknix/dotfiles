@@ -19,6 +19,8 @@ git;ansible/;git@github.com:dreknix/ansible-base.git
 # Ansible collections
 git;ansible/collections/ansible_collections/dreknix/test;git@github.com:dreknix/ansible-collection-test.git
 git;ansible/collections/ansible_collections/dreknix/user;git@github.com:dreknix/ansible-collection-user.git
+git;ansible/collections/ansible_collections/dreknix/setup;git@github.com:dreknix/ansible-collection-setup.git
+git;ansible/collections/ansible_collections/dreknix/restic;git@github.com:dreknix/ansible-collection-restic.git
 # Ansible roles
 git;ansible/roles/docker;git@github.com:dreknix/ansible-role-docker.git
 git;ansible/roles/docker_deploy;git@github.com:dreknix/ansible-role-docker-deploy.git
