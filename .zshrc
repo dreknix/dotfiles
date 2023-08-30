@@ -22,12 +22,6 @@ then
   . "${HOME}/.shell_common.sh"
 fi
 
-# define common aliases, wrapper and environment variables
-if [ -f "${HOME}/.shell_aliases.sh" ]
-then
-  . "${HOME}/.shell_aliases.sh"
-fi
-
 ### Source zinit (plugin manager)
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
@@ -72,4 +66,10 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# define common aliases, wrapper and environment variables
+if [ -f "${HOME}/.shell_aliases.sh" ]
+then
+  . "${HOME}/.shell_aliases.sh"
+fi
 

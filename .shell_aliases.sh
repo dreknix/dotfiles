@@ -632,21 +632,39 @@ function prev() {
 }
 
 # select a snippet and copy it in the command line
-function superpet-select() {
+function bash_superpet_select() {
   BUFFER=$(superpet search --query "$READLINE_LINE")
   READLINE_LINE=$BUFFER
   READLINE_POINT=${#BUFFER}
 }
-bind -x '"\C-x\C-r": superpet-select'
+function zsh_superpet_select() {
+  BUFFER=$(superpet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+if [ -z "${ZSH_NAME}" ]
+then
+  ### bash
+  bind -x '"\C-x\C-r": bash_superpet_select'
+else
+  ### zsh
+  zle -N zsh_superpet_select
+  stty -ixon
+  bindkey "^s" zsh_superpet_select
+fi
 
 # select a snippet and copy it in the clipboard
-function superpet-xcopy() {
+function bash_superpet_xcopy() {
   superpet search --query "$READLINE_LINE" | __dreknix_xclip
   # reset search string in current line
   READLINE_LINE=""
   READLINE_POINT=0
 }
-bind -x '"\C-x\C-x": superpet-xcopy'
+if [ -z "${ZSH_NAME}" ]
+then
+  ### bash
+  bind -x '"\C-x\C-x": superpet-xcopy'
+fi
 
 
 ##
