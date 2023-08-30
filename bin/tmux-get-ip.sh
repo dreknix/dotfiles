@@ -18,10 +18,10 @@ fi
 
 case "${__if}" in
   en|et)
-    echo -n " "
+    echo -n "󰈀 "
     ;;
   wl)
-    echo -n "直"
+    echo -n "󰖩 "
     ;;
   vp)
     echo -n " "
