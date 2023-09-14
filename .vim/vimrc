@@ -81,10 +81,10 @@ noremap x "_x
 noremap X "_x
 
 " set the characters for the list view
-" → u2192, ↲ u21b2, · u00b7
+" → u2192, ↲ u21b2, · u00b7, ␣ u2423, ☐ u2610
 " space has been added since patch-7.4.710
 if has("patch-7.4.710")
-  set listchars=tab:→\ ,eol:↲,space:·
+  set listchars=tab:→\ ,eol:↲,space:·,nbsp:␣,trail:☐
 else
   set listchars=tab:→\ ,eol:↲
 endif
