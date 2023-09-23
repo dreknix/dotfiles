@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-__route_str="$(ip route get 8.8.8.8 | head -1)";
+__route_str="$(ip route get 8.8.8.8 2>/dev/null | head -1)";
 if [ -z "${__route_str}" ]
 then
   # currently no internet
