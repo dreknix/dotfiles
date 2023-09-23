@@ -35,7 +35,7 @@ call plug#begin()
 
   Plug 'ctrlpvim/ctrlp.vim'
 
-  Plug 'chriskempson/base16-vim'
+  Plug 'tinted-theming/base16-vim'
 
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'

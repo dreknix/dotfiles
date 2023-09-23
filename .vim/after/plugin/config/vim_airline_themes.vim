@@ -12,7 +12,7 @@ if exists('g:loaded_airline_themes')
 
   if exists('$BASE16_THEME')
         \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
-    let base16colorspace=256
+    let base16_colorspace=256 " Access colors present in 256 colorspace
     colorscheme base16-$BASE16_THEME
   endif
 endif
