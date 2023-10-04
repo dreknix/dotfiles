@@ -27,6 +27,15 @@ config config --local user.email "dreknix@proton.me"
 
 TODO: see wiki for these things
 
+Neovim
+
+```console
+rm -rf ~/.config/nvim
+rm -rf ~/.local/share/nvim
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
+git clone git@github.com:dreknix/tools-nvchad-config.git ~/.config/nvim/lua/custom
+```
+
 ### Add SSH Config and Keys
 
 TODO
@@ -42,12 +51,12 @@ $ pip3 install -r requirements
 $ ansible-playbook site.yml -t user
 ```
 
-TODO base16 - Tomorrow Night scheme
+TODO base16 - Catppuchin Mocca
 
-For colors [base16](https://github.com/chriskempson/base16) is used.
+For colors [base16](https://github.com/tinted-theming/base16-shell.git) is used.
 
 ```bash
-git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+git clone https://github.com/tinted-theming/base16-shell.git ~/.config/base16-shell
 ```
 
 The color scheme can be set by `base16_/theme/`. The current scheme is written
