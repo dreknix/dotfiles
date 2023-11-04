@@ -22,10 +22,13 @@ else
 
   echo -e "\nChecking ~/bin for updates"
   changed=0
-  config remote update && config status -uno | grep -q 'Your branch is behind' && changed=1
+  config remote update > /dev/null 2>&1 && \
+    config status -uno 2> /dev/null | grep -q 'Your branch is behind' && changed=1
   if [ "$changed" = "1" ]
   then
+    tput setaf 0
     echo "Directory ~/bin is not up-to-date: 'config pull' needed first"
+    tput sgr0
     exit 1
   fi
 
@@ -41,21 +44,49 @@ function cleanup {
 }
 trap cleanup EXIT
 
+function print_msg {
+  tput setaf "$1"; echo -en "$2"; tput sgr0
+}
+
+repositories=()
+repositories_status=()
+
 while IFS=";" read -r rec_type rec_dir rec_repo
 do
   case "${rec_type}" in
     git)
+      repositories+=("$rec_repo")
       echo -e "\nGit-Repository $rec_dir - $rec_repo"
 
       if [ -d "$rec_dir" ]
       then
         pushd "$rec_dir" > /dev/null || exit $?
 
-        git pull --rebase
+        if git remote update > /dev/null 2>&1
+        then
+          if git status -uno 2> /dev/null | grep -q 'Your branch is up to date with'
+          then
+            repositories_status+=("$(print_msg 2 "ok")")
+          else
+            if git pull --rebase
+            then
+              repositories_status+=("$(print_msg 3 "changed")")
+            else
+              repositories_status+=("$(print_msg 9 "error")")
+            fi
+          fi
+        else
+          repositories_status+=("$(print_msg 9 "error")")
+        fi
 
         popd > /dev/null || exit $?
       else
-        git clone "$rec_repo" "$rec_dir"
+        if git clone "$rec_repo" "$rec_dir"
+        then
+          repositories_status+=("$(print_msg 5 "cloned")")
+        else
+          repositories_status+=("$(print_msg 9 "error")")
+        fi
 
         if [ -d "$rec_dir" ]
         then
@@ -90,3 +121,11 @@ do
 done < <(grep -v '^#' "${HOME}/bin/.dreknixTree.csv" | tail +2)
 
 popd > /dev/null || exit $?
+
+print_msg 6 "\nList of repositories:\n"
+index=0
+for repository in ${repositories[@]}
+do
+  printf "%-60s %s\n" "${repository}:" "${repositories_status[$index]}"
+  index=$((index + 1))
+done
