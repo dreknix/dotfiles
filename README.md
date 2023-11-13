@@ -1,6 +1,8 @@
 # dotfiles
 
-Idea based on [this](https://medium.com/@augusteo/simplest-way-to-sync-dotfiles-and-config-using-git-14051af8703a) article.
+Idea based on [this](
+https://medium.com/@augusteo/simplest-way-to-sync-dotfiles-and-config-using-git-14051af8703a)
+article.
 
 ## Installation
 
@@ -43,19 +45,19 @@ TODO
 ### Configure host with Ansible
 
 TODO
-_
+
 ```console
-$ cd ~/tools/ansible
-$ direnv allow .
-$ pip3 install -r requirements
-$ ansible-playbook site.yml -t user
+cd ~/tools/ansible
+direnv allow .
+pip3 install -r requirements
+ansible-playbook site.yml -t user
 ```
 
 TODO base16 - Catppuchin Mocca
 
 For colors [base16](https://github.com/tinted-theming/base16-shell.git) is used.
 
-```bash
+```console
 git clone https://github.com/tinted-theming/base16-shell.git ~/.config/base16-shell
 ```
 
