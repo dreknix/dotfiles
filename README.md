@@ -53,17 +53,17 @@ pip3 install -r requirements
 ansible-playbook site.yml -t user
 ```
 
-TODO base16 - Catppuchin Mocca
-
 For colors [base16](https://github.com/tinted-theming/base16-shell.git) is used.
 
 ```console
 git clone https://github.com/tinted-theming/base16-shell.git ~/.config/base16-shell
 ```
 
-The color scheme can be set by `base16_/theme/`. The current scheme is written
-to `~/.base16_theme`
-The select the theme in settings.
+The color scheme can be set by `base16_/theme/`:
+
+```console
+base16_catppuccin-mocha
+```
 
 TODO: Icons `Arc` see `~/.icons/README.md`
 
