@@ -31,7 +31,7 @@
   is  = ls-files --error-unmatch
   # get last commit information
   last = log -1 HEAD
-  # print log messages 
+  # print log messages
   l   = log --color=always --pretty='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)<%ae>'
   # print log messages with graph
   lg  = log --graph --pretty='%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an'
@@ -128,3 +128,10 @@
 [include]
   path = ~/.config/git/config-local
   path = ~/.config/git/config-user
+
+[includeIf "gitdir:~/dreknix/"]
+  path = ~/.config/git/config-user-dreknix
+[includeIf "gitdir:~/.ssh/"]
+  path = ~/.config/git/config-user-dreknix
+[includeIf "gitdir:~/.config/nvim/lua/custom/"]
+  path = ~/.config/git/config-user-dreknix
