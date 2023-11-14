@@ -131,9 +131,8 @@ man() {
 export SYSTEMD_PAGERSECURE="true"
 export SYSTEMD_LESS="${LESS}"
 
-## bat
-export BAT_PAGER="less ${LESS}"
-# on Ubuntu bat is renamed as batcat
+## bat - https://github.com/sharkdp/bat
+## A cat(1) clone with wings
 if command -v batcat > /dev/null 2>&1
 then
   export BAT_CAT="batcat"
@@ -141,6 +140,7 @@ then
 else
   export BAT_CAT="bat"
 fi
+export BAT_PAGER="less ${LESS}"
 
 ## fd - https://github.com/sharkdp/fd
 ## A simple, fast and user-friendly alternative to find
