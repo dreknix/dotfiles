@@ -4,9 +4,15 @@
 #
 
 ## define common environment variables
-if command -v vim > /dev/null 2>&1
+if command -v nvim > /dev/null 2>&1
+then
+  export EDITOR='nvim'
+  alias vi='nvim'
+  alias vim='nvim'
+elif command -v vim > /dev/null 2>&1
 then
   export EDITOR='vim'
+  alias vi='vim'
 else
   export EDITOR='vi'
 fi
@@ -447,6 +453,7 @@ alias xdvr=__xdvr
 ### fzf - General aliases
 #
 # Available aliases:
+# * v - start vi with previous file selection
 # * xcd - fast switch to directory
 # * xgrep - advanced grep with ripgrep and fzf
 # * xhistory - fzf history selection
@@ -456,6 +463,16 @@ alias xdvr=__xdvr
 # * xtv - start vi in tmux in new directory
 # * xvi - preview files and start editor (stay in preview)
 #
+# v - start vi with previous file selection
+_v() {
+  if command -v fdfind > /dev/null 2>&1
+  then
+    fdfind --type f --hidden --exclude .git | \
+      fzf-tmux -p --reverse | \
+      xargs --no-run-if-empty --open-tty "${EDITOR}"
+  fi
+}
+alias v=_v
 # xcd - fast switch to directory
 __xcd() {
   if command -v fdfind > /dev/null 2>&1
@@ -505,8 +522,7 @@ __xpreview() {
 alias xpreview=__xpreview
 # xvi - preview files and start editor (stay in preview)
 __xvi() {
-  fzf --bind '?:preview:"${BAT_CAT}" --color=always {}' \
-      --preview-window hidden \
+  fzf --preview="${BAT_CAT} --color=always {}" \
       --bind "enter:execute(${EDITOR} {})"
 }
 alias xvi=__xvi
