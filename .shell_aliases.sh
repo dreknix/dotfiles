@@ -142,6 +142,16 @@ else
   export BAT_CAT="bat"
 fi
 
+## fd - https://github.com/sharkdp/fd
+## A simple, fast and user-friendly alternative to find
+if command -v fdfind > /dev/null 2>&1
+then
+  export FD_FIND="fdfind"
+  alias fd="fdfind"
+else
+  export FD_FIND="fd"
+fi
+
 ## grep
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 export GREP_COLOR='1;32'
@@ -213,7 +223,7 @@ __dreknix_xgcv() {
       --bind "enter:execute(echo '{}' | \
                             grep -o '[a-f0-9]\{7\}' | \
                             head -1 | \
-                            xargs -i sh -c 'LESS="${LESS_BASIC_OPTS}" \
+                            xargs -i sh -c 'LESS=${LESS_BASIC_OPTS} \
                               git show --color=always {} | \
                               delta --paging=always > /dev/tty' \
                            )" \
@@ -465,19 +475,23 @@ alias xdvr=__xdvr
 #
 # v - start vi with previous file selection
 _v() {
-  if command -v fdfind > /dev/null 2>&1
+  local find_cmd=()
+  if [ -n "${FD_FIND}" ]
   then
-    fdfind --type f --hidden --exclude .git | \
-      fzf-tmux -p --reverse | \
-      xargs --no-run-if-empty --open-tty "${EDITOR}"
+    find_cmd=("${FD_FIND}" "--type" "f" "--hidden" "--exclude" ".git")
+  else
+    find_cmd=("find" "." "-type" "f" "-not" "-path" "'*/.git/*'" "-not" "-path" "'*/.direnv/*'")
   fi
+  "${find_cmd[@]}" | \
+      fzf-tmux -p | \
+      xargs --no-run-if-empty --open-tty "${EDITOR}"
 }
 alias v=_v
 # xcd - fast switch to directory
 __xcd() {
-  if command -v fdfind > /dev/null 2>&1
+  if [ -n "${FD_FIND}" ]
   then
-    cd "$(fdfind --type d . "${HOME}" | fzf -1)" || return
+    cd "$("${FD_FIND}" --type d . "${HOME}" | fzf -1)" || return
   else
     cd "$(find "${HOME}" -type d | fzf -1)" || return
   fi
@@ -485,9 +499,10 @@ __xcd() {
 alias xcd=__xcd
 # xtv - start vi in tmux in new directory
 __xtv() {
-  if command -v fdfind > /dev/null 2>&1
+  local __dir __target
+  if [ -n "${FD_FIND}" ]
   then
-    __dir="$(fdfind --type d . "${HOME}" | fzf -1)"
+    __dir="$("${FD_FIND}" --type d . "${HOME}" | fzf -1)"
   else
     __dir="$(find "${HOME}" -type d | fzf -1)"
   fi
@@ -654,7 +669,9 @@ function bash_superpet_select() {
   READLINE_POINT=${#BUFFER}
 }
 function zsh_superpet_select() {
+  # shellcheck disable=SC2153
   BUFFER=$(superpet search --query "$LBUFFER")
+  # shellcheck disable=SC2034
   CURSOR=$#BUFFER
   zle redisplay
 }
