@@ -16,7 +16,6 @@ show_host() {
     __if=$(ip address show to "${__ip}" | head -1 | cut -f2 -d: | tr -d ' ' | cut -c1-2)
   fi
 
-
   case "${__if}" in
     en|et)
       icon=$(get_tmux_option "@catppuccin_host_icon" "󰈀")
