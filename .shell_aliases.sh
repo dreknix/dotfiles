@@ -662,7 +662,7 @@ function prev() {
 
 # select a snippet and copy it in the command line
 function bash_pet_select() {
-  BUFFER=$(et search --query "$READLINE_LINE")
+  BUFFER=$(pet search --query "$READLINE_LINE")
   READLINE_LINE=$BUFFER
   READLINE_POINT=${#BUFFER}
 }
@@ -694,7 +694,7 @@ function bash_pet_xcopy() {
 if [ -z "${ZSH_NAME}" ]
 then
   ### bash
-  bind -x '"\C-x\C-x": pet-xcopy'
+  bind -x '"\C-x\C-x": bash_pet_xcopy'
 fi
 
 
