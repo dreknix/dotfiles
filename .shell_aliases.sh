@@ -646,10 +646,8 @@ alias open='ii'
 ## ssh - do not remember
 alias ssh_nr='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
-## superpet - command-line environment and snippet manager
-## https://github.com/RamiAwar/superpet
-## snippets and environments are stored as GitHub gists
-alias pet='superpet'
+## pet - command-line environment and snippet manager
+## https://github.com/knqyf263/pet
 
 # convert a previous command from history into a snippet
 function prev() {
@@ -658,19 +656,19 @@ function prev() {
     sed 's/^[ ]*[0-9]\+[ ]*//')"
   if [ -n "${PREV}" ]
   then
-    superpet new "${PREV}"
+    pet new "${PREV}"
   fi
 }
 
 # select a snippet and copy it in the command line
-function bash_superpet_select() {
-  BUFFER=$(superpet search --query "$READLINE_LINE")
+function bash_pet_select() {
+  BUFFER=$(et search --query "$READLINE_LINE")
   READLINE_LINE=$BUFFER
   READLINE_POINT=${#BUFFER}
 }
-function zsh_superpet_select() {
+function zsh_pet_select() {
   # shellcheck disable=SC2153
-  BUFFER=$(superpet search --query "$LBUFFER")
+  BUFFER=$(pet search --query "$LBUFFER")
   # shellcheck disable=SC2034
   CURSOR=$#BUFFER
   zle redisplay
@@ -678,17 +676,17 @@ function zsh_superpet_select() {
 if [ -z "${ZSH_NAME}" ]
 then
   ### bash
-  bind -x '"\C-x\C-r": bash_superpet_select'
+  bind -x '"\C-x\C-r": bash_pet_select'
 else
   ### zsh
-  zle -N zsh_superpet_select
+  zle -N zsh_pet_select
   stty -ixon
-  bindkey "^s" zsh_superpet_select
+  bindkey "^s" zsh_pet_select
 fi
 
 # select a snippet and copy it in the clipboard
-function bash_superpet_xcopy() {
-  superpet search --query "$READLINE_LINE" | __dreknix_xclip
+function bash_pet_xcopy() {
+  pet search --query "$READLINE_LINE" | __dreknix_xclip
   # reset search string in current line
   READLINE_LINE=""
   READLINE_POINT=0
@@ -696,7 +694,7 @@ function bash_superpet_xcopy() {
 if [ -z "${ZSH_NAME}" ]
 then
   ### bash
-  bind -x '"\C-x\C-x": superpet-xcopy'
+  bind -x '"\C-x\C-x": pet-xcopy'
 fi
 
 
