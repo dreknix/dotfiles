@@ -1,0 +1,8 @@
+snippet ansible_debug_msg 'Ansible Debug Message'
+    - name: ${1}
+      ansible.builtin.debug:
+        msg: '${2}'
+snippet ansible_debug_var 'Ansible Debug Variable'
+    - name: ${1}
+      ansible.builtin.debug:
+        var: $2

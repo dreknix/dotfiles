@@ -29,15 +29,6 @@ config config --local user.email "dreknix@proton.me"
 
 TODO: see wiki for these things
 
-Neovim
-
-```console
-rm -rf ~/.config/nvim
-rm -rf ~/.local/share/nvim
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1 && nvim
-git clone git@github.com:dreknix/tools-nvchad-config.git ~/.config/nvim/lua/custom
-```
-
 ### Add SSH Config and Keys
 
 TODO
