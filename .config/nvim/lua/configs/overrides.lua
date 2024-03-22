@@ -27,6 +27,7 @@ M.mason = {
     'dockerfile-language-server',
     'hadolint',
     'jsonlint',
+    'json-lsp',
     'marksman',
     'markdownlint',
     'shellcheck',
