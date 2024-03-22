@@ -205,7 +205,8 @@ export FZF_DEFAULT_OPTS="\
 #
 # xgcv - view git log and copy/view commit
 __dreknix_xclip() {
-  tr -d '\n' | xclip -i -sel clipboard -filter | xclip -i -sel primary
+  # remove \r in output, e.g. from Docker CLI commands
+  tr -d '\r' | xclip -r -sel clipboard -filter | xclip -r -sel primary
 }
 __dreknix_xgcv() {
   git log \
