@@ -40,6 +40,12 @@ then
   PATH="${HOME}/.poetry/bin:${PATH}"
 fi
 
+# add local installed tools
+if [ -d "${HOME}/bin-tools" ]
+then
+  PATH="${HOME}/bin-tools:${PATH}"
+fi
+
 # add local scripts
 if [ -d "${HOME}/bin" ]
 then
