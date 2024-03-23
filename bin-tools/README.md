@@ -4,6 +4,7 @@ Install the following tools via Ansible.
 
 * `delta` - https://github.com/dandavison/delta
 * `direnv` - https://github.com/direnv/direnv
+* `dive` - https://github.com/wagoodman/dive
 * `docker-credential-pass` - https://github.com/docker/docker-credential-helpers
 * `gopass` - https://github.com/gopasspw/gopass
 * `gopass-jsonapi` - https://github.com/gopasspw/gopass-jsonapi
