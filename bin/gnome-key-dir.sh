@@ -22,12 +22,17 @@ else
   dirs="$START_DIR_DIRS"
 fi
 
-target_dir="$(find $dirs \( -path "${HOME}/go-workspace/pkg" -o -name ".git" -o -name "*.svn" -o -name ".direnv" \) -prune -false -o -type d | rofi -dmenu -i)" > /dev/null 2>&1
+target_dir="$(fdfind --type directory --hidden --no-ignore-vcs --exclude ".git" --exclude ".direnv" --exclude ".svn" "" $dirs | rofi -dmenu -i)" > /dev/null 2>&1
 
-title_dir="$(cd $target_dir && dirs +0)"
+title_dir="$(cd "$target_dir" && dirs +0)"
 
 # start tmux only if a directory was selected
 if [ "$title_dir" != "~" ]
 then
-  gnome-terminal --title "tmux - $title_dir" --maximize --window -- gnome-key-start-vim.sh "${target_dir}"
+  gnome-terminal --title "tmux - $title_dir" \
+                 --no-environment \
+                 --maximize \
+                 --window \
+                 --working-directory="$target_dir" \
+                 -- bash -i -l -c gnome-key-start-vim.sh
 fi
