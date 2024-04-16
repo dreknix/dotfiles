@@ -46,20 +46,20 @@ Ctrl + W  Q - exit pane           |                                    |        
 
   Ctrl + Y - This help page
 
-  者 + S - Search in files
-  者 + X - Run rofi menu
-  者 + C - Get gopass passwords
-  者 + V - Run SSH menu
-  者 + B - Search in directories
+   + S - Search in files
+   + X - Run rofi menu
+   + C - Get gopass passwords
+   + V - Run SSH menu
+   + B - Search in directories
 
-  Ctrl + Alt +  - Workspace up
-  Ctrl + Alt +  - Workspace down
+  Ctrl + Alt + 󰛂 - Workspace down
+  Ctrl + Alt + 󰛁 - Workspace up
 EOF
 
 bg='#8abeb7'
 fg='#1d1f21'
 size='2000x2000'
-fontfamily='Hack-Regular-Nerd-Font-Complete-Mono'
+fontfamily='Hack-Nerd-Font-Regular'
 fontsize='14'
 
 convert -size "$size" \
@@ -74,7 +74,7 @@ convert -size "$size" \
         +repage \
         "${pngFile}"
 
-feh --image-bg $bg -F "${pngFile}"
+feh --title "feh infosheet" --image-bg $bg -F "${pngFile}"
 
 rm -f "${txtFile}"
 rm -f "${pngFile}"
