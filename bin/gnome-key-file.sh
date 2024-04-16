@@ -3,6 +3,7 @@
 #
 # sudo apt install rofi locate
 #
+# see ~/.config/run-or-raise/shortcuts.conf
 
 # theme (font/color) in `.config/rofi/config.rasi`
 

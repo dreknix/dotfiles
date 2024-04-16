@@ -4,6 +4,7 @@
 #
 # Enable '@' in /etc/ImageMagick-6/policy.xml
 #
+# see ~/.config/run-or-raise/shortcuts.conf
 
 txtFile=$(mktemp /tmp/convert-feh-XXXXXX.txt)
 

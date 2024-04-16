@@ -7,6 +7,7 @@
 #
 # sudo apt install xclip
 #
+# see ~/.config/run-or-raise/shortcuts.conf
 
 FONT="Hack Nerd Font Mono:size=13"
 
@@ -23,4 +24,3 @@ gopass ls --flat \
   | tr -d '\n' \
   | xclip -selection primary -filter \
   | xclip -selection clipboard
-
