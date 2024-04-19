@@ -36,14 +36,14 @@ fi
 
 if command -v wofi &> /dev/null
 then
-  MENU="wofi --dmenu --prompt '' --height 90% --width 90% --normal-window"
+  MENU=("wofi" "--dmenu" "--prompt" "" "--height" "90%" "--width" "90%" "--normal-window")
 else
-  MENU="dmenu -i -f -p '❯ ' -nf '$FG' -nb '$BG' -sf '$SFG' -sb '$SBG' -fn '$FONT'"
+  MENU=("dmenu" "-i" "-f" "-p" "❯ " "-nf" "$FG" "-nb" "$BG" "-sf" "$SFG" "-sb" "$SBG" "-fn" "$FONT")
 fi
 
-eval gopass ls --flat \
-  | ${MENU} \
+gopass ls --flat \
+  | "${MENU[@]}" \
   | xargs --no-run-if-empty gopass show --password \
   | head -n 1 \
   | tr -d '\n' \
-  | ${CLIPBOARD_COPY}
+  | eval ${CLIPBOARD_COPY}
