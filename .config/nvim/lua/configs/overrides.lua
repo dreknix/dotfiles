@@ -6,6 +6,9 @@ local M = {}
 
 M.mason = {
   ensure_installed = {
+    -- general stuff
+    'tree-sitter-cli',
+
     -- lua stuff
     'lua-language-server',
     'stylua',
