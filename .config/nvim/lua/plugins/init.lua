@@ -65,6 +65,62 @@ local plugins = {
     end
   },
   {
+    'christoomey/vim-tmux-navigator',
+    lazy = false,
+    init = function()
+      vim.g.tmux_navigator_no_mappings = 1
+    end
+  },
+  {
+    'klen/nvim-config-local',
+    lazy = false,
+    config = function()
+      require('config-local').setup {
+        -- Default options (optional)
+
+        -- Config file patterns to load (lua supported)
+        config_files = { '.nvim.lua', '.nvimrc', '.exrc' },
+
+        -- Where the plugin keeps files data
+        hashfile = vim.fn.stdpath('data') .. '/config-local',
+
+        autocommands_create = true, -- Create autocommands (VimEnter, DirectoryChanged)
+        commands_create = true,     -- Create commands (ConfigLocalSource, ConfigLocalEdit, ConfigLocalTrust, ConfigLocalIgnore)
+        silent = false,             -- Disable plugin messages (Config loaded/ignored)
+        lookup_parents = true,     -- Lookup config files in parent directories
+      }
+    end
+  },
+  {
+    'rcarriga/nvim-notify',
+    config = function()
+      require("notify").setup {
+        enabled = false,
+      }
+    end
+  },
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    opts = {
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+        signature = {
+          enabled = false,
+        }
+      },
+    },
+  },
+  {
     'mfussenegger/nvim-dap',
     keys = {
       -- see: http://www.lazyvim.org/extras/dap/core
@@ -113,33 +169,6 @@ local plugins = {
       -- see: http://www.lazyvim.org/extras/dap/core
       { '<leader>dbr', function() require('dap-python').test_method() end, desc = 'Test method' },
     },
-  },
-  {
-    'christoomey/vim-tmux-navigator',
-    lazy = false,
-    init = function()
-      vim.g.tmux_navigator_no_mappings = 1
-    end
-  },
-  {
-    "klen/nvim-config-local",
-    lazy = false,
-    config = function()
-      require('config-local').setup {
-        -- Default options (optional)
-
-        -- Config file patterns to load (lua supported)
-        config_files = { ".nvim.lua", ".nvimrc", ".exrc" },
-
-        -- Where the plugin keeps files data
-        hashfile = vim.fn.stdpath("data") .. "/config-local",
-
-        autocommands_create = true, -- Create autocommands (VimEnter, DirectoryChanged)
-        commands_create = true,     -- Create commands (ConfigLocalSource, ConfigLocalEdit, ConfigLocalTrust, ConfigLocalIgnore)
-        silent = false,             -- Disable plugin messages (Config loaded/ignored)
-        lookup_parents = true,     -- Lookup config files in parent directories
-      }
-    end
   },
 }
 
