@@ -16,14 +16,14 @@ map('n', '<A-Right>', '<cmd> TmuxNavigateRight <CR>', { desc = 'Window right' })
 map('n', '<A-Down>', '<cmd> TmuxNavigateDown <CR>', { desc = 'Window down' })
 map('n', '<A-Up>', '<cmd> TmuxNavigateUp <CR>', { desc = 'Window up' })
 
-map('n', '<A-S-Left>', '<cmd> bprevious <CR>' , { desc = 'Previous tab' })
-map('n', '<A-S-Right>', '<cmd> bnext <CR>' , { desc = 'Previous tab' })
-
 map('n', '<C-S-Up>', '<cmd> cprev <CR>' , { desc = 'Previous Quicklist location' })
 map('n', '<C-S-Down>', '<cmd> cnext <CR>' , { desc = 'Next Quicklist location' })
 
 map('n', '<C-S-Left>', '<cmd> tabprevious <CR>' , { desc = 'Previous tab' })
 map('n', '<C-S-Right>', '<cmd> tabnext <CR>' , { desc = 'Next tab' })
+
+map('n', '<C-Left>', '<cmd> bprevious <CR>' , { desc = 'Previous tab' })
+map('n', '<C-Right>', '<cmd> bnext <CR>' , { desc = 'Next tab' })
 
 map('n', '<leader>y', '<cmd> tabedit README.md <CR>' , { desc = 'Open README.md in tab' })
 
