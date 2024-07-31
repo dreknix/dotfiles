@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+---
+
+version: 2
+final_space: true
+console_title_template: "{{ .Shell }} in {{ .Folder }}"
+
+blocks:
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: path
+        style: plain
+        background: transparent
+        foreground: cyan
+        template: "{{ .Path }}"
+        properties:
+          style: full
+
+  - type: prompt
+    alignment: left
+    newline: true
+    segments:
+      - type: text
+        style: plain
+        background: transparent
+        foreground: green
+        template: " ❯"
+
+transient_prompt:
+  background: transparent
+  foreground: green
+  template: " ❯ "
+
+...
