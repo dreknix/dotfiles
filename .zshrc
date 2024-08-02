@@ -50,7 +50,9 @@ bindkey 'OB' history-beginning-search-forward
 
 # Shell integrations
 eval "$(fzf --zsh)"
+
 eval "$(zoxide init --cmd cd zsh)"
+export _ZO_FZF_OPTS="--tmux 70% --height=~70% --delimiter=\t --nth=2 --read0 --exact --no-sort --cycle --border=rounded --keep-right --tabstop=1 --exit-0 --layout=reverse --info=inline --preview='ls -Cp --color=always --group-directories-first {2..}' --preview-window=down,30%,rounded"
 
 source ~/.shell_common.sh
 source ~/.shell_aliases.sh

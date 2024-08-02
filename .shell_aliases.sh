@@ -186,10 +186,12 @@ __json_processor() {
 ## fzf - command-line fuzzy finder
 ##
 export FZF_DEFAULT_OPTS="\
+  --tmux \
   --ansi \
   --multi \
   --layout=reverse \
-  --inline-info \
+  --border=rounded \
+  --info=inline \
   --no-mouse \
   --cycle \
   --height=50% \
