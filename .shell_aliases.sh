@@ -194,11 +194,11 @@ export FZF_DEFAULT_OPTS="\
   --info=inline \
   --no-mouse \
   --cycle \
-  --height=50% \
   --border \
   --margin=0,3,0,3 \
   --info=inline \
   "
+  # --height=50% \
 
 ### fzf - git
 #

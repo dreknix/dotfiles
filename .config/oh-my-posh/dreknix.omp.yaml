@@ -10,13 +10,46 @@ blocks:
     alignment: left
     newline: true
     segments:
+      # - type: session
+      #   style: powerline
+      #   powerline_symbol: "\ue0b0"
+      #   template: " {{ .UserName }}@{{ .HostName }} "
+      #   background: p:lavender
+      #   foreground: p:base
       - type: path
-        style: plain
-        background: transparent
-        foreground: cyan
-        template: "{{ .Path }}"
+        style: powerline
+        powerline_symbol: "\ue0b0"
+        background: p:blue
+        foreground: p:base
+        template: " {{ .Path }} "
         properties:
-          style: full
+          style: letter
+          home_icon: "\uf015"
+          folder_icon: "\uf115"
+          folder_separator_icon: " \ue0b1 "
+      - type: git
+        style: powerline
+        powerline_symbol: "\ue0b0"
+        background: p:sky
+        foreground: p:base
+        background_templates:
+          - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:peach{{ end }}"
+        properties:
+          fetch_status: true
+          fetch_stash_count: true
+          fetch_worktree_count: true
+          fetch_upstream_icon: true
+          fetch_bare_info: true
+
+  - type: prompt
+    alignment: right
+    segments:
+      - type: python
+        style: powerline
+        powerline_symbol: "\ue0b6"
+        background: p:blue
+        foreground: p:base
+        template: " \ue235 {{ .Full }} "
 
   - type: prompt
     alignment: left
@@ -32,5 +65,33 @@ transient_prompt:
   background: transparent
   foreground: green
   template: " ❯ "
+
+palette:
+  rosewater: "#f5e0dc"
+  flamingo: "#f2cdcd"
+  pink: "#f5c2e7"
+  mauve: "#cba6f7"
+  red: "#f38ba8"
+  maroon: "#eba0ac"
+  peach: "#fab387"
+  yellow: "#f9e2af"
+  green: "#a6e3a1"
+  teal: "#94e2d5"
+  sky: "#89dceb"
+  sapphire: "#74c7ec"
+  blue: "#89b4fa"
+  lavender: "#b4befe"
+  text: "#cdd6f4"
+  subtext1: "#bac2de"
+  subtext0: "#a6adc8"
+  overlay2: "#9399b2"
+  overlay1: "#7f849c"
+  overlay0: "#6c7086"
+  surface2: "#585b70"
+  surface1: "#45475a"
+  surface0: "#313244"
+  base: "#1e1e2e"
+  mantle: "#181825"
+  crust: "#11111b"
 
 ...
