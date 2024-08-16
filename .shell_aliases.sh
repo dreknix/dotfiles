@@ -133,23 +133,23 @@ export SYSTEMD_LESS="${LESS}"
 
 ## bat - https://github.com/sharkdp/bat
 ## A cat(1) clone with wings
-if command -v batcat > /dev/null 2>&1
+if command -v bat > /dev/null 2>&1
 then
+  export BAT_CAT="bat"
+else
   export BAT_CAT="batcat"
   alias bat="batcat"
-else
-  export BAT_CAT="bat"
 fi
 export BAT_PAGER="less ${LESS}"
 
 ## fd - https://github.com/sharkdp/fd
 ## A simple, fast and user-friendly alternative to find
-if command -v fdfind > /dev/null 2>&1
+if command -v fd > /dev/null 2>&1
 then
+  export FD_FIND="fd"
+else
   export FD_FIND="fdfind"
   alias fd="fdfind"
-else
-  export FD_FIND="fd"
 fi
 
 ## grep

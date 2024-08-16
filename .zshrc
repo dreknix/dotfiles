@@ -2,7 +2,7 @@ export PATH=~/bin:~/bin-tools:${PATH}
 
 # use https://github.com/jandedobbeleer/oh-my-posh
 OHMYPOSH_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh"
-eval "$(posh init zsh --config ${OHMYPOSH_HOME}/dreknix.omp.yaml)"
+eval "$(oh-my-posh init zsh --config ${OHMYPOSH_HOME}/dreknix.omp.yaml)"
 
 # use https://github.com/zdharma-continuum/zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
