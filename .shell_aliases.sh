@@ -598,9 +598,6 @@ alias xgrep=__dreknix_xgrep
 ## end of fzf
 ##
 
-## nnn - terminal file manager
-alias n='nnn -d'
-
 ## special commands
 evince() {
   command evince "$@" >/dev/null 2>&1 &
