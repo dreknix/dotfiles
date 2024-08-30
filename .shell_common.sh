@@ -18,6 +18,22 @@ then
   fi
 fi
 
+#
+# config: nnn - file manager
+#
+BLK="03" CHR="03" DIR="04" EXE="02" REG="07" HARDLINK="05"
+SYMLINK="05" MISSING="08" ORPHAN="01" FIFO="06" SOCK="03" UNKNOWN="01"
+
+export NNN_COLORS="#04020301;4231"
+export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$UNKNOWN"
+
+export NNN_PLUG='p:preview-tui'
+
+export NNN_BATTHEME='base16-256'
+
+# run nnn with preview-tui plugin activated
+alias n="nnn -a -P p"
+
 # activate same graphical theme in Qt applications
 export QT_STYLE_OVERRIDE=kvantum
 
