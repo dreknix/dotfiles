@@ -27,6 +27,8 @@ SYMLINK="05" MISSING="08" ORPHAN="01" FIFO="06" SOCK="03" UNKNOWN="01"
 export NNN_COLORS="#04020301;4231"
 export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$UNKNOWN"
 
+export NNN_BMS="d:$HOME/Downloads;a:$HOME/dreknix/ansible;w:$HOME/dreknix/wiki"
+
 export NNN_PLUG='p:preview-tui'
 
 export NNN_BATTHEME='base16-256'
