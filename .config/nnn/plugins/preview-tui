@@ -249,8 +249,8 @@ fifo_pager() {
     (
         exec > "$FIFOPATH"
         if [ "$cmd" = "pager" ]; then
-            if exists batcat; then
-                batcat --terminal-width="$cols" --decorations=always --color=always \
+            if exists bat; then
+                bat --terminal-width="$cols" --decorations=always --color=always \
                        --paging=never --style="$NNN_BATSTYLE" --theme="$NNN_BATTHEME" "$@" &
             else
                 $NNN_PAGER "$@" &
