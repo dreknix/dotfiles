@@ -92,6 +92,9 @@ function __prompt_command() {
 
   PS1='\n' # start with a newline
   case $TERM in
+    xterm-kitty)
+      PS1+='\[\e]0;\w\a\]'
+      ;;
     *xterm*|rxvt*|st*)
       PS1+='\[\e]0;\u@\h: \w\a\]'
       ;;
