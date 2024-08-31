@@ -19,6 +19,14 @@ then
 fi
 
 #
+# config: bat - cat clone
+#
+
+# see instead ~/.config/bt/config
+# export BAT_THEME='base16-256'
+
+#
+#
 # config: nnn - file manager
 #
 BLK="03" CHR="03" DIR="04" EXE="02" REG="07" HARDLINK="05"
