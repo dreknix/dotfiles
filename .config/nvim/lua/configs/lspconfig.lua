@@ -1,13 +1,14 @@
 -- load defaults i.e lua_lsp
 require("nvchad.configs.lspconfig").defaults()
 
-local configs = require("nvchad.configs.lspconfig")
-
-local on_attach = configs.on_attach
-local on_init = configs.on_init
-local capabilities = configs.capabilities
-
 local lspconfig = require "lspconfig"
+
+local nvlsp = require("nvchad.configs.lspconfig")
+
+local on_attach = nvlsp.on_attach
+local on_init = nvlsp.on_init
+local capabilities = nvlsp.capabilities
+
 
 lspconfig.clangd.setup({
   on_attach = function (client, bufnr)

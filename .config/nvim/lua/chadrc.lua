@@ -3,7 +3,7 @@ local M = {}
 
 local highlights = require "highlights"
 
-M.ui = {
+M.base46 = {
   theme_toggle = {
     'one_light',
     'catppuccin',
