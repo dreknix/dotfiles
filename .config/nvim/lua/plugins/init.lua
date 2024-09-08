@@ -2,10 +2,6 @@ local overrides = require 'configs.overrides'
 
 local plugins = {
   {
-    'williamboman/mason.nvim',
-    opts = overrides.mason,
-  },
-  {
     'nvim-treesitter/nvim-treesitter',
     opts = overrides.treesitter,
   },
@@ -126,22 +122,26 @@ local plugins = {
       { '<leader>db', function() require('dap').toggle_breakpoint() end, desc = 'Toggle Breakpoint' },
     },
   },
-  {
-    'jay-babu/mason-nvim-dap.nvim',
-    event = 'VeryLazy',
-    dependencies = {
-      'williamboman/mason.nvim',
-      'mfussenegger/nvim-dap',
-      'nvim-neotest/nvim-nio',
-    },
-    opts = {
-      handlers = {},
-    },
-  },
+  -- disable since MasonInstallAll is not installed
+  -- {
+  --   'jay-babu/mason-nvim-dap.nvim',
+  --   event = 'VeryLazy',
+  --   dependencies = {
+  --     'williamboman/mason.nvim',
+  --     'mfussenegger/nvim-dap',
+  --     'nvim-neotest/nvim-nio',
+  --   },
+  --   opts = {
+  --     handlers = {},
+  --   },
+  -- },
   {
     'rcarriga/nvim-dap-ui',
     event = 'VeryLazy',
-    dependencies = 'mfussenegger/nvim-dap',
+    dependencies = {
+      'mfussenegger/nvim-dap',
+      'nvim-neotest/nvim-nio',
+    },
     config = function()
       local dap = require('dap')
       local dapui = require('dapui')

@@ -38,4 +38,51 @@ M.base46 = {
 
 }
 
+M.mason = {
+  pkgs = {
+    -- general stuff
+    'tree-sitter-cli',
+
+    -- lua stuff
+    'lua-language-server',
+    'stylua',
+
+    -- web dev stuff
+    'css-lsp',
+    'html-lsp',
+    'prettier',
+
+    -- C/C++ stuff
+    'clangd',
+    'clang-format',
+    'codelldb',
+
+    -- shell stuff
+    'ansible-language-server',
+    'bash-language-server',
+    'docker-compose-language-service',
+    'dockerfile-language-server',
+    'hadolint',
+    'jsonlint',
+    'json-lsp',
+    'marksman',
+    'markdownlint',
+    'shellcheck',
+    'yaml-language-server',
+    'yamllint',
+
+    -- Python stuff
+    'pyright',
+    'flake8',
+    'black',
+    'pylint',
+    'mypy',
+    'ruff',
+    'debugpy',
+
+    -- TeX, LaTeX stuff
+    'texlab',
+  },
+}
+
 return M
