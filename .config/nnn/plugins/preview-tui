@@ -300,6 +300,8 @@ handle_ext() {
         pdf) generate_preview "$cols" "$lines" "$1" "pdf" ;;
         gz|bz2) fifo_pager tar -tvf "$1" ;;
         md) if exists glow; then
+                export COLORTERN=truecolor
+                export CLICOLOR_FORCE=1
                 fifo_pager glow -s dark "$1"
             elif exists lowdown; then
                 fifo_pager lowdown -Tterm "$1"
