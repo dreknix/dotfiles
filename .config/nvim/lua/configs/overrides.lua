@@ -21,6 +21,7 @@ M.treesitter = {
     'gitignore',
     'go',
     'html',
+    'http',
     'ini',
     'java',
     'javascript',
