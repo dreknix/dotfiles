@@ -1,0 +1,19 @@
+---
+session_name: wiki
+start_directory: ~/dreknix/wiki
+#n shell_command_before:
+windows:
+  - window_name: wiki
+    layout: main-vertical
+    focus: true
+    options:
+      main-pane-width: 55%
+    panes:
+      - focus: true
+        shell_command:
+          - nvim +"NvimTreeFocus"
+      - pane
+      - shell_command:
+          - task update
+          - task serve
+...
