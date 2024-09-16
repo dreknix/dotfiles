@@ -1,1 +1,13 @@
-*
+.profile_common_local.sh
+.shell_common_local.sh
+
+.config/git/config-local
+.config/git/config-user
+
+.config/kitty/kitty_local.conf
+
+.config/newsboat/urls
+
+.config/nvim/lazy-lock.json
+.config/nvim/after/spell/*.spl
+.config/nvim/after/spell/*.sug
