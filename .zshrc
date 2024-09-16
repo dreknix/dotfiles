@@ -1,4 +1,8 @@
-export PATH=~/bin:~/bin-tools:${PATH}
+#!/usr/bin/env zsh
+
+#
+# .zshrc
+#
 
 # use https://github.com/jandedobbeleer/oh-my-posh
 OHMYPOSH_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh"

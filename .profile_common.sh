@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# ~/.profile_common.sh
+
 #
-# Evaluated by ~/.bash_profle
+# ~/.profile_common.sh
 #
 
 # add dart when available
