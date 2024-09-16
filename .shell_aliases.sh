@@ -154,7 +154,7 @@ fi
 
 ## grep
 alias grep='grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
-export GREP_COLOR='1;32'
+export GREP_COLORS='mt=1;32'
 
 ## ripgrep
 if command -v rg > /dev/null 2>&1
