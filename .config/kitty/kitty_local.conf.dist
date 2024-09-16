@@ -1,0 +1,7 @@
+# vim:ft=kitty
+
+## override configs for local host, i.e. font size
+
+## font settings
+# font_family Hack Nerd Font Mono
+font_size 9
