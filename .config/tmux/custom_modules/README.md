@@ -1,7 +1,7 @@
 # Custom Modules
 
-In `~/.config/tmux/plugins/tmux/custom`:
+In `~/.local/share/tmux/plugins/tmux/custom`:
 
 ```
-ln -s ../../../custom_modules/host.sh .
+ln -s ~/.config/tmux/custom_modules/host.sh .
 ```
