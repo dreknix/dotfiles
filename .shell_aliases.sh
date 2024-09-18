@@ -27,7 +27,7 @@ fi
 # export TERMINAL='st'
 
 ## storing dotfiles in git
-__dreknix_config() {
+_dreknix_config() {
   if ! command -v git > /dev/null 2>&1
   then
     echo "Command git not found: apt install git"
@@ -35,15 +35,15 @@ __dreknix_config() {
   fi
   if [ -z "$1" ]
   then
-    __dreknix_config s | "${PAGER}"
+    _dreknix_config s | "${PAGER}"
   else
     case "$1" in
       ls)
         if command -v tree > /dev/null 2>&1
         then
-          __dreknix_config ls-files | tree -C --fromfile . | "${PAGER}"
+          _dreknix_config ls-files | tree -C --fromfile . | "${PAGER}"
         else
-          __dreknix_config ls-files | "${PAGER}"
+          _dreknix_config ls-files | "${PAGER}"
         fi
         ;;
       *)
@@ -53,7 +53,7 @@ __dreknix_config() {
   fi
 }
 #alias config='/usr/bin/git --git-dir=${HOME}/.cfg/ --work-tree=${HOME}'
-alias config=__dreknix_config
+alias config=_dreknix_config
 
 ## cd
 if [ -n "${ZSH_NAME}" ]

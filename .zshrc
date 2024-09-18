@@ -4,6 +4,10 @@
 # .zshrc
 #
 
+### set the $fpath at the beginning of ~/.zshrc
+# add ~/.local/share/zsh-completions to $fpath
+fpath=(${XDG_DATA_HOME:-${HOME}/.local/share}/zsh-completions $fpath)
+
 # use https://github.com/jandedobbeleer/oh-my-posh
 OHMYPOSH_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh"
 eval "$(oh-my-posh init zsh --config ${OHMYPOSH_HOME}/dreknix.omp.yaml)"
@@ -61,3 +65,18 @@ eval "$(zoxide init --cmd cd zsh)"
 
 source ~/.shell_common.sh
 source ~/.shell_aliases.sh
+
+### zsh completions
+
+# in zsh aliases are expanded before completion
+# therefore aliases to function starting with an '_' is not working
+setopt complete_aliases
+
+## config - alias for dotfiles (git)
+compdef config=git
+# TODO zsh completion is not working for git aliases
+
+## task
+# task --completion zsh > ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh-completions/_task
+
+### end zsh completions
