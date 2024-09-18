@@ -185,6 +185,9 @@ __json_processor() {
 ##
 ## fzf - command-line fuzzy finder
 ##
+#
+# ctrl-up/down - scroll preview up/down
+#
 export FZF_DEFAULT_OPTS="\
   --tmux \
   --ansi \

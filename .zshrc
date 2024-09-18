@@ -4,10 +4,6 @@
 # .zshrc
 #
 
-### set the $fpath at the beginning of ~/.zshrc
-# add ~/.local/share/zsh-completions to $fpath
-fpath=(${XDG_DATA_HOME:-${HOME}/.local/share}/zsh-completions $fpath)
-
 # use https://github.com/jandedobbeleer/oh-my-posh
 OHMYPOSH_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh"
 eval "$(oh-my-posh init zsh --config ${OHMYPOSH_HOME}/dreknix.omp.yaml)"
@@ -29,7 +25,24 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
-# Load completions
+### https://github.com/urbainvaes/fzf-marks
+###
+#
+# ctrl-g - open fzf window with directories
+#
+FZF_MARKS_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/fzf-marks"
+FZF_MARKS_FILE="${FZF_MARKS_DIR}/marks"
+FZF_MARKS_COMMAND="fzf --tmux 70% --border=rounded --layout reverse --info=inline --preview='lsd --tree --depth 2 --group-dirs=first --color always --icon always {3..}' --preview-window=right,50%,rounded"
+if [ ! -d "${FZF_MARKS_DIR}" ]
+then
+  mkdir "${FZF_MARKS_DIR}"
+fi
+zinit light urbainvaes/fzf-marks
+
+### Load completions
+###
+# add ~/.local/share/zsh-completions to $fpath
+fpath=(${XDG_DATA_HOME:-${HOME}/.local/share}/zsh-completions $fpath)
 autoload -Uz compinit && compinit
 
 # History
