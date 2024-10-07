@@ -4,6 +4,14 @@
 # ~/.profile_common.sh
 #
 
+# check if inside WSL2
+if grep -q -i 'Mircosoft' /proc/version
+then
+  alias ssh="ssh.exe"
+  alias ssh-add="ssh-add.exe"
+  alias ssh-agent="ssh-agent.exe"
+fi
+
 # add dart when available
 if [ -d "/usr/lib/dart/bin" ]
 then
