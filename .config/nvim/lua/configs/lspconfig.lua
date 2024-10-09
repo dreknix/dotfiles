@@ -53,6 +53,7 @@ lspconfig.yamlls.setup({
   on_init = on_init,
   capabilities = capabilities,
   filetypes = {'yaml', 'yaml.ansible', 'yaml.docker-compose'},
+  -- load schemas from: https://www.schemastore.org/api/json/catalog.json
 })
 
 lspconfig.pyright.setup({
