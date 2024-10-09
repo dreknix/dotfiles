@@ -131,6 +131,8 @@
 
 [includeIf "gitdir:~/.config"]
   path = ~/.config/git/config-user-dreknix
+[includeIf "gitdir:~/.local"]
+  path = ~/.config/git/config-user-dreknix
 [includeIf "gitdir:~/.ssh/"]
   path = ~/.config/git/config-user-dreknix
 [includeIf "gitdir:~/dreknix/"]
