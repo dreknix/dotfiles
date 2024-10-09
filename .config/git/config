@@ -129,9 +129,9 @@
   path = ~/.config/git/config-local
   path = ~/.config/git/config-user
 
-[includeIf "gitdir:~/.config"]
+[includeIf "gitdir:~/.config/"]
   path = ~/.config/git/config-user-dreknix
-[includeIf "gitdir:~/.local"]
+[includeIf "gitdir:~/.local/"]
   path = ~/.config/git/config-user-dreknix
 [includeIf "gitdir:~/.ssh/"]
   path = ~/.config/git/config-user-dreknix
