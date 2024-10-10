@@ -1,0 +1,52 @@
+---
+command_alias_start_index: 200
+keybindings:
+  # root_table: C-Space
+  prefix_table: Space
+title:
+  style: align=centre,bold
+  prefix: ' tmux '
+  prefix_style: fg=#{E:@thm_teal},align=centre,bold
+position:
+  x: R
+  y: P
+custom_variables:
+  - name: log_info
+    value: "#[fg=#{E:@thm_maroon},italics] [info]#[default]#[italics]"
+macros:
+  - name: reload-config
+    commands:
+      - display "#{log_info} Loading config... "
+      - source-file $HOME/.config/tmux/tmux.conf
+      - display -p "\n\n... Press ENTER to continue"
+items:
+  - name: +Plugins
+    key: P
+    menu:
+      - name: Install
+        key: i
+        command:
+          run-shell ${TMUX_PLUGIN_MANAGER_PATH}/tpm/bindings/install_plugins
+      - name: Update
+        key: u
+        command:
+          run-shell ${TMUX_PLUGIN_MANAGER_PATH}/tpm/bindings/update_plugins
+      - name: Clean
+        key: c
+        command:
+          run-shell ${TMUX_PLUGIN_MANAGER_PATH}/tpm/bindings/clean_plugins
+  - separator: true
+  - name: Reload config
+    key: r
+    macro: reload-config
+  - separator: true
+  - name: Time
+    key: T
+    command: clock-mode
+  - name: Show messages
+    key: "~"
+    command: show-messages
+  - name: +Keys
+    key: "?"
+    command: list-keys -N
+...
