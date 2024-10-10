@@ -11,6 +11,7 @@ git;wiki;git@github.com:dreknix/wiki.git
 #
 git;tools/restic-backup;git@github.com:dreknix/tools-restic-backup.git
 git;tools/virtadm;git@github.com:dreknix/virtadm.git
+git;tools/tmux/primary-ip;git@github.com:dreknix/tmux-primary-ip.git
 #
 # Ansible
 #
@@ -43,3 +44,4 @@ git;docker/compose/pxe;git@github.com:dreknix/docker-compose-pxe.git
 #
 git;cp/algorithms;git@github.com:dreknix/cp-algorithms.git
 git;cp/codeforces;git@github.com:dreknix/cp-codeforces.git
+git;cp/adventofcode;git@github.com:dreknix/cp-adventofcode.git
