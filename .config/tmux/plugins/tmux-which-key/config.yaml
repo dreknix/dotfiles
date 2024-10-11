@@ -19,7 +19,7 @@ macros:
   - name: reload-config
     commands:
       - display-message "#{log_info} Loading config... "
-      - source-file $HOME/.config/tmux/tmux.conf
+      - source-file "#{HOME}/.config/tmux/tmux.conf"
       # - display-message -p "\n\n... Press ENTER to continue"
 items:
   - name: +Plugins
