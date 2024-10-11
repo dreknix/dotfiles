@@ -11,14 +11,16 @@ position:
   x: R
   y: P
 custom_variables:
+  # info prefix for display in the status bar
+  # default style is defined in `message-command-style`
   - name: log_info
-    value: "#[fg=#{E:@thm_maroon},italics] [info]#[default]#[italics]"
+    value: '#[fg=#{E:@thm_surface_0},bg=#{E:@thm_sky},bold] INFO #[default,none]'
 macros:
   - name: reload-config
     commands:
-      - display "#{log_info} Loading config... "
+      - display-message "#{log_info} Loading config... "
       - source-file $HOME/.config/tmux/tmux.conf
-      - display -p "\n\n... Press ENTER to continue"
+      # - display-message -p "\n\n... Press ENTER to continue"
 items:
   - name: +Plugins
     key: P
