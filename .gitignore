@@ -1,3 +1,7 @@
+### ignore is important for tab completion
+*
+
+### files that must be ignored
 .profile_common_local.sh
 .shell_common_local.sh
 

@@ -83,11 +83,10 @@ source ~/.shell_aliases.sh
 
 # in zsh aliases are expanded before completion
 # therefore aliases to function starting with an '_' is not working
-setopt complete_aliases
+#setopt complete_aliases
 
 ## config - alias for dotfiles (git)
 compdef config=git
-# TODO zsh completion is not working for git aliases
 
 ## task
 # task --completion zsh > ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh-completions/_task
