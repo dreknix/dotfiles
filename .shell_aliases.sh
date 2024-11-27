@@ -83,24 +83,10 @@ export LESS="${LESS_BASIC_OPTS} --quit-if-one-screen"
 
 # disable history of less
 export LESSHISTFILE='-'
+
 # color less for man
-# LESS_TERMCAP_mb - begin blinking
-# LESS_TERMCAP_md - begin bold
-# LESS_TERMCAP_me - end mode
-# LESS_TERMCAP_so - begin standout-mode - info box
-# LESS_TERMCAP_se - end standout-mode
-# LESS_TERMCAP_us - begin underline
-# LESS_TERMCAP_ue - end underline
-man() {
-  LESS_TERMCAP_mb=$(printf "\e[5;34m")    \
-  LESS_TERMCAP_md=$(printf "\e[1;34m")    \
-  LESS_TERMCAP_me=$(printf "\e[0m")       \
-  LESS_TERMCAP_so=$(printf "\e[7;49;32m") \
-  LESS_TERMCAP_se=$(printf "\e[0m")       \
-  LESS_TERMCAP_us=$(printf "\e[4;33m")    \
-  LESS_TERMCAP_ue=$(printf "\e[0m")       \
-  command man "$@"
-}
+export MANPAGER="less -Dd+4 -Du+16"
+export MANROFFOPT="-P -c"
 
 # configure systemd and journalctl to use less with options
 export SYSTEMD_PAGERSECURE="true"
