@@ -29,6 +29,7 @@ git;ansible/roles/systemd;git@github.com:dreknix/ansible-role-systemd.git
 git;ansible/roles/tool_deploy;git@github.com:dreknix/ansible-role-tool-deploy.git
 # Ansible workspaces
 git;ansible/work/test;git@github.com:dreknix/ansible-test.git
+git;ansible/work/localhost;git@github.com:dreknix/ansible-localhost.git
 #
 # Docker
 #
