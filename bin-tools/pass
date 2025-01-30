@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#
+# Wrapper for Docker credential helpers
+#
+
+if [[ $1 == "--clip" ]]; then
+    exec gopass show --password "$@"
+elif [[ $1 == "ls" && $# == 1 ]]; then
+    exec gopass ls --flat
+elif [[ $1 == "rm" && $2 == "-rf" ]]; then
+    shift 2
+    exec gopass rm -r -f "$@"
+elif [[ $1 == "show" ]]; then
+    shift 1
+    exec gopass show --password "$@"
+else
+  if [[ $# -eq 0 ]]
+  then
+    gopass ls
+  else
+    gopass --password "$@"
+  fi
+fi
