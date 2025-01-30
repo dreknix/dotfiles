@@ -86,7 +86,8 @@ export LESSHISTFILE='-'
 
 # color less for man
 export MANPAGER="less -Dd+4 -Du+16"
-export MANROFFOPT="-P -c"
+#export MANROFFOPT="-P -c"  # -P is not working on old laptop
+export MANROFFOPT="-c"
 
 # configure systemd and journalctl to use less with options
 export SYSTEMD_PAGERSECURE="true"
