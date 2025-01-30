@@ -2,7 +2,7 @@
 
 font-family = ""
 font-family = "ComicCode Nerd Font"
-font-size = 12
+font-size = 10
 
 theme = "catppuccin-mocha"
 
@@ -68,8 +68,8 @@ keybind = global:ctrl+shift+v=new_split:down
 # TODO: not working
 keybind = global:ctrl+alt+left=goto_split:left
 keybind = global:ctrl+alt+right=goto_split:right
-keybind = global:ctrl+alt+up=goto_split:top
-keybind = global:ctrl+alt+down=goto_split:bottom
+keybind = global:ctrl+alt+up=goto_split:up
+keybind = global:ctrl+alt+down=goto_split:down
 
 keybind = global:super+ctrl+shift+up=unbind
 keybind = global:super+ctrl+shift+down=unbind
@@ -79,3 +79,5 @@ keybind = global:alt+shift+up=resize_split:up,10
 keybind = global:alt+shift+down=resize_split:down,10
 keybind = global:alt+shift+left=resize_split:left,10
 keybind = global:alt+shift+right=resize_split:right,10
+
+custom-shader = ~/.config/ghostty/shaders/retro-terminal.glsl
