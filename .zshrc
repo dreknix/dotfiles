@@ -42,7 +42,7 @@ zinit light urbainvaes/fzf-marks
 ### Load completions
 ###
 # add ~/.local/share/zsh-completions to $fpath
-fpath=(${XDG_DATA_HOME:-${HOME}/.local/share}/zsh-completions $fpath)
+fpath=(${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/site-functions $fpath)
 autoload -Uz compinit && compinit
 
 # History
