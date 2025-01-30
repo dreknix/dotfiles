@@ -15,13 +15,13 @@ fi
 # add dart when available
 if [ -d "/usr/lib/dart/bin" ]
 then
-  PATH="/usr/lib/dart/bin:${PATH}"
+  export PATH="/usr/lib/dart/bin:${PATH}"
 fi
 
 # add rust when available
 if [ -d "$HOME/.cargo/bin" ]
 then
-  PATH="$HOME/.cargo/bin:$PATH"
+  export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 # add go when available
@@ -32,14 +32,15 @@ then
   # add local scripts
   if [ -d "${GOPATH}/bin" ]
   then
-    PATH="${GOPATH}/bin:${PATH}"
+    export PATH="${GOPATH}/bin:${PATH}"
   fi
 fi
 
 # add local installed python programs
 if [ -d "${HOME}/.local/bin" ]
 then
-  PATH="${HOME}/.local/bin:${PATH}"
+  export PATH="${HOME}/.local/bin:${PATH}"
+  export MANTPATH=":${HOME}/.local/share/man"
 fi
 
 # add Poetry when available
