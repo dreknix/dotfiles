@@ -6,6 +6,17 @@ local on_attach = nvlsp.on_attach
 local on_init = nvlsp.on_init
 local capabilities = nvlsp.capabilities
 
+-- add pandoc to global ignore list
+require("lspconfig")["lua_ls"].setup({
+  settings = {
+     Lua = {
+        diagnostics = {
+           globals = { "vim", "pandoc" },
+        },
+     },
+  },
+})
+
 local lspconfig = require "lspconfig"
 
 lspconfig.clangd.setup({
