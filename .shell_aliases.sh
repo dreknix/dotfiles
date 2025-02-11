@@ -155,6 +155,7 @@ export FZF_DEFAULT_OPTS="\
   --ansi \
   --multi \
   --layout=reverse \
+  --style=full \
   --border=rounded \
   --info=inline \
   --no-mouse \
@@ -162,6 +163,11 @@ export FZF_DEFAULT_OPTS="\
   --border \
   --margin=0,3,0,3 \
   --info=inline \
+  --input-label=' Input ' \
+  --color 'border:#94e2d5,label:#89dceb,bg:#313244' \
+  --color 'input-border:#eba0ac,input-label:#fab387' \
+  --color 'list-border:#f9e2af,list-label:#fab387' \
+  --color 'preview-border:#cba6f7,preview-label:#f5c2e7,preview-bg:#45475a' \
   "
   # --height=50% \
 
