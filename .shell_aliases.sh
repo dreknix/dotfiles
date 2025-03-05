@@ -617,6 +617,13 @@ alias open='ii'
 ## ssh - do not remember
 alias ssh_nr='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
 
+# set SSH allias in WSL
+if uname -r | grep -qi Microsoft
+then
+  alias ssh="/mnt/c/Program\ Files/OpenSSH/ssh.exe"
+  alias ssh-add="/mnt/c/Program\ Files/OpenSSH/ssh-add.exe"
+fi
+
 ## pet - command-line environment and snippet manager
 ## https://github.com/knqyf263/pet
 
