@@ -134,6 +134,12 @@ alias dmesg='dmesg --color=auto'
 ## ps
 alias psc='ps xawf -eo pid,user,cgroup,args'
 
+## tealdeer
+if command -v tealdeer > /dev/null 2>&1
+then
+  alias tldr=tealdeer
+fi
+
 ## jq - JSON processor
 __json_processor() {
   if command -v jq > /dev/null 2>&1
