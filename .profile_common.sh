@@ -5,7 +5,7 @@
 #
 
 # check if inside WSL2
-if grep -q -i 'Mircosoft' /proc/version
+if grep -q -i 'Mircosoft' /proc/version 2>/dev/null
 then
   alias ssh="ssh.exe"
   alias ssh-add="ssh-add.exe"

@@ -60,7 +60,12 @@ alias ls='ls --color=auto'
 alias ll='ls --color=auto -l'
 alias l='ls --color=auto -lA'
 # dircolors
-eval "$(dircolors -b ~/.dir_colors)"
+if whence dircolors > /dev/null
+then
+  eval "$(dircolors -b ~/.dir_colors)"
+else
+  export CLICOLOR=1
+fi
 
 ## less / man
 if [ "$(less --version | grep -e '^less [0-9][0-9]* ' | cut -f2 -d' ')" -lt 590 ]

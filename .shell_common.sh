@@ -57,7 +57,7 @@ then
     eval "$(direnv hook bash)"
   fi
 else
-  if [ "$(expr substr $(uname -s) 1 6)" = "CYGWIN" ]
+  if [ "$(uname -s | cut -c 1-6)" = "CYGWIN" ]
   then
   :
   #  if [ -x "/usr/local/bin/direnv.windows-amd64.exe" ]
