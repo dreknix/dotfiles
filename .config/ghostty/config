@@ -6,6 +6,12 @@ font-size = 10
 
 theme = "catppuccin-mocha"
 
+# on macOS translate `cmd + arrow` to `alt + arrow`
+keybind = cmd+up=text:\x1b[1;3A
+keybind = cmd+down=text:\x1b[1;3B
+keybind = cmd+right=text:\x1b[1;3C
+keybind = cmd+left=text:\x1b[1;3D
+
 keybind = global:ctrl+comma=unbind
 keybind = global:ctrl+f2=open_config
 
