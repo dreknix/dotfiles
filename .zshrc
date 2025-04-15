@@ -4,6 +4,10 @@
 # .zshrc
 #
 
+# for macOS - gopass and docker-credential-pass
+# export GPG_TTY=$(tty)  # slower
+export GPG_TTY=${TTY}
+
 # use https://github.com/jandedobbeleer/oh-my-posh
 OHMYPOSH_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh"
 eval "$(oh-my-posh init zsh --config ${OHMYPOSH_HOME}/dreknix.omp.yaml)"
