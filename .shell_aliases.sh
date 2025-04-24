@@ -616,14 +616,19 @@ alias k='kubectl'
 alias t='taskwarrior rc:~/.taskrc_dreknix'
 
 ### open/ii - open applications from prompt
-if [ -x "${HOME}/bin/wsl-open.sh" ]
+if [[ $(uname) == "Darwin" ]]
 then
-  alias wsl-open='wsl-open.sh'
-  alias ii='wsl-open'
+    alias ii='open'
 else
-  alias ii='xdg-open'
+  if [ -x "${HOME}/bin/wsl-open.sh" ]
+  then
+    alias wsl-open='wsl-open.sh'
+    alias ii='wsl-open'
+  else
+    alias ii='xdg-open'
+  fi
+  alias open='ii'
 fi
-alias open='ii'
 
 ## ssh - do not remember
 alias ssh_nr='ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
