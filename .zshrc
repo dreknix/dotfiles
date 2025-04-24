@@ -1,12 +1,10 @@
 #!/usr/bin/env zsh
 
+#zmodload zsh/zprof
+
 #
 # .zshrc
 #
-
-# for macOS - gopass and docker-credential-pass
-# export GPG_TTY=$(tty)  # slower
-export GPG_TTY=${TTY}
 
 # use https://github.com/jandedobbeleer/oh-my-posh
 OHMYPOSH_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh"
@@ -53,7 +51,8 @@ zstyle ':completion:*' menu no
 
 # add ~/.local/share/zsh-completions to $fpath
 fpath=(${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/site-functions $fpath)
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+compinit
 
 # History
 HISTSIZE=5000
@@ -95,3 +94,5 @@ compdef config=git
 # task --completion zsh > ${XDG_DATA_HOME:-${HOME}/.local/share}/zsh-completions/_task
 
 ### end zsh completions
+
+#zprof
