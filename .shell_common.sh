@@ -56,6 +56,11 @@ then
   else
     eval "$(direnv hook bash)"
   fi
+  # macOS does not execute direnv when shell is started within an active
+  # direnv environment
+  tmp_dir="$(pwd)"
+  cd / >&/dev/null
+  cd "${tmp_dir}" >&/dev/null || echo "direnv 'cd' failed"
 else
   if [ "$(uname -s | cut -c 1-6)" = "CYGWIN" ]
   then
