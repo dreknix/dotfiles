@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
 
+---
 palette:
   base: "#1e1e2e"
   blue: "#89b4fa"
@@ -35,83 +36,85 @@ transient_prompt:
   template: "❯ "
   background: transparent
   foreground_templates:
-  - "{{ if gt .Code 0 }}p:red{{ end }}"
-  - "{{ if eq .Code 0 }}p:mauve{{ end }}"
-console_title_template: "{{ .Shell }} in {{ .Folder }}"
-blocks:
-- type: prompt
-  alignment: left
-  segments:
-  - template: 
-    foreground: p:overlay0
-    powerline_symbol: 
-    background: p:yellow
-    type: root
-    style: powerline
-  - template: " {{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }}@{{ .HostName }} "
-    foreground: p:base
-    powerline_symbol: 
-    background: p:lavender
-    type: session
-    style: powerline
-  - properties:
-      folder_icon: 
-      folder_separator_icon: " \ue0b1 "
-      home_icon: 
-      style: letter
-    template: " {{ .Path }} "
-    foreground: p:base
-    powerline_symbol: 
-    background: p:blue
-    type: path
-    style: powerline
-  - properties:
-      fetch_bare_info: true
-      fetch_stash_count: true
-      fetch_status: true
-      fetch_upstream_icon: true
-      fetch_worktree_count: true
-    foreground: p:base
-    powerline_symbol: 
-    background: p:sky
-    type: git
-    style: powerline
-    background_templates:
-    - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:peach{{ end }}"
-  newline: true
-- type: prompt
-  alignment: right
-  overflow: hidden
-  segments:
-  - properties:
-      threshold: 5000
-    template: "{{ .FormattedMs }}"
-    foreground: p:yellow
-    background: transparent
-    type: executiontime
-    style: plain
-  - template: " \ue235{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
-    foreground: p:blue
-    background: transparent
-    type: python
-    style: plain
-- type: prompt
-  alignment: left
-  segments:
-  - template: ❯
-    background: transparent
-    type: text
-    style: plain
-    foreground_templates:
     - "{{ if gt .Code 0 }}p:red{{ end }}"
     - "{{ if eq .Code 0 }}p:mauve{{ end }}"
-  newline: true
+console_title_template: "{{ .Shell }} in {{ .Folder }}"
+blocks:
+  - type: prompt
+    alignment: left
+    segments:
+      - template: 
+        foreground: p:overlay0
+        powerline_symbol: 
+        background: p:yellow
+        type: root
+        style: powerline
+      - template: " {{ if .SSHSession }}\ueba9 {{ end }}{{ .UserName }}@{{ $l := .HostName }}{{ first ( splitList \".\" .HostName ) }} "
+        foreground: p:base
+        powerline_symbol: 
+        background: p:lavender
+        type: session
+        style: powerline
+      - properties:
+          folder_icon: 
+          folder_separator_icon: " \ue0b1 "
+          home_icon: 
+          style: letter
+        template: " {{ .Path }} "
+        foreground: p:base
+        powerline_symbol: 
+        background: p:blue
+        type: path
+        style: powerline
+      - properties:
+          fetch_bare_info: true
+          fetch_stash_count: true
+          fetch_status: true
+          fetch_upstream_icon: true
+          fetch_worktree_count: true
+        foreground: p:base
+        powerline_symbol: 
+        background: p:sky
+        type: git
+        style: powerline
+        background_templates:
+          - "{{ if or (.Working.Changed) (.Staging.Changed) }}p:peach{{ end }}"
+    newline: true
+  - type: prompt
+    alignment: right
+    overflow: hide
+    segments:
+      - properties:
+          threshold: 5000
+        template: "{{ .FormattedMs }}"
+        foreground: p:yellow
+        background: transparent
+        type: executiontime
+        style: plain
+      - template: " \ue235{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+        foreground: p:blue
+        background: transparent
+        type: python
+        style: plain
+  - type: prompt
+    alignment: left
+    segments:
+      - template: ❯
+        background: transparent
+        type: text
+        style: plain
+        foreground_templates:
+          - "{{ if gt .Code 0 }}p:red{{ end }}"
+          - "{{ if eq .Code 0 }}p:mauve{{ end }}"
+    newline: true
 tooltips:
-- template: {{ .Context }}
-  foreground: p:yellow
-  background: transparent
-  type: docker
-  tips:
-  - docker
+  - type: docker
+    style: plain
+    template: {{ .Context }}
+    foreground: p:yellow
+    background: transparent
+    tips:
+      - docker
 version: 3
 final_space: true
+...
