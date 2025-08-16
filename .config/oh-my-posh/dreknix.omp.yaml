@@ -91,7 +91,7 @@ blocks:
         background: transparent
         type: executiontime
         style: plain
-      - template: " \ue235{{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
+      - template: " \ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}"
         foreground: p:blue
         background: transparent
         type: python
