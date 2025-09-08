@@ -7,7 +7,7 @@ local M = {
         local util = require("formatter.util")
         return {
           exe = "black",
-          args = { "-q", "--line-length=130", "--stdin-filename", util.escape_path(util.get_current_buffer_file_name()), "-" },
+          args = { "-q", "--fast", "--line-length=130", "--stdin-filename", util.escape_path(util.get_current_buffer_file_name()), "-" },
           stdin = true,
         }
       end
