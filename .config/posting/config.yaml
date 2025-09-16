@@ -1,5 +1,6 @@
 ---
-
 theme: catppuccin-mocha
-
+pager_json: fx
+heading:
+  visible: false
 ...
