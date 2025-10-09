@@ -96,3 +96,5 @@ compdef config=git
 ### end zsh completions
 
 #zprof
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
