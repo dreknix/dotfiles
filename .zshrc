@@ -27,6 +27,8 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
+zinit load atuinsh/atuin
+
 ### https://github.com/urbainvaes/fzf-marks
 ###
 #
@@ -68,8 +70,8 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 # up/down arrow with partial history search
-bindkey 'OA' history-beginning-search-backward
-bindkey 'OB' history-beginning-search-forward
+#bindkey 'OA' history-beginning-search-backward
+#bindkey 'OB' history-beginning-search-forward
 
 # Shell integrations
 eval "$(fzf --zsh)"
