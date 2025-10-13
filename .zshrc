@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
-#zmodload zsh/zprof
+# profiling
+# zmodload zsh/zprof
 
 #
 # .zshrc
@@ -53,8 +54,14 @@ zstyle ':completion:*' menu no
 
 # add ~/.local/share/zsh-completions to $fpath
 fpath=(${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/site-functions $fpath)
+fpath+=~/.zfunc
 autoload -Uz compinit
-compinit
+
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
+  compinit
+else
+  compinit -C
+fi
 
 # History
 HISTSIZE=5000
@@ -97,6 +104,5 @@ compdef config=git
 
 ### end zsh completions
 
-#zprof
-
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
+# profiling
+# zprof
