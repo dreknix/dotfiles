@@ -106,3 +106,6 @@ compdef config=git
 
 # profiling
 # zprof
+
+# opencode
+export PATH=/home/dreknix/.opencode/bin:$PATH
