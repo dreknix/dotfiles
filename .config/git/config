@@ -32,9 +32,9 @@
   # get last commit information
   last = log -1 HEAD
   # print log messages
-  l   = log --color=always --pretty='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)<%ae>'
+  l   = log --oneline --color=always --pretty='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)<%ae>'
   # print log messages with graph
-  lg  = log --graph --pretty='%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an'
+  lg  = log --oneline --graph --all --pretty='%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an'
   # pull without rebase
   pm  = pull --no-rebase
   # restore (undo local changes) file: git r <file>
@@ -70,13 +70,47 @@
 [init]
   defaultBranch = main
 
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname  # tags are sorted as version numbers
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = copies
+
 [push]
   default = simple
+  autoSetupRemote = true
+  followTags = true
 
 # rebase by default when doing pull
 # user pm to old default pull with merge
 [pull]
   rebase = true
+
+[fetch]
+  prune = true
+  # pruneTags = true
+  # all = true
+
+[rerere]
+  enabled = true
+  autoupdate = true
+
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updatRefs = true
+
+[merge]
+  conflictStyle = zdiff3
 
 [color]
   ui = always
