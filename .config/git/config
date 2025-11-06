@@ -111,8 +111,8 @@
   conflictStyle = zdiff3
   tool = nvimdiff
 
-[mergetool "nvimdiff"]
-  layout = "LOCAL,BASE,REMOTE / MERGED"
+#[mergetool "nvimdiff"]
+#  layout = "LOCAL,BASE,REMOTE / MERGED"
 
 [color]
   ui = always
