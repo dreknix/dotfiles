@@ -14,15 +14,13 @@
   # check ignore patterns: git ci file~
   ci  = check-ignore -v
   # short for diff (repository <-> local changes)
-  d   = diff
-  # diff between current commit and previous
-  dl  = diff HEAD~1 HEAD
-  # compact diff summary between current commit and previous
-  dlc = diff --compact-summary HEAD~1 HEAD
+  d   = diff --ignore-all-space --word-diff=color
   # short for diff (repository <-> staged)
-  ds  = diff --staged
-  # short for diff with word-diff (repository <-> local changes)
-  dw  = diff --word-diff
+  ds  = diff --ignore-all-space --word-diff=color --staged
+  # diff between current commit and previous
+  dl  = diff --ignore-all-space --word-diff=color HEAD~1 HEAD
+  # compact diff summary between current commit and previous
+  dlc = diff --ignore-all-space --word-diff=color --compact-summary HEAD~1 HEAD
   # git fc <pattern> - search in the commits for pattern
   fc  = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%ae>%Creset' --grep=$1 --regexp-ignore-case; }; f"
   # git fs <pattern> - search in the commit logs for pattern
@@ -111,6 +109,10 @@
 
 [merge]
   conflictStyle = zdiff3
+  tool = nvimdiff
+
+[mergetool "nvimdiff"]
+  layout = "LOCAL,BASE,REMOTE / MERGED"
 
 [color]
   ui = always
