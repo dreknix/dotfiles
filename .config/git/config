@@ -115,8 +115,8 @@
 #  layout = "LOCAL,BASE,REMOTE / MERGED"
 
 [color]
-  ui = always
-  diff = always
+  ui = auto
+  diff = auto
 
 [color "diff"]
   meta = yellow bold
