@@ -22,7 +22,7 @@ M.ui = {
     modules = {
       -- see: ~/.local/share/nvim/lazy/ui/lua/nvchad/stl
       cursor = function()
-        return "%#St_pos_sep#%#St_pos_icon# %#St_pos_text# %04l:%03c "
+        return "%#St_pos_sep#%#St_pos_icon# %#St_pos_text# %04l:%03v "
       end,
     },
   },
