@@ -1,0 +1,3 @@
+ci: pipeline ci
+co: mr checkout
+vb: repo view -w
