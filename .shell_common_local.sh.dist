@@ -9,5 +9,6 @@
 # export START_DIR_DIRS="${START_DIR_DIRS} ${HOME}/work1 ${HOME}/work2"
 
 # add Homebrew coreutils to PATH
-# export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
+# export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
+# export PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${PATH}"
 
