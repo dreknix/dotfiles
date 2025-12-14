@@ -747,3 +747,20 @@ alias net-scan=__net_scan
 
 # get all nodes with ssh port in current network
 alias net-scan-ssh='nmap -sV -p 22 -oG - $(net-netmask)'
+
+### GitHub / GitLab
+__gitlab_github() {
+  if git remote -v | grep -e "^origin\s" | grep -c "git@github.com" > /dev/null 2>&1
+  then
+    gh "$@"
+  else
+    glab "$@"
+  fi
+}
+alias g="__gitlab_github"
+
+# show README.md of project
+alias gv="g repo view"
+
+# open current project in browser
+alias gvb="g vb"
