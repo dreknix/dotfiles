@@ -33,8 +33,9 @@ zinit load atuinsh/atuin
 ### https://github.com/urbainvaes/fzf-marks
 ###
 #
-# ctrl-g - open fzf window with directories
+# ctrl-h - open fzf window with directories
 #
+FZF_MARKS_JUMP='^h'
 FZF_MARKS_DIR="${XDG_DATA_HOME:-${HOME}/.local/share}/fzf-marks"
 FZF_MARKS_FILE="${FZF_MARKS_DIR}/marks"
 FZF_MARKS_COMMAND="fzf --tmux 70% --border=rounded --layout reverse --info=inline --preview='lsd --tree --depth 2 --group-dirs=first --color always --icon always {3..}' --preview-window=right,50%,rounded"
@@ -106,6 +107,17 @@ compdef config=git
 
 # profiling
 # zprof
+
+###
+### keyboard shortcuts
+###
+
+### ctrl-g - open GitLab project in browser
+function open_gitlab_project() {
+  open_gitlab_project.sh
+}
+zle -N open_gitlab_project
+bindkey '^g' open_gitlab_project
 
 # opencode
 export PATH=/home/dreknix/.opencode/bin:$PATH
