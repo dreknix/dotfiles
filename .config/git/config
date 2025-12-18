@@ -10,7 +10,7 @@
   # annotate file with the commit reference: git b <file>
   b   = blame --color-lines
   # short for commit
-  c   = commit -m
+  co   = commit -m
   # check ignore patterns: git ci file~
   ci  = check-ignore -v
   # short for diff (repository <-> local changes)
@@ -22,19 +22,23 @@
   # compact diff summary between current commit and previous
   dlc = diff --ignore-all-space --word-diff=color --compact-summary HEAD~1 HEAD
   # git fc <pattern> - search in the commits for pattern
-  fc  = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%ae>%Creset' --grep=$1 --regexp-ignore-case; }; f"
+  fc  = "!f() { git log --pretty='%C(cyan)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an%Creset' --grep=$1 --regexp-ignore-case; }; f"
   # git fs <pattern> - search in the commit logs for pattern
-  fs  = "!f() { git log --pretty='%C(yellow)%h%Creset -%Cred%d%Creset %s %Cgreen(%ar) %C(bold blue)<%ae>%Creset' -S$1; }; f"
+  fs  = "!f() { git log --pretty='%C(cyan)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an%Creset' -S$1; }; f"
   # check if file is in repository: git is file
   is  = ls-files --error-unmatch
   # get last commit information
   last = log -1 HEAD
   # print log messages
-  l   = log --oneline --color=always --pretty='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)<%ae>'
+  l   = log --oneline --color=always --pretty='%C(cyan)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an%Creset'
+  # print last log messages
+  ll   = log --oneline --color=always -n 20 --pretty='%C(cyan)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an%Creset'
   # print log messages with graph
-  lg  = log --oneline --graph --all --pretty='%C(yellow)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an'
+  lg  = log --oneline --graph --all --pretty='%C(cyan)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an%Creset'
   # pull without rebase
   pm  = pull --no-rebase
+  # pull with rebase (also default behavior)
+  pr  = pull --rebase
   # restore (undo local changes) file: git r <file>
   r   = restore
   # list of remotes repositories
@@ -42,7 +46,7 @@
   # print prettier status
   s   = status -sb
   # short for show commit: git sh ce6692 or git sh ce6692:<file>
-  sh  = show --pretty='%C(cyan)%h %C(blue)%ar%C(auto)%d %C(yellow)%s %C(green)<%ae>'
+  sh  = show --pretty='%C(cyan)%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)%an%Creset'
   # undo last commit
   undo = reset --mixed HEAD~1
   # undo things in stage (i.e., git add): git unstage <file>
@@ -154,13 +158,13 @@
 # includeif is only working inside a git repository
 # path must be ending with '/'
 
-# operating system specific
+# operating system specific settings
 [includeIf "gitdir/i:%(prefix)/home/"]
   path = ~/.config/git/config-linux
 [includeIf "gitdir/i:C:/"]
   path = ~/.config/git/config-windows
 
-# [user] and local changes in seperate files (not in git)
+# user and local changes in seperate files (not in git)
 [include]
   path = ~/.config/git/config-local
   path = ~/.config/git/config-user
