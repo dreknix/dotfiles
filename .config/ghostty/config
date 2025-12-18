@@ -1,5 +1,8 @@
 # gtk-titlebar = false
 
+working-directory = home
+window-inherit-working-directory = false
+
 font-family = ""
 font-family = "ComicCode Nerd Font"
 font-size = 10
