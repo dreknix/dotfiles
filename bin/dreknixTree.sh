@@ -118,7 +118,7 @@ do
       echo "wrong entry in CSV file: $rec_type"
       ;;
   esac
-done < <(grep -v '^#' "${HOME}/bin/.dreknixTree.csv" | tail +2)
+done < <(grep -v '^#' "${HOME}/bin/.dreknixTree.csv" | tail -n +2)
 
 popd > /dev/null || exit $?
 
