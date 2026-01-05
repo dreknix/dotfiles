@@ -188,10 +188,6 @@ export FZF_DEFAULT_OPTS="\
 #  * xgcv   - view git log and copy/view commit
 #
 # xgcv - view git log and copy/view commit
-__dreknix_xclip() {
-  # remove \r in output, e.g. from Docker CLI commands
-  tr -d '\r' | xclip -r -sel clipboard -filter | xclip -r -sel primary
-}
 __dreknix_xgcv() {
   git log \
     --color=always \
@@ -208,16 +204,14 @@ __dreknix_xgcv() {
       --bind "enter:execute(echo '{}' | \
                             grep -o '[a-f0-9]\{7\}' | \
                             head -1 | \
-                            xargs -i sh -c 'LESS=${LESS_BASIC_OPTS} \
+                            xargs -i sh -c 'LESS=\"${LESS_BASIC_OPTS}\" \
                               git show --color=always {} | \
                               delta --paging=always > /dev/tty' \
                            )" \
       --bind "ctrl-c:execute(echo '{}' | \
                              grep -o '[a-f0-9]\{7\}' | \
                              head -1 | \
-                             tr -d '\n' | \
-                             xclip -i -sel clipboard -filter | \
-                             xclip -i -sel primary \
+                             dreknix_clipboard.sh \
                             )"
 }
 alias xgcv=__dreknix_xgcv
@@ -603,8 +597,11 @@ getpw() {
       gopass show --password "$selected" | clip.exe
     else
       gopass show --clip "$selected" > /dev/null 2>/dev/null
-      # copy password also into the selction (Shift-Insert)
-      xclip -out -selection clipboard | xclip -selection primary
+      if [[ $(uname) != "Darwin" ]]
+      then
+        # copy password also into the selction (Shift-Insert)
+        xclip -out -selection clipboard | xclip -selection primary
+      fi
     fi
   fi
 }
@@ -680,7 +677,7 @@ fi
 
 # select a snippet and copy it in the clipboard
 function bash_pet_xcopy() {
-  pet search --query "$READLINE_LINE" | __dreknix_xclip
+  pet search --query "$READLINE_LINE" | dreknix_clipboard.sh
   # reset search string in current line
   READLINE_LINE=""
   READLINE_POINT=0

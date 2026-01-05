@@ -19,21 +19,6 @@ BG="#6699cc"
 SFG="#2d2d2d"
 SBG="#f99157"
 
-clipboard_wl_copy() {
-  wl-copy --primary --paste-once
-}
-
-clipboard_x11_copy() {
-  xclip -selection primary -filter | xclip -selection clipboard
-}
-
-if command -v wl-copy &> /dev/null
-then
-  CLIPBOARD_COPY=clipboard_wl_copy
-else
-  CLIPBOARD_COPY=clipboard_x11_copy
-fi
-
 if command -v wofi &> /dev/null
 then
   MENU=("wofi" "--dmenu" "--prompt" "" "--height" "90%" "--width" "90%" "--normal-window")
@@ -46,4 +31,4 @@ gopass ls --flat \
   | xargs --no-run-if-empty gopass show --password \
   | head -n 1 \
   | tr -d '\n' \
-  | eval ${CLIPBOARD_COPY}
+  | dreknix_clipboard.sh
