@@ -8,7 +8,19 @@
 # overwrite START_DIR_DIRS used in ~/bin/start-dir.sh
 # export START_DIR_DIRS="${START_DIR_DIRS} ${HOME}/work1 ${HOME}/work2"
 
-# add Homebrew coreutils to PATH
-# export PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:${PATH}"
-# export PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:${PATH}"
-
+# add homebrew installed tools to PATH and MANPATH
+#
+# # coreutils
+# PATH="$(brew --prefix coreutils)/libexec/gnubin:${PATH}"
+# MANPATH="$(brew --prefix coreutils)/libexec/gnuman:${MANPATH}"
+#
+# # sed
+# PATH="$(brew --prefix gnu-sed)/libexec/gnubin:${PATH}"
+# MANPATH="$(brew --prefix gnu-sed)/libexec/gnuman:${MANPATH}"
+#
+# # xargs
+# PATH="$(brew --prefix findutils)/libexec/gnubin:${PATH}"
+# MANPATH="$(brew --prefix findutils)/libexec/gnuman:${MANPATH}"
+#
+# export PATH
+# export MANPATH
