@@ -8,6 +8,12 @@
 #
 
 # use https://github.com/jandedobbeleer/oh-my-posh
+
+# speedup oh-my-posh
+DISABLE_AUTO_UPDATE="true"
+DISABLE_MAGIC_FUNCTIONS="true"
+DISABLE_COMPFIX="true"
+
 OHMYPOSH_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/oh-my-posh"
 eval "$(oh-my-posh init zsh --config ${OHMYPOSH_HOME}/dreknix.omp.yaml)"
 
@@ -24,10 +30,6 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-
 zinit load atuinsh/atuin
 
 ### https://github.com/urbainvaes/fzf-marks
@@ -45,6 +47,11 @@ then
 fi
 zinit light urbainvaes/fzf-marks
 
+### Last plugins in this order
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
+
 ### Load completions
 ###
 
@@ -57,12 +64,7 @@ zstyle ':completion:*' menu no
 fpath=(${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/site-functions $fpath)
 fpath+=~/.zfunc
 autoload -Uz compinit
-
-if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null)" ]; then
-  compinit
-else
-  compinit -C
-fi
+compinit -C
 
 # History
 HISTSIZE=10000
@@ -105,9 +107,6 @@ compdef config=git
 
 ### end zsh completions
 
-# profiling
-# zprof
-
 ###
 ### keyboard shortcuts
 ###
@@ -121,3 +120,6 @@ bindkey '^g' open_gitlab_project
 
 # opencode
 export PATH=/home/dreknix/.opencode/bin:$PATH
+
+# profiling
+# zprof
