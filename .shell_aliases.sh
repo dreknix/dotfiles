@@ -761,3 +761,24 @@ alias gv="g repo view"
 
 # open current project in browser
 alias gvb="g vb"
+
+### Search DuckDuckGo
+__duckduckgo() {
+  BROWSER=w3m ddgr "$@"
+}
+alias '?'="__duckduckgo"
+
+### fabric - Claude
+if [[ $(uname) == "Darwin" ]]
+then
+  alias fabric="fabric-ai"
+fi
+#FABRIC_MODEL="claude-opus-4-5"
+FABRIC_MODEL="claude-sonnet-4-5"
+#FABRIC_MODEL="claude-haiku-4-5"
+__fabric() {
+  # -p raw_query
+  # -p ai
+  echo -e "$@" | fabric-ai -m "${FABRIC_MODEL}"
+}
+alias '??'="__fabric"
