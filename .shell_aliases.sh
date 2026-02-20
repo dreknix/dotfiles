@@ -779,6 +779,11 @@ FABRIC_MODEL="claude-sonnet-4-5"
 __fabric() {
   # -p raw_query
   # -p ai
-  echo -e "$@" | fabric-ai -m "${FABRIC_MODEL}"
+  if [[ $(uname) == "Darwin" ]]
+  then
+    echo -e "$@" | fabric-ai -m "${FABRIC_MODEL}"
+  else
+    echo -e "$@" | fabric -m "${FABRIC_MODEL}"
+  fi
 }
 alias '??'="__fabric"
