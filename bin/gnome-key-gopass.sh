@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -x
-
 #
 # gopass from https://github.com/gopasspw/gopass/releases
 #
@@ -19,6 +17,11 @@ BG="#6699cc"
 SFG="#2d2d2d"
 SBG="#f99157"
 
+if [ "$(uname)" == "Darwin" ]; then
+  # change focus to XQuartz
+  open -a XQuartz
+fi
+
 if command -v wofi &> /dev/null
 then
   MENU=("wofi" "--dmenu" "--prompt" "" "--height" "90%" "--width" "90%" "--normal-window")
@@ -32,3 +35,8 @@ gopass ls --flat \
   | head -n 1 \
   | tr -d '\n' \
   | dreknix_clipboard.sh
+
+if [ "$(uname)" == "Darwin" ]; then
+  # change focus back to previous application
+  osascript -e 'tell application "System Events" to keystroke tab using {command down}'
+fi
