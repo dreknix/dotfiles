@@ -117,6 +117,11 @@ function open_gitlab_project() {
 }
 zle -N open_gitlab_project
 bindkey '^g' open_gitlab_project
+function open_gopass() {
+  ~/bin/gnome-key-gopass.sh
+}
+zle -N open_gopass
+bindkey '^f' open_gopass
 
 # opencode
 export PATH=/home/dreknix/.opencode/bin:$PATH
