@@ -125,6 +125,13 @@ bindkey '^g' open_gitlab_project
 # zle -N open_gopass
 # bindkey '^f' open_gopass
 
+### switch to last session
+function sesh_last() {
+  sesh last
+}
+zle -N sesh_last
+bindkey '^p' sesh_last
+
 # opencode
 export PATH=/home/dreknix/.opencode/bin:$PATH
 
