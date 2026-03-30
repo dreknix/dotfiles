@@ -195,5 +195,8 @@ shift + alt - right : yabai -m window --resize right:20:0
 shift + alt - up : yabai -m window --resize top:-20:0
 shift + alt - down : yabai -m window --resize bottom:20:0
 
+# create new Gostty window
+alt + ctrl - t : osascript -e 'tell application "Ghostty" to new window'
 
+# start gopass + dmenu
 alt - c : $HOME/bin/gnome-key-gopass.sh
