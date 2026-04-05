@@ -1,8 +1,9 @@
 ---
 
 config:
+  #  
   fallback-icon: ""
-  multi-pane-icon: ""
+  multi-pane-icon: ""
   show-name: true
   icon-position: "left"
 
