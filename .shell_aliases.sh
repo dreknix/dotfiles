@@ -174,9 +174,9 @@ export FZF_DEFAULT_OPTS="\
   --prompt ' ' --info 'inline:   ' \
   --pointer '>' --color 'pointer:#f38ba8'\
   --input-label=' Input ' \
-  --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
-  --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#f38ba8 \
-  --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+  --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 \
+  --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f38ba8 \
+  --color=marker:#b4befe,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8 \
   --color=selected-bg:#45475A \
   --color=border:#94e2d5,label:#94e2d5 \
   --color=input-border:#eba0ac,input-label:#eba0ac \
