@@ -48,4 +48,9 @@ update:
 # quit if not in Git repository
 notARepository: quit
 
+# overwrite keybindings
+keybinding:
+  universal:
+    nextTab: 'ä'
+    prevTab: 'ö'
 ...
