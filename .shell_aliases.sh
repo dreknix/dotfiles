@@ -164,23 +164,33 @@ __json_processor() {
 export FZF_DEFAULT_OPTS="\
   --tmux \
   --ansi \
+  --no-mouse \
   --multi \
+  --cycle \
   --layout=reverse \
   --style=full \
   --border=rounded \
-  --info=inline \
-  --no-mouse \
-  --cycle \
-  --border \
   --margin=0,3,0,3 \
-  --info=inline \
+  --prompt ' ' --info 'inline:   ' \
+  --pointer '>' --color 'pointer:#f38ba8'\
   --input-label=' Input ' \
-  --color 'border:#94e2d5,label:#89dceb,bg:#313244' \
-  --color 'input-border:#eba0ac,input-label:#fab387' \
-  --color 'list-border:#f9e2af,list-label:#fab387' \
-  --color 'preview-border:#cba6f7,preview-label:#f5c2e7,preview-bg:#45475a' \
+  --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8 \
+  --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#f38ba8 \
+  --color=marker:#B4BEFE,fg+:#CDD6F4,prompt:#CBA6F7,hl+:#F38BA8 \
+  --color=selected-bg:#45475A \
+  --color=border:#94e2d5,label:#94e2d5 \
+  --color=input-border:#eba0ac,input-label:#eba0ac \
+  --color=header-border:#6c7086,header-label:#6c7086,header-fg:#6c7086 \
+  --color=list-border:#89b4fa,list-label:#89b4fa \
+  --color=preview-border:#89b4fa,preview-label:#89b4fa \
   "
   # --height=50% \
+  # --color 'border:#94e2d5,label:#89dceb,fg:#cdd6f4,bg:#1e1e2e' \
+  # --color 'query:#cdd6f4' \
+  # --color 'input-border:#f9e2af,input-label:#fab387' \
+  # --color 'header-border:#6c7086,header-label:#6c7086,header-fg:#6c7086' \
+  # --color 'list-border:#eba0ac,list-label:#fab387' \
+  # --color 'preview-border:#89b4fa,preview-label:#89b4fa' \
 
 ### fzf - git
 #
