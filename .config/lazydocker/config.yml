@@ -1,0 +1,22 @@
+---
+
+gui:
+  theme:
+    activeBorderColor:
+      - '#eba0ac'
+      - bold
+    inactiveBorderColor:
+      - '#a6adc8'
+    selectedLineBgColor:
+      - '#313244'
+    optionsTextColor:
+      - '#89b4fa'
+
+# no yet implemented
+# https://github.com/jesseduffield/lazydocker/issues/48
+# keybindings:
+#   # are currently ] and [
+#   nextTab: 'ä'
+#   previousTab: 'ö'
+
+...
