@@ -9,6 +9,7 @@
 tmux list-buffer -F "#{buffer_name}" | \
   fzf \
     --tmux 80%,80% --border-label ' Choose TMUX Buffer ' \
+    --prompt ' ' --info 'inline:   ' \
     --header '^d - delete | ^v - copy' \
     --bind 'ctrl-d:execute(tmux delete-buffer -b {})+reload(tmux list-buffer -F "#{buffer_name}")' \
     --bind 'ctrl-v:execute(tmux show-buffer -b {} | dreknix_clipboard.sh)+abort' \
