@@ -1,0 +1,49 @@
+---
+
+gui:
+  theme:
+    activeBorderColor:
+      - '#eba0ac'
+      - bold
+    inactiveBorderColor:
+      - '#a6adc8'
+    searchingActiveBorderColor:
+      # - '#f9e2af'
+      - '#eba0ac'
+      - bold
+    optionsTextColor:
+      - '#89b4fa'
+    selectedLineBgColor:
+      - '#313244'
+    inactiveViewSelectedLineBgColor:
+      - '#6c7086'
+    cherryPickedCommitFgColor:
+      - '#eba0ac'
+    cherryPickedCommitBgColor:
+      - '#45475a'
+    markedBaseCommitFgColor:
+      - '#89b4fa'
+    markedBaseCommitBgColor:
+      - '#f9e2af'
+    unstagedChangesColor:
+      - '#f38ba8'
+    defaultFgColor:
+      - '#cdd6f4'
+
+  authorColors:
+    '*': '#b4befe'
+
+  # active Nerdfonts
+  nerdFontsVersion: "3"
+
+  # disable command log - toggle with @
+  showCommandLog: false
+
+# ignore automatic updates
+update:
+  method: never
+
+# quit if not in Git repository
+notARepository: quit
+
+...
