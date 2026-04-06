@@ -25,5 +25,5 @@ tmux list-buffer -F "#{buffer_name};#{=50:buffer_sample}" | \
     --bind 'ctrl-d:execute(tmux delete-buffer -b {1})+reload(tmux list-buffer -F "#{buffer_name};#{=50:buffer_sample}")' \
     --bind 'ctrl-v:execute(tmux show-buffer -b {1} | dreknix_clipboard.sh)+abort' \
     --preview-window 'right:70%' \
-    --preview "echo -e '{1}\n'; tmux show-buffer -b {1}" | \
+    --preview "echo -e ' {1}\n'; tmux show-buffer -b {1}; echo '󰓛\n'" | \
   xargs --no-run-if-empty tmux paste-buffer -r -b
