@@ -2,13 +2,13 @@
 
 if [[ $(uname) == "Darwin" ]]
 then
-  tr -d '\r' | pbcopy
+  sed -z '$ s/\n$//' | tr --delete '\r' | pbcopy
 else
   if command -v wl-copy &> /dev/null
   then
-    tr -d '\r' | wl-copy --primary --paste-once
+    sed -z '$ s/\n$//' | tr --delete '\r' | wl-copy --primary --paste-once
   else
     # sudo apt install xclip
-    tr -d '\r' | xclip -r -sel clipboard -filter | xclip -r -sel primary
+    sed -z '$ s/\n$//' | tr --delete '\r' | xclip -r -sel clipboard -filter | xclip -r -sel primary
   fi
 fi
