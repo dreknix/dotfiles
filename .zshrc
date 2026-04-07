@@ -125,6 +125,14 @@ bindkey '^g' open_gitlab_project
 # zle -N open_gopass
 # bindkey '^f' open_gopass
 
+### Open sesh in television
+function _sesh_select() {
+  # not working: tv sesh
+  sesh connect "$(sesh list --hide-duplicates | fzf --ansi --preview "sesh preview {}")"
+}
+zle -N _sesh_select
+bindkey '^o' _sesh_select
+
 ### switch to last session
 function sesh_last() {
   sesh last
