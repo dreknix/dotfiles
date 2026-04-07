@@ -7,6 +7,6 @@ then
   then
     DOCKER_HOST="unix:///run/user/${UID}/podman/podman.sock" lazydocker
   else
-    :
+    lazydocker
   fi
 fi
