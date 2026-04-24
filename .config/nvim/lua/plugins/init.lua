@@ -22,7 +22,10 @@ local plugins = {
     opts = {
       sources = {
         -- add all sources from NvChad before extend the list
-        { name = "nvim_lsp" },
+        {
+          name = "nvim_lsp",
+          keyword_length = 3,
+        },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "nvim_lua" },
