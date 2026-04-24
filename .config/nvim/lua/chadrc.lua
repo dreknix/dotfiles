@@ -69,6 +69,7 @@ M.mason = {
     'pylint',
     'mypy',
     'ruff',
+    'ty',
     'debugpy',
 
     -- TeX, LaTeX stuff
