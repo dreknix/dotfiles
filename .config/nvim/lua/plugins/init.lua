@@ -14,34 +14,51 @@ local plugins = {
     main = 'ibl',
     opts = overrides.blankline,
   },
-  {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      { 'f3fora/cmp-spell' },
-    },
+  { import = "nvchad.blink.lazyspec" },
+  { "saghen/blink.cmp",
+    dependencies = { 'ribru17/blink-cmp-spell' },
     opts = {
       sources = {
-        -- add all sources from NvChad before extend the list
-        {
-          name = "nvim_lsp",
-          keyword_length = 3,
-        },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "nvim_lua" },
-        { name = "path" },
-        {
-          name = 'spell',
-          option = {
-            keep_all_entries = false,
-            enable_in_context = function()
-              return true
-            end,
+        default = { "lsp", "path", "snippets", "buffer", "spell" },
+        providers = {
+          spell = {
+            name = "spell",
+            module = "blink-cmp-spell",
+            score_offset = 3, -- High priority
+            opts = {},
           },
         },
       },
     },
   },
+  -- {
+  --  'hrsh7th/nvim-cmp',
+  --  dependencies = {
+  --    { 'f3fora/cmp-spell' },
+  --  },
+  --  opts = {
+  --    sources = {
+  --      -- add all sources from NvChad before extend the list
+  --      {
+  --        name = "nvim_lsp",
+  --        keyword_length = 3,
+  --      },
+  --      { name = "luasnip" },
+  --      { name = "buffer" },
+  --      { name = "nvim_lua" },
+  --      { name = "path" },
+  --      {
+  --        name = 'spell',
+  --        option = {
+  --          keep_all_entries = false,
+  --          enable_in_context = function()
+  --            return true
+  --          end,
+  --        },
+  --      },
+  --    },
+  --  },
+  -- ,
   {
     'neovim/nvim-lspconfig',
     config = function()
