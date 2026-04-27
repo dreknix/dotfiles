@@ -106,35 +106,44 @@ local plugins = {
       }
     end
   },
+  -- {
+  --   'rcarriga/nvim-notify',
+  --   config = function()
+  --     require("notify").setup {
+  --       enabled = false,
+  --     }
+  --   end
+  -- },
   {
-    'rcarriga/nvim-notify',
-    config = function()
-      require("notify").setup {
-        enabled = false,
-      }
-    end
-  },
-  {
-    'folke/noice.nvim',
-    event = 'VeryLazy',
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
-    opts = {
-      lsp = {
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-          ["cmp.entry.get_documentation"] = true,
-        },
-        signature = {
-          enabled = false,
-        }
-      },
-    },
-  },
+     'folke/noice.nvim',
+     event = 'VeryLazy',
+     dependencies = {
+       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+       "MunifTanjim/nui.nvim",
+       "rcarriga/nvim-notify",
+     },
+     opts = {
+       routes = {
+         {
+           filter = {
+             event = "lsp",
+             kind = "progress",
+           },
+           opts = { skip = true },
+         },
+       },
+  --     lsp = {
+  --       override = {
+  --         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+  --         ["vim.lsp.util.stylize_markdown"] = true,
+  --         ["cmp.entry.get_documentation"] = true,
+  --       },
+  --       signature = {
+  --         enabled = false,
+  --       }
+  --     },
+     },
+   },
   {
     'MeanderingProgrammer/render-markdown.nvim',
     opts = {},
