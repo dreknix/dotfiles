@@ -106,14 +106,12 @@ local plugins = {
       }
     end
   },
-  -- {
-  --   'rcarriga/nvim-notify',
-  --   config = function()
-  --     require("notify").setup {
-  --       enabled = false,
-  --     }
-  --   end
-  -- },
+  {
+     'rcarriga/nvim-notify',
+     opts = {
+       timeout = 1000,
+     }
+  },
   {
      'folke/noice.nvim',
      event = 'VeryLazy',
