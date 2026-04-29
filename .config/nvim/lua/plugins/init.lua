@@ -60,6 +60,13 @@ local plugins = {
   --  },
   -- ,
   {
+    "stevearc/conform.nvim",
+    event = "BufWritePre", -- loaded before saving
+    config = function()
+      require "configs.conform"
+    end,
+  },
+  {
     'neovim/nvim-lspconfig',
     config = function()
       require 'configs.lspconfig'
@@ -72,13 +79,13 @@ local plugins = {
       require 'configs.lint'
     end
   },
-  {
-    'mhartington/formatter.nvim',
-    event = 'VeryLazy',
-    opts = function()
-      return require 'configs.formatter'
-    end
-  },
+  -- {
+  --   'mhartington/formatter.nvim',
+  --   event = 'VeryLazy',
+  --   opts = function()
+  --     return require 'configs.formatter'
+  --   end
+  -- },
   {
     'christoomey/vim-tmux-navigator',
     lazy = false,
