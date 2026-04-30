@@ -1,8 +1,15 @@
 require("nvchad.configs.lspconfig").defaults()
 
 local servers = {
-  "clangd", "ansiblels", "docker_compose_language_service",
-  "dockerls", "jsonls", "marksman", "yamlls", "ty", "texlab",
+  "clangd",
+  "ansiblels",
+  "docker_compose_language_service",
+  "dockerls",
+  "jsonls",
+  "marksman",
+  "yamlls",
+  "pyright",
+  "texlab",
 }
 
 vim.lsp.enable(servers)

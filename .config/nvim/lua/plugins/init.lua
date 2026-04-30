@@ -1,22 +1,23 @@
-local overrides = require 'configs.overrides'
+local overrides = require "configs.overrides"
 
 local plugins = {
   {
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
   },
   {
-    'nvim-tree/nvim-tree.lua',
+    "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
   },
   {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
     opts = overrides.blankline,
   },
   { import = "nvchad.blink.lazyspec" },
-  { "saghen/blink.cmp",
-    dependencies = { 'ribru17/blink-cmp-spell' },
+  {
+    "saghen/blink.cmp",
+    dependencies = { "ribru17/blink-cmp-spell" },
     opts = {
       sources = {
         default = { "lsp", "path", "snippets", "buffer", "spell" },
@@ -67,17 +68,17 @@ local plugins = {
     end,
   },
   {
-    'neovim/nvim-lspconfig',
+    "neovim/nvim-lspconfig",
     config = function()
-      require 'configs.lspconfig'
-    end
+      require "configs.lspconfig"
+    end,
   },
   {
-    'mfussenegger/nvim-lint',
-    event = 'VeryLazy',
+    "mfussenegger/nvim-lint",
+    event = "VeryLazy",
     config = function()
-      require 'configs.lint'
-    end
+      require "configs.lint"
+    end,
   },
   -- {
   --   'mhartington/formatter.nvim',
@@ -87,84 +88,96 @@ local plugins = {
   --   end
   -- },
   {
-    'christoomey/vim-tmux-navigator',
+    "christoomey/vim-tmux-navigator",
     lazy = false,
     init = function()
       vim.g.tmux_navigator_no_mappings = 1
-    end
+    end,
   },
   {
-    'klen/nvim-config-local',
+    "klen/nvim-config-local",
     lazy = false,
     config = function()
-      require('config-local').setup {
+      require("config-local").setup {
         -- Default options (optional)
 
         -- Config file patterns to load (lua supported)
-        config_files = { '.nvim.lua', '.nvimrc', '.exrc' },
+        config_files = { ".nvim.lua", ".nvimrc", ".exrc" },
 
         -- Where the plugin keeps files data
-        hashfile = vim.fn.stdpath('data') .. '/config-local',
+        hashfile = vim.fn.stdpath "data" .. "/config-local",
 
         autocommands_create = true, -- Create autocommands (VimEnter, DirectoryChanged)
-        commands_create = true,     -- Create commands (ConfigLocalSource, ConfigLocalEdit, ConfigLocalTrust, ConfigLocalIgnore)
-        silent = false,             -- Disable plugin messages (Config loaded/ignored)
-        lookup_parents = true,     -- Lookup config files in parent directories
+        commands_create = true, -- Create commands (ConfigLocalSource, ConfigLocalEdit, ConfigLocalTrust, ConfigLocalIgnore)
+        silent = false, -- Disable plugin messages (Config loaded/ignored)
+        lookup_parents = true, -- Lookup config files in parent directories
       }
-    end
+    end,
   },
   {
-     'rcarriga/nvim-notify',
-     opts = {
-       timeout = 1000,
-     }
+    "rcarriga/nvim-notify",
+    opts = {
+      timeout = 1000,
+    },
   },
   {
-     'folke/noice.nvim',
-     event = 'VeryLazy',
-     dependencies = {
-       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-       "MunifTanjim/nui.nvim",
-       "rcarriga/nvim-notify",
-     },
-     opts = {
-       routes = {
-         {
-           filter = {
-             event = "lsp",
-             kind = "progress",
-           },
-           opts = { skip = true },
-         },
-       },
-  --     lsp = {
-  --       override = {
-  --         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-  --         ["vim.lsp.util.stylize_markdown"] = true,
-  --         ["cmp.entry.get_documentation"] = true,
-  --       },
-  --       signature = {
-  --         enabled = false,
-  --       }
-  --     },
-     },
-   },
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    opts = {
+      routes = {
+        {
+          filter = {
+            event = "lsp",
+            kind = "progress",
+          },
+          opts = { skip = true },
+        },
+      },
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
+        },
+        signature = {
+          enabled = false,
+        },
+      },
+    },
+  },
   {
-    'MeanderingProgrammer/render-markdown.nvim',
+    "MeanderingProgrammer/render-markdown.nvim",
     opts = {},
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
     -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
     keys = {
       -- see: http://www.lazyvim.org/extras/dap/core
-      { '<leader>mv', function() require('render-markdown').toggle() end, desc = 'Toggle Markdown viewer' },
+      {
+        "<leader>mv",
+        function()
+          require("render-markdown").toggle()
+        end,
+        desc = "Toggle Markdown viewer",
+      },
     },
   },
   {
-    'mfussenegger/nvim-dap',
+    "mfussenegger/nvim-dap",
     keys = {
       -- see: http://www.lazyvim.org/extras/dap/core
-      { '<leader>db', function() require('dap').toggle_breakpoint() end, desc = 'Toggle Breakpoint' },
+      {
+        "<leader>db",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Toggle Breakpoint",
+      },
     },
   },
   -- disable since MasonInstallAll is not installed
@@ -181,37 +194,43 @@ local plugins = {
   --   },
   -- },
   {
-    'rcarriga/nvim-dap-ui',
-    event = 'VeryLazy',
+    "rcarriga/nvim-dap-ui",
+    event = "VeryLazy",
     dependencies = {
-      'mfussenegger/nvim-dap',
-      'nvim-neotest/nvim-nio',
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
     },
     config = function()
-      local dap = require('dap')
-      local dapui = require('dapui')
+      local dap = require "dap"
+      local dapui = require "dapui"
       dapui.setup()
-      dap.listeners.after.event_initialized['dapui_config'] = function()
+      dap.listeners.after.event_initialized["dapui_config"] = function()
         dapui.open()
       end
-      dap.listeners.before.event_terminated['dapui_config'] = function()
+      dap.listeners.before.event_terminated["dapui_config"] = function()
         dapui.close()
       end
-      dap.listeners.before.event_exited['dapui_config'] = function()
+      dap.listeners.before.event_exited["dapui_config"] = function()
         dapui.close()
       end
-    end
+    end,
   },
   {
-    'mfussenegger/nvim-dap-python',
-    ft = 'python',
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
     dependencies = {
-      'mfussenegger/nvim-dap',
-      'rcarriga/nvim-dap-ui',
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
     },
     keys = {
       -- see: http://www.lazyvim.org/extras/dap/core
-      { '<leader>dbr', function() require('dap-python').test_method() end, desc = 'Test method' },
+      {
+        "<leader>dbr",
+        function()
+          require("dap-python").test_method()
+        end,
+        desc = "Test method",
+      },
     },
   },
 }

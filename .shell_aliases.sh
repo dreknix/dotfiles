@@ -783,8 +783,8 @@ if [[ $(uname) == "Darwin" ]]
 then
   alias fabric="fabric-ai"
 fi
-FABRIC_MODEL="qwen3:8b"
-#FABRIC_MODEL="claude-haiku-4-5"
+FABRIC_MODEL="gemma4:26b"
+#FABRIC_MODEL="qwen3:8b"
 __fabric() {
   # -p raw_query
   # -p ai
