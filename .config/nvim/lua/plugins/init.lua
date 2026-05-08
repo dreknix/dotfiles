@@ -3,7 +3,11 @@ local overrides = require "configs.overrides"
 local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
+    build = ":TSupdate",
     opts = overrides.treesitter,
+    config = function(_, _)
+      vim.treesitter.language.register("bash", "console")
+    end,
   },
   {
     "nvim-tree/nvim-tree.lua",
