@@ -783,16 +783,18 @@ if [[ $(uname) == "Darwin" ]]
 then
   alias fabric="fabric-ai"
 fi
-FABRIC_MODEL="gemma4:26b"
-#FABRIC_MODEL="qwen3:8b"
 __fabric() {
   # -p raw_query
   # -p ai
   if [[ $(uname) == "Darwin" ]]
   then
-    echo -e "$@" | fabric-ai -p ai -m "${FABRIC_MODEL}"
+    # FABRIC_MODEL="gemma4:26b"
+    # echo -e "$@" | fabric-ai -p ai -m "${FABRIC_MODEL}"
+    echo -e "$@" | fabric-ai -p ai
   else
-    echo -e "$@" | fabric -p ai -m "${FABRIC_MODEL}"
+    # FABRIC_MODEL="gemma4:26b"
+    # echo -e "$@" | fabric -p ai -m "${FABRIC_MODEL}"
+    echo -e "$@" | fabric -p ai
   fi
 }
 alias '??'="__fabric"
