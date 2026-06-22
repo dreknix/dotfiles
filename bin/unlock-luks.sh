@@ -9,6 +9,7 @@ then
   exit 1
 fi
 
+# TODO check if FQDN is valid
 fqdn=$(host "$1" 2>/dev/null| grep "has address" | awk '{print $1}')
 
 if [ -z "${fqdn}" ]
