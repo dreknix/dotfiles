@@ -63,6 +63,10 @@ zstyle ':completion:*' menu no
 # add ~/.local/share/zsh-completions to $fpath
 fpath=(${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/site-functions $fpath)
 fpath+=~/.zfunc
+
+# dedup fpath
+typeset -U fpath fpath
+
 autoload -Uz compinit
 compinit -C
 
