@@ -35,3 +35,9 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.filetype.add {
+  extension = {
+    qmd = "markdown",
+  },
+}
