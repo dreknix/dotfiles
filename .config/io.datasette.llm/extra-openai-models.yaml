@@ -1,0 +1,19 @@
+---
+#
+# https://docs.hpc.gwdg.de/services/ai-services/saia/#api-model-names
+# add key with: llm keys set gwdg
+- model_id: gwdg-qwen36
+  model_name: qwen3.6-27b
+  api_base: https://chat-ai.academiccloud.de/v1
+  api_key_name: gwdg
+
+- model_id: gwdg-qwen-coder
+  model_name: qwen3-coder-next
+  api_base: https://chat-ai.academiccloud.de/v1
+  api_key_name: gwdg
+
+- model_id: gwdg-mistral
+  model_name: mistral-medium-3.5-128b
+  api_base: https://chat-ai.academiccloud.de/v1
+  api_key_name: gwdg
+...
