@@ -16,4 +16,10 @@
   model_name: mistral-medium-3.5-128b
   api_base: https://chat-ai.academiccloud.de/v1
   api_key_name: gwdg
+#
+#
+- model_id: zen-big-pickle
+  model_name: big-pickle
+  api_base: https://opencode.ai/zen/v1
+  api_key_name: opencode
 ...
