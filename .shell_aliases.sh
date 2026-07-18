@@ -155,6 +155,15 @@ __json_processor() {
   fi
 }
 
+## git
+alias gs="git s"
+alias gp='git push'
+alias gP='git pull'
+__dreknix_git_commit() {
+  git commit -m "$*"
+}
+alias gc='__dreknix_git_commit'
+
 ##
 ## fzf - command-line fuzzy finder
 ##
