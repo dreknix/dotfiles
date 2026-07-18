@@ -162,7 +162,7 @@ __json_processor() {
 # ctrl-up/down - scroll preview up/down
 #
 export FZF_DEFAULT_OPTS="\
-  --tmux \
+  --popup=center \
   --ansi \
   --no-mouse \
   --multi \
@@ -203,7 +203,8 @@ __dreknix_xgcv() {
     --color=always \
     --format="%C(cyan)%h %C(blue)%ar %C(yellow)%s %C(green)%ae" \
     "$@" | \
-  fzf --exit-0 \
+  fzf --popup center,80%,80% \
+      --exit-0 \
       --tiebreak=index \
       --preview="echo '{}' | \
                  grep -o '[a-f0-9]\{7\}' | \
@@ -218,11 +219,10 @@ __dreknix_xgcv() {
                               git show --color=always {} | \
                               delta --paging=always > /dev/tty' \
                            )" \
-      --bind "ctrl-c:execute(echo '{}' | \
-                             grep -o '[a-f0-9]\{7\}' | \
-                             head -1 | \
-                             dreknix_clipboard.sh \
-                            )"
+      --bind "ctrl-c:accept" | \
+  grep -o '[a-f0-9]\{7\}' | \
+  head -1 | \
+  dreknix_clipboard.sh
 }
 alias xgcv=__dreknix_xgcv
 
