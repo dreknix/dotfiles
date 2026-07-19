@@ -603,24 +603,28 @@ okular() {
 
 ## gopass
 getpw() {
-  QUERY=$1
-  if [ -z "$QUERY" ]
+  if [ -n "$1" ]
   then
-    QUERY=''
+    QUERY="--query=$1"
+  else
+    QUERY=""
   fi
-  selected=$(gopass ls --flat | fzf -q "$QUERY")
+  selected=$(gopass ls --flat | \
+    fzf \
+      "${QUERY}" \
+      --ignore-case \
+      --no-multi \
+      --no-sort \
+      --preview-window wrap \
+      --preview "gopass show --nosync {}" \
+  )
   if [ -n "$selected" ]
   then
     if  grep -iq Microsoft /proc/version
     then
-      gopass show --password "$selected" | clip.exe
+      gopass show --nosync --password --unsafe "$selected" | clip.exe
     else
-      gopass show --clip "$selected" > /dev/null 2>/dev/null
-      if [[ $(uname) != "Darwin" ]]
-      then
-        # copy password also into the selction (Shift-Insert)
-        xclip -out -selection clipboard | xclip -selection primary
-      fi
+      gopass show --nosync --password --unsafe "$selected" | dreknix_clipboard.sh
     fi
   fi
 }
