@@ -1,0 +1,32 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
+
+blacklist = ["popup"]
+dir_length = 2
+
+sort_order = [
+    "tmux",
+    "config",
+    "zoxide",
+]
+
+[default_session]
+startup_command = "~/.config/sesh/scripts/dev.sh"
+preview_command = "~/.config/sesh/scripts/preview.sh {}"
+
+[[session]]
+name = " tmux config"
+path = "~/.config/tmux"
+startup_command = "~/.config/sesh/scripts/dev.sh tmux.conf"
+preview_command = "bat --color=always ~/.config/tmux/tmux.conf"
+
+[[session]]
+name = " nvim config"
+path = "~/.config/nvim"
+startup_command = "~/.config/sesh/scripts/dev.sh init.lua"
+preview_command = "bat --color=always ~/.config/nvim/init.lua"
+
+[[session]]
+name = "󰣀 ssh config"
+path = "~/.ssh"
+startup_command = "~/.config/sesh/scripts/dev.sh config"
+preview_command = "bat --color=always ~/.ssh/config"
