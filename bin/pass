@@ -4,7 +4,7 @@
 #
 
 if [[ $1 == "--clip" ]]; then
-    exec gopass show --password "$@"
+    exec gopass show --nosync --force --password "$@"
 elif [[ $1 == "ls" && $# == 1 ]]; then
     exec gopass ls --flat
 elif [[ $1 == "rm" && $2 == "-rf" ]]; then
@@ -12,12 +12,12 @@ elif [[ $1 == "rm" && $2 == "-rf" ]]; then
     exec gopass rm -r -f "$@"
 elif [[ $1 == "show" ]]; then
     shift 1
-    exec gopass show --password "$@"
+    exec gopass show --nosync --force  --password "$@"
 else
   if [[ $# -eq 0 ]]
   then
     gopass ls
   else
-    gopass --password "$@"
+    gopass "$@"
   fi
 fi
