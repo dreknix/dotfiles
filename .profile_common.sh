@@ -25,9 +25,9 @@ then
 fi
 
 # add go when available
-if [ -d "${HOME}/go-workspace" ]
+if [ -d "${HOME}/workspace/go" ]
 then
-  export GOPATH="${HOME}/go-workspace"
+  export GOPATH="${HOME}/workspace/go"
 
   # add local scripts
   if [ -d "${GOPATH}/bin" ]
@@ -47,6 +47,12 @@ fi
 if [ -d "${HOME}/.poetry/bin" ]
 then
   PATH="${HOME}/.poetry/bin:${PATH}"
+fi
+
+# add OpenCode when available
+if [ -d "${HOME}/.opencode/bin" ]
+then
+  PATH="${HOME}/.opencode/bin:${PATH}"
 fi
 
 # add local installed tools
