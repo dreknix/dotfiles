@@ -39,4 +39,4 @@ fi
 export GOPASS_NO_NOTIFY=false
 
 # gopass must be so configured that only the password is printed
-gopass show --force --password "${path}"
+gopass show --password "${path}"

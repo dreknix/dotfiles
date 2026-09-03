@@ -14,4 +14,4 @@ gopass ls --flat | grep -iq "^${path}$" || \
   exit 3)
 
 # gopass must be so configured that only the password is printed
-gopass show --force --password "${path}"
+gopass show --password "${path}"
