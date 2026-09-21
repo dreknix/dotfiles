@@ -78,7 +78,7 @@ yabai -m config mouse_drop_action swap
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
-
+yabai -m rule --add app="^Acrobat$" manage=off
 yabai -m rule --add app="^KeePassXC$" manage=off
 yabai -m rule --add app="^Nextcloud$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
