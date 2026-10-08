@@ -177,3 +177,8 @@
   path = ~/.config/git/config-user-dreknix
 [includeIf "gitdir:~/dreknix/"]
   path = ~/.config/git/config-user-dreknix
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
